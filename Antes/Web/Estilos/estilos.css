@@ -1,0 +1,248 @@
+html, body {
+    overflow-x: hidden; /* Oculta cualquier contenido que se desborde horizontalmente */
+}
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+    color: #3A4767;
+}
+
+.header_paginas {
+    background-color: #3A4767;
+    color: white;
+    padding-left: 15px;
+    padding-top: 0%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 10px;
+}
+
+header {
+    color: white;
+    padding: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 10px;
+    
+}
+
+.formus {
+    font-size: 1em;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: inset 0px 1px 3px rgba(0, 0, 0, 0.1);
+    transition: border-color 0.3s ease;
+    width: 50%;
+    text-align: center;
+    background-color: white;
+    margin: 0 auto;
+    margin-top: 2%;
+    margin-bottom: 2%;
+}
+
+.logo a {
+    font-size: 24px;
+    font-weight: bold;
+    text-decoration: none;
+    color: white;
+}
+
+.logo a:hover {
+    font-size: 30px;
+    font-weight: bold;
+    color: white;
+}
+
+nav a {
+    color: white;
+    margin: 0 10px;
+    text-decoration: none;
+}
+
+nav a:hover {
+    text-decoration: underline;
+}
+
+main {
+    /*padding: 20px;*/
+    text-align: center;
+    margin-left: 0;
+    margin-right: 0;
+}
+
+.foot {
+    background-color: #000;
+    color: white;
+    padding: 10px;
+    text-align: center;
+    /*position: fixed;*/
+    bottom: 0;
+    width: 100%;
+    
+}
+
+button {
+    background-color: #3A4767;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    margin-top: 20px;
+    font-size: 1em;
+    border: none;
+    border-radius: 5px;
+}
+
+button:hover {
+    background-color: #000;
+}
+
+td {
+    text-align: left;
+    padding: 8px;
+}
+
+table {
+    margin: 0 auto;
+    width: 45%;
+}
+
+.tablaBoton{
+    text-align: center;
+    vertical-align: middle;
+    padding:  20px;
+}
+
+.prueba{
+    background-image: 
+    linear-gradient(to bottom, rgba(0, 0, 0, 0.6) 30%, rgba(0, 0, 0, 0.9) 100%), url(../Imagenes/server.jpg);
+    background-size: cover;
+    background-position: center; 
+    background-attachment: fixed; 
+    margin-left: 0%;
+    margin-right: 0%;
+    padding-top: 2%;
+    padding-bottom: 2%;
+    color: white;
+    text-align: left;
+    font-size: 18px;
+    font-weight: bold;
+
+}
+
+.prueba:hover {
+    background-color: #444; /* Un tono ligeramente más claro para el hover */
+   /*filter: brightness(90%);*/
+    
+}
+
+.prueba h1{
+    font-size: 60px;
+}
+.prueba2 h1{
+    font-size: 60px;
+}
+
+.inicio h1{
+    font-size: 60px;
+}
+
+.prueba2{
+    background-image: 
+    linear-gradient(to bottom, rgba(0, 0, 0, 0.6) 30%, rgba(0, 0, 0, 0.9) 100%), url(../Imagenes/ventilador.jpg);
+    background-size: cover;
+    background-position: center; 
+    background-attachment: fixed; 
+    margin-left: 0%;
+    margin-right: 0%;
+    padding-top: 2%;
+    padding-bottom: 2%;
+    color: white;
+    text-align: left;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.inicio{
+    background-image: 
+    linear-gradient(to bottom, rgba(0, 0, 0, 0.5) 30%, rgba(0, 0, 0, 0.9) 100%), url(../Imagenes/inicio.jpg);
+    background-size: cover;
+    background-position: center; 
+    background-attachment: fixed; 
+    margin-left: 0%;
+    margin-right: 0%;
+    padding-top: 2%;
+    padding-bottom: 2%;
+    color: white;
+    text-align: left;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.inicio_enlaces {
+    color: white;
+    text-decoration: none;
+}
+
+.inicio_enlaces:hover {
+   font-size: 21px;
+   text-decoration: underline;
+}
+
+.tableFoot td{
+    margin: 0 auto;
+    width: 10%;
+    text-align: center;
+}
+
+.tableFoot{
+    margin: 0 auto;
+    width: 20%;
+}
+
+.tableFoot a{
+    text-decoration: none;
+    color: white;
+}
+
+.servicios{
+    margin-left: 20%;
+    width: 30%;
+    padding-bottom: 5%;
+}
+
+.PrinciContacto {
+    display: flex; /* Habilita el uso de flexbox */
+    justify-content: space-between; /* Distribuye los elementos con espacio entre ellos */
+    align-items: flex-start; /* Alinea los elementos en la parte superior */
+    padding: 20px; /* Ajusta el espacio interno */
+    gap: 20px; /* Espacio entre el formulario y el mapa */
+}
+
+.PrinciContacto form {
+    width: 37%; /* Ocupa el 45% del ancho disponible */
+    font-size: 1em;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    box-shadow: inset 0px 1px 2px rgba(0, 0, 0, 0.1);
+    transition: border-color 0.3s ease;
+    text-align: center;
+    background-color: white;
+    margin: 0 auto;
+    margin-top: 2%;
+    margin-bottom: 2%;
+}
+
+
+
+
+.PrinciContacto iframe {
+    width: 45%; /* Ocupa el 45% del ancho disponible */
+    height: 450px; /* Mantén la altura del mapa */
+    border: 0;
+}
