@@ -5,6 +5,10 @@
     --font-size-base: 16px;
 }
 
+p {
+    text-align: justify;
+  }
+
 html,
 body {
     overflow-x: hidden;
@@ -35,7 +39,7 @@ header {
 .logo a {
     font-size: 24px;
     font-weight: bold;
-    text-decoration: none;
+    text-decoration: underline;
     color: white;
 }
 .logo a:hover {
@@ -46,7 +50,7 @@ header {
 nav a {
     color: white;
     margin: 0 10px;
-    text-decoration: none;
+    text-decoration: underline;
 }
 nav a:hover {
     text-decoration: underline;
@@ -100,10 +104,37 @@ h1 {
 
 .inicio_enlaces {
     color: white;
+}
+
+
+/*Tamaño letras*/
+body{
+    font-size: 18px
+}
+
+/*Enlaces Body*/
+a{
+    font-size: 18px;
+    text-decoration: underline;
+}
+
+body a:hover{
     text-decoration: none;
+    font-size: 16px
 }
 
 /* Form styles */
+
+.fromCon{
+    width: 80%
+}
+
+/*Titulo Form Estado*/
+#titiEstado{
+    text-align: left
+}
+
+
 .PrinciContacto {
     display: flex;
     flex-wrap: wrap;
@@ -127,6 +158,10 @@ form table {
     width: 100%;
 }
 
+h1{
+    text-align: center;
+}
+
 input,
 textarea {
     width: 100%;
@@ -146,10 +181,6 @@ button {
 }
 
 /* Footer styles */
-.fromCon{
-    width: 80%
-}
-
 .foot {
     background-color: #000;
     color: white;
@@ -165,7 +196,38 @@ button {
 
 .tableFoot a {
     color: white;
+    text-decoration: underline;
+}
+
+.tableFoot a:hover {
+    color: white;
     text-decoration: none;
+}
+
+/*Tabla pagina estados*/
+.estadoTabla{
+    width: 80%;
+}
+
+.codigo{
+    width: auto;
+}
+
+.estadoTabla button {
+    float: left;
+}
+
+.estadoTabla label{
+    text-align: left;
+}
+
+/*Formulario Contacto*/
+.fromCon button{
+    float: left;
+}
+
+.fromCon label{
+    text-align: left;
 }
 
 /* Responsive styles */

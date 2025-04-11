@@ -3,11 +3,11 @@ require_once '../bd/database.php';
 
 session_name("Sesión1");
 session_start();
+
+// FrontController
 if(!isset($_REQUEST['c']))
 {
-    require_once '../view/headerStart.php';
-    require_once '../view/HTML/inicio.html';
-    require_once '../view/footer.php';
+    require_once '../HTML/index.php';
 }
 else
 {
