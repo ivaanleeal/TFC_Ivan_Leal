@@ -162,6 +162,11 @@ h1{
     text-align: center;
 }
 
+.enlacesUsu a{
+    color: black;
+   /* background-color: #3a4767;*/
+}
+
 input,
 textarea {
     width: 100%;

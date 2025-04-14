@@ -23,6 +23,11 @@
         <nav>
             <a href="./index.php">Inicio</a>
             <a href="../HTML/contacto.php">Contacto</a>
+            <?php
+            if(isset($_SESSION['nombreUsu'])&& $_SESSION['nombreUsu']!=""){
+            echo "<a href='index.php?c=usuario&a=usuarioIniciado'>Menú</a>";
+            }
+            ?>
             <a href="index.php?c=usuario&a=login">Iniciar Sesión</a>
         </nav>
     </header>
