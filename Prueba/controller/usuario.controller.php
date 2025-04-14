@@ -77,7 +77,6 @@ class UsuarioController
         $_SESSION['privilegio'] = "";
 
         require_once '../view/headerInicio.php';
-        require_once '../view/header.php';
         require_once '../view/usuario/login.php';
         require_once '../view/footer.php';
     }
@@ -121,7 +120,7 @@ class UsuarioController
                 require_once '../view/footer.php';
             }
         } else {
-            require_once '../view/header.php';
+            require_once '../view/headerInicio.php';
             require_once '../view/usuario/login.php';
             echo "<br>";
             foreach ($errores as $error) {

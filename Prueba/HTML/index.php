@@ -1,10 +1,25 @@
 <!DOCTYPE html>
 <html lang="es">
 
-<?php
-require_once "../view/header.php"; 
-?>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contacto - Reparaciones Informáticas</title>
+    <link rel="icon" href="https://yt3.ggpht.com/ssGR_sKs0gRpkLzFhxUig46rmwq73x6PzDsmaQh_Mu6jYG8SRsfSciptLPqMudHZpYQQRfOR=s108-c-k-c0x00ffffff-no-rj" type="image/x-icon">
+    <link rel="stylesheet" href="../Estilos/estilos.css">
+    <script src="../JS/validaForm.js" defer></script>
+</head>
+
+<body>
     <section class="inicio">
+        <header class="header_paginas">
+            <div class="logo"><a href="./index.php">Reparacions</a></div>
+            <nav>
+                <a href="./index.php">Inicio</a>
+                <a href="../HTML/contacto.html">Contacto</a>
+                <a href="./index.php?c=usuario&a=login">Iniciar Sesión</a>
+            </nav>
+        </header>
 
         <table class="servicios">
             <tr>
@@ -128,9 +143,21 @@ require_once "../view/header.php";
                         <td> <input type="text" id="nombre" name="nombre" placeholder="Ej. Jose" required></td>
                     </tr>
                     <tr>
+                        <td></td>
+                        <td>
+                            <p id="errornombre"></p>
+                        </td>
+                    </tr>
+                    <tr>
                         <td><label for="apellidos">Apellidos:</label></td>
-                        <td> <input type="text" id="apellidos" name="apellidos" placeholder="Ej. Rodríguez López"
+                        <td> <input type="text" id="apellido" name="apellido" placeholder="Ej. Rodríguez López"
                                 required>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td>
+                            <p id="errorapellido"></p>
                         </td>
                     </tr>
                     <tr>
@@ -139,12 +166,24 @@ require_once "../view/header.php";
                         </td>
                     </tr>
                     <tr>
+                        <td></td>
+                        <td>
+                            <p id="erroremail"></p>
+                        </td>
+                    </tr>
+                    <tr>
                         <td><label for="mensaje">Mensaje:</label></td>
                         <td><textarea id="mensaje" name="mensaje" rows="4" required
                                 placeholder="Escribe tu texto..."></textarea></td>
                     </tr>
                     <tr>
-                        <td colspan="2" class="tablaBoton"><button type="submit">Enviar</button></td>
+                        <td></td>
+                        <td>
+                            <p id="erroretexto"></p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" class="tablaBoton"><button type="submit" id="enviar">Enviar</button></td>
                     </tr>
                 </table>
 
@@ -164,7 +203,7 @@ require_once "../view/header.php";
     require_once "../view/footer.php";
     ?>
 
-    
+
 
 </body>
 

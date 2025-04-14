@@ -162,9 +162,8 @@ h1{
     text-align: center;
 }
 
-.enlacesUsu a{
-    color: black;
-   /* background-color: #3a4767;*/
+.enlacesUsu button{
+    margin-left: 10px;
 }
 
 input,
@@ -216,6 +215,19 @@ button {
 .estadoTabla{
     width: 80%;
 }
+
+.errortexto{
+    color: red;
+    text-align: center;
+}
+.errorcaja{
+    border: red solid 3px;
+}
+
+.validocaja {
+    border: 2px solid green;
+}
+
 
 .codigo{
     width: auto;
