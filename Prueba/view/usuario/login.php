@@ -1,10 +1,23 @@
+<section class="fromInicioSesion">
+    <div>
+        <h2 class="clientes">Accede a tu Área</h2>
+        <form class="contenidoForm" method="post" action="index.php?c=usuario&a=loginVerificar">
+            Nombre Usuario
+            <input type="text" name="usuario" placeholder="Escriba su nombre de Usuario" class="input-estilo"><br />
+            <p id="errorDni"></p>
+            <br /><br />
 
-<h1 class="page-header">Login</h1>
-<!-- EN CONSTRUCCIÓN -->
+            Contraseña Usuario
+            <input type="password" name="password" placeholder="Escriba su Contraseña" class="input-estilo"><br />
+            <p id="errorDni"></p>
+            <br /><br />
 
-<form method="POST" action="?c=Usuario&a=loginVerificar">
-    <input type="text" name="usuario" placeholder="Usuario">
-    <input type="password" name="password" placeholder="Contraseña">
-    <button type="submit">Iniciar Sesión</button>
-</form>
 
+            <label for="recordar">Recordar</label>
+            <input type="checkbox" id="recordar" checked>
+
+            <button class="boton" id="enviar" type="submit">Entrar</button>
+
+        </form>
+    </div>
+</section>

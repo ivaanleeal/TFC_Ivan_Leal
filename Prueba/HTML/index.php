@@ -1,28 +1,10 @@
 <!DOCTYPE html>
 <html lang="es">
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Inicio - Reparaciones Informáticas</title>
-    <link rel="icon"
-        href="https://yt3.ggpht.com/ssGR_sKs0gRpkLzFhxUig46rmwq73x6PzDsmaQh_Mu6jYG8SRsfSciptLPqMudHZpYQQRfOR=s108-c-k-c0x00ffffff-no-rj"
-        type="image/x-icon">
-    <link rel="stylesheet" href="../Estilos/estilos.css">
-
-</head>
-
-<body>
+<?php
+require_once "../view/header.php"; 
+?>
     <section class="inicio">
-        <header>
-            <div class="logo"><a href="./index.php">Reparacións</a></div>
-            <nav>
-                <a href="./index.php">Inicio</a>
-                <a href="../HTML/contacto.html">Contacto</a>
-                <a href="./HTML/inicio_sesion.php">Iniciar Sesión</a>
-            </nav>
-        </header>
-
 
         <table class="servicios">
             <tr>
@@ -178,16 +160,11 @@
 
     </section>
 
-    <section class="foot">
-        <p>&copy; 2025 TPCSI - Todos los derechos reservados.</p><br />
-        <table class="tableFoot">
-            <tr>
-                <td><a href="index.php">Página Principa</a></td>
-                <td><a href="../HTML/contacto.html">Contactanos</a></td>
-                <td><a href="./HTML/inicio_sesion.php">Iniciar Sesión</a></td>
-            </tr>
-        </table>
-    </section>
+    <?php
+    require_once "../view/footer.php";
+    ?>
+
+    
 
 </body>
 

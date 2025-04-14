@@ -7,7 +7,9 @@ session_start();
 // FrontController
 if(!isset($_REQUEST['c']))
 {
+    require_once '../view/header.php';
     require_once '../HTML/index.php';
+    require_once '../view/footer.php';
 }
 else
 {

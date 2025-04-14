@@ -1,7 +1,7 @@
 <?php
-if (!isset($_SESSION["nombreUsu"])) {
+/*if (!isset($_SESSION["nombreUsu"])) {
     header('Location:index.php');
-}
+}*/
 
 ?>
 
@@ -9,39 +9,22 @@ if (!isset($_SESSION["nombreUsu"])) {
 <html lang="es">
 
 <head>
-    <title>Ejemplo MVC con entidad y controller</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon"
+        href="https://yt3.ggpht.com/ssGR_sKs0gRpkLzFhxUig46rmwq73x6PzDsmaQh_Mu6jYG8SRsfSciptLPqMudHZpYQQRfOR=s108-c-k-c0x00ffffff-no-rj"
+        type="image/x-icon">
+    <link rel="stylesheet" href="../Estilos/estilos.css">
 
-    <meta charset="utf-8" />
-
-    <link rel="stylesheet" href="../public/assets/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="../public/assets/css/bootstrap-theme.min.css" />
-    <link rel="stylesheet" href="../public/assets/js/jquery-ui/jquery-ui.min.css" />
-    <link rel="stylesheet" href="../public/assets/css/style.css" />
-
-    <script src="http://code.jquery.com/jquery-1.11.2.min.js"></script>
 </head>
 
 <body>
 
-
-
-    <div class="container">
-
-        <div id="navbar" class="navbar-collapse collapse">
-            <h2>Usuario:
-                <?php
-                if (!empty($_SESSION)) {
-                    echo  $_SESSION['nombreUsu'];
-                } else {
-                    echo "Sin registrar";
-                }
-                ?>
-
-            </h2>
-            <ul class="nav navbar-nav ">
-                <li class="active"><a href="index.php?c=Alumno">Alumnos</a></li>
-                <li><a href="index.php?c=Curso">Cursos</a></li>
-                <li><a href="index.php?c=Usuario&a=logout">Salir</a></li>
-            </ul>
-        </div><!--/.nav-collapse -->
-    </div>
+    <header>
+        <div class="logo"><a href="./index.php">Reparaciones</a></div>
+        <nav>
+            <a href="./index.php">Inicio</a>
+            <a href="../HTML/contacto.php">Contacto</a>
+            <a href="index.php?c=usuario&a=login">Iniciar Sesión</a>
+        </nav>
+    </header>

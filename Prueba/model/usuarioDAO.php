@@ -16,16 +16,16 @@ class UsuarioDAO
 
 
 
-    public function obtenerPorUsuario(string $usuario): ?cliente
+    public function obtenerPorUsuario(string $usuario): ?Usuario
     {
-        $stmt = $this->pdo->prepare("SELECT * FROM usuarios WHERE usuario = :usuario");
+        $stmt = $this->pdo->prepare("SELECT * FROM clientes WHERE usuario = :usuario");
         $stmt->execute(['usuario' => $usuario]);
         $data = $stmt->fetchAll(PDO::FETCH_CLASS, 'usuario'); //Devuelve array 
 
         return $data ? $data[0] : null;
     }
 
-    public function registrar(cliente $usuario)
+    public function registrar(Usuario $usuario)
     {
         $stmt = $this->pdo->prepare("INSERT INTO usuarios (telefono, nombre, apellido, usuario, email, password, privilegio) VALUES (:nombre, :usuario, :email, :password, :privilegio)");
         $stmt->execute([
