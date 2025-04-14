@@ -76,6 +76,7 @@ class UsuarioController
         $_SESSION['nombreUsu'] = "";
         $_SESSION['privilegio'] = "";
 
+        require_once '../view/headerInicio.php';
         require_once '../view/header.php';
         require_once '../view/usuario/login.php';
         require_once '../view/footer.php';
