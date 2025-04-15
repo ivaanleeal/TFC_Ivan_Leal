@@ -45,7 +45,7 @@
         </iframe>
         <section class="formus">
             <h1>Contáctanos</h1>
-            <form class="fromCon">
+            <form class="fromCon" method="post" action="index.php?c=contacto&a=registrar">
                 <table>
                     <tr>
                         <td><label for="nombre">Nombre:</label></td>

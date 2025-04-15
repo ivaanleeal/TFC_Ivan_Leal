@@ -27,11 +27,11 @@ class UsuarioDAO
 
     public function registrar(Usuario $usuario)
     {
-        $stmt = $this->pdo->prepare("INSERT INTO usuarios (telefono, nombre, apellido, usuario, email, password, privilegio) VALUES (:nombre, :usuario, :email, :password, :privilegio)");
+        $stmt = $this->pdo->prepare("INSERT INTO usuarios (telefono, nombre, apellido, usuario, email, contrasena, privilegio) VALUES (:telefono, :nombre, :apellido, :usuario, :contrasena, :privilegio)");
         $stmt->execute([
             'telefono' => $usuario->getTelefono(),
             'nombre' => $usuario->getNombre(),
-            'apellido' => $usuario->getNombre(),
+            'apellido' => $usuario->getApellidos(),
             'usuario' => $usuario->getUsuario(),
             'contrasena' => password_hash($usuario->getContrasena(), PASSWORD_DEFAULT),
             'privilegio' => $usuario->getPrivilegio()

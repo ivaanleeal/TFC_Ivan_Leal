@@ -22,12 +22,15 @@ function enviarForm(e) {
         valiApellido() &
         valiEmail() &
         valiTexto();
-
     if (!valid) {
         e.preventDefault();
+    }else{
+        confirm("¿Desea enviar el Formulario?");
+        alert("Formulario enviado correctamente.");
+        return valid;
     }
 
-    return valid;
+   
 }
 
 function valiNombre() {
