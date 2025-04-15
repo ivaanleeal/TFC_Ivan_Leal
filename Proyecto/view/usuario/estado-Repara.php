@@ -11,7 +11,7 @@
 
 <body>
     <header class="header_paginas">
-        <div class="logo"><a href="../index.html">Reparacions</a></div>
+        <div class="logo"><a href="../index.html">TPCSI</a></div>
         <nav>
             <a href="../public/index.php">Inicio</a>
             <a href="../public/index.php?c=usuario&a=usuarioContacto">Contacto</a>

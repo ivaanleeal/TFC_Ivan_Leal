@@ -20,7 +20,7 @@
 <body>
 
     <header>
-        <div class="logo"><a href="./index.php">Reparaciones</a></div>
+        <div class="logo"><a href="./index.php">TPCSI</a></div>
         <nav>
             <a href="./index.php">Inicio</a>
             <a href="../public/index.php?c=usuario&a=usuarioContacto">Contacto</a>

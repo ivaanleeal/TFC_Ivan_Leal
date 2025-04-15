@@ -13,11 +13,22 @@
         <nav>
             <a href="../public/index.php">Inicio</a>
             <a href="../public/index.php?c=usuario&a=usuarioContacto">Contacto</a>
-            <a href="../public/index.php?c=usuario&a=usuarioIniciado">Menú</a>
+            <a href="../public/index.php?c=usuario&a=usuarioIniciadoAdmin">Menú Admin</a>
             <a href="../public/index.php?c=usuario&a=logout">Cerrar Sesión</a>
         </nav>
     </header>
 
     <section >
-        
+        <h1>Hola Admin <?php echo $_SESSION['nombreUsu']; ?> bienbenido de nuevo</h1>
+        <div class="enlacesUsu">
+            <nav>
+                <button onclick="location.href='index.php?c=usuario&a=logout'">Cerrar sesión</button>
+                <br><br>
+                
+                <br><br>
+            </nav>
+        </div>
     </section>
+
+
+</body>

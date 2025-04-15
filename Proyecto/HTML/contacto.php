@@ -12,29 +12,37 @@
 
 <body>
     <header class="header_paginas">
-        <div class="logo"><a href="../public/index.php">Reparacions</a></div>
+        <div class="logo"><a href="../public/index.php">TPCSI</a></div>
         <nav>
             <a href="../public/index.php">Inicio</a>
             <a href="../public/index.php?c=usuario&a=usuarioContacto">Contacto</a>
             <?php
-                if (isset($_SESSION['nombreUsu'])) {
-                ?>
-                    <a href="../public/index.php?c=usuario&a=usuarioIniciado">Menú</a>
+            if (isset($_SESSION['nombreUsu']) && $_SESSION['privilegio'] == 0) {
+            ?>
+                <td><a href="../public/index.php?c=usuario&a=usuarioIniciado">Menú Usuario</a></td>
+                </tr>
+                <tr>
                 <?php
-                }
+            }
+            if (isset($_SESSION['nombreUsu']) && $_SESSION['privilegio'] == 1) {
+                ?>
+                    <td><a href="../public/index.php?c=usuario&a=usuarioIniciadoAdmin">Menú Admin</a></td>
+                <?php
+            }
 
-                if (!isset($_SESSION['nombreUsu'])) {
+            if (!isset($_SESSION['nombreUsu']) || $_SESSION['nombreUsu'] == "") {
                 ?>
                     <a href="../public/index.php?c=usuario&a=login">Iniciar Sesión</a>
                 <?php
-                }
-                
-                if (isset($_SESSION['nombreUsu'])) {
+            }
+
+            if (isset($_SESSION['nombreUsu']) && $_SESSION['nombreUsu'] != "") {
                 ?>
                     <a href="../public/index.php?c=usuario&a=logout">Cerrar Sesión</a>
                 <?php
-                }
+            }
                 ?>
+
         </nav>
     </header>
     <main>
