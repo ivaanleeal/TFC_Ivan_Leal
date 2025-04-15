@@ -24,13 +24,18 @@ function enviarForm(e) {
         valiTexto();
     if (!valid) {
         e.preventDefault();
-    }else{
-        confirm("¿Desea enviar el Formulario?");
-        alert("Formulario enviado correctamente.");
-        return valid;
+    } else {
+        let confirmar = confirm("¿Desea enviar el Formulario? Al enviarlo acepta nustra política de privacidad.");
+        if (confirmar == true) {
+            alert("Formulario enviado correctamente.");
+            return valid;
+        }else{
+            e.preventDefault();
+        }
+
     }
 
-   
+
 }
 
 function valiNombre() {
