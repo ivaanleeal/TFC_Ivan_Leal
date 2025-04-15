@@ -23,7 +23,7 @@
         <div class="logo"><a href="./index.php">Reparaciones</a></div>
         <nav>
             <a href="./index.php">Inicio</a>
-            <a href="../HTML/contacto.php">Contacto</a>
+            <a href="../public/index.php?c=usuario&a=usuarioContacto">Contacto</a>
             <?php
             if(isset($_SESSION['nombreUsu'])&& $_SESSION['nombreUsu']!=""){
             echo "<a href='index.php?c=usuario&a=usuarioIniciado'>Menú</a>";

@@ -15,8 +15,26 @@
         <div class="logo"><a href="../public/index.php">Reparacions</a></div>
         <nav>
             <a href="../public/index.php">Inicio</a>
-            <a href="../HTML/contacto.php">Contacto</a>
-            <a href="../public/index.php?c=usuario&a=login">Iniciar Sesión</a>
+            <a href="../public/index.php?c=usuario&a=usuarioContacto">Contacto</a>
+            <?php
+                if (isset($_SESSION['nombreUsu'])) {
+                ?>
+                    <a href="../public/index.php?c=usuario&a=usuarioIniciado">Menú</a>
+                <?php
+                }
+
+                if (!isset($_SESSION['nombreUsu'])) {
+                ?>
+                    <a href="../public/index.php?c=usuario&a=login">Iniciar Sesión</a>
+                <?php
+                }
+                
+                if (isset($_SESSION['nombreUsu'])) {
+                ?>
+                    <a href="../public/index.php?c=usuario&a=logout">Cerrar Sesión</a>
+                <?php
+                }
+                ?>
         </nav>
     </header>
     <main>
@@ -83,16 +101,9 @@
             <br>
         </section>
     </main>
-    <section class="foot">
-        <p>&copy; 2025 ReparaTech - Todos los derechos reservados.</p><br />
-        <table class="tableFoot">
-            <tr>
-                <td><a href="../public/index.php">Página Principa</a></td>
-                <td><a href="../HTML/contacto.php">Contactanos</a></td>
-                <td><a href="../public/index.php?c=usuario&a=login">Iniciar Sesión</a></td>
-            </tr>
-        </table>
-    </section>
+    <?php
+    require_once "../view/footer.php";
+    ?>
 </body>
 
 </html>

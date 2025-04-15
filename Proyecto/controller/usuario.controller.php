@@ -130,6 +130,32 @@ class UsuarioController
         require_once '../view/footer.php';
     }
 
+    public function usuarioHistorial()
+    {
+        if (!isset($_SESSION['nombreUsu'])) {
+            require_once '../view/usuario/login.php';
+        } else {
+            require_once '../view/usuario/historial-Repara.php';
+        }
+        require_once '../view/footer.php';
+    }
+
+    public function usuarioRepara()
+    {
+        if (!isset($_SESSION['nombreUsu'])) {
+            require_once '../view/usuario/login.php';
+        } else {
+            require_once '../view/usuario/estado-Repara.php';
+        }
+        require_once '../view/footer.php';
+    }
+
+    public function usuarioContacto()
+    {
+        require_once '../HTML/contacto.php';
+        require_once '../view/footer.php';
+    }
+
 
     public function logout()
     {

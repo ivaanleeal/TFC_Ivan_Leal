@@ -12,7 +12,7 @@
         <div class="logo"><a href="./index.php">Reparacions</a></div>
         <nav>
             <a href="../public/index.php">Inicio</a>
-            <a href="../HTML/contacto.php">Contacto</a>
+            <a href="../public/index.php?c=usuario&a=usuarioContacto">Contacto</a>
             <a href="../public/index.php?c=usuario&a=usuarioIniciado">Menú</a>
             <a href="../public/index.php?c=usuario&a=logout">Cerrar Sesión</a>
         </nav>
@@ -24,7 +24,7 @@
             <nav>
                 <button onclick="location.href='index.php?c=usuario&a=logout'">Cerrar sesión</button>
                 <br><br>
-                <button>Ver estado Reparación en directo</button>
+                
                 <br><br>
             </nav>
         </div>
@@ -39,7 +39,7 @@
             </tr>
             <tr>
                 <td colspan="2">
-                    <h3>Historiar de reparaciones:</h3>
+                    <h3>Historial de reparaciones:</h3>
                 </td>
             </tr>
             <tr>
@@ -47,7 +47,7 @@
                     <p class="infoServiInicio">Aquí podras ver todas las reparaciones de todos tus equipos con toda la información del parte. </p>
                 </td>
                 <td>
-                    <button>Ver historial Reparaciones en directo</button>
+                <button onclick="location.href='index.php?c=usuario&a=usuarioHistorial'">Ver Historial de reparaciones</button>
                 </td>
             </tr>
         </table>
@@ -65,7 +65,7 @@
                     <p class="infoServiInicio">Aquí podras ver el estado en el que se encuentra tu equipo a tiempo real "Solo está funcional si tiees una reparación en proceso". </p>
                 </td>
                 <td>
-                    <button>Ver Estado de la Reparación</button>
+                    <button onclick="location.href='index.php?c=usuario&a=usuarioRepara'">Ver Estado de la Reparación</button>
                 </td>
             </tr>
         </table>

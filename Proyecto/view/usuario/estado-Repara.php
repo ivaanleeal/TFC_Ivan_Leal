@@ -13,17 +13,20 @@
     <header class="header_paginas">
         <div class="logo"><a href="../index.html">Reparacions</a></div>
         <nav>
-            <a href="../index.html">Inicio</a>
-            <a href="Servicios_Informáticos.html">Servicios Informáticos</a>
-            <a href="estado.html">Estado del Equipo</a>
-            <a href="contacto.html">Contacto</a>
+            <a href="../public/index.php">Inicio</a>
+            <a href="../public/index.php?c=usuario&a=usuarioContacto">Contacto</a>
+            <a href="../public/index.php?c=usuario&a=usuarioIniciado">Menú</a>
+            <a href="../public/index.php?c=usuario&a=logout">Cerrar Sesión</a>
         </nav>
     </header>
     <main>
         <section class="formus">
-            <h1>Consulta el Estado de tu Equipo</h1>
-            <form>
+            <form class="fromCon">
                 <table>
+                    <tr>
+                        <td></td>
+                        <td><h1>Consulta el Estado de tu Equipo</h1></td>
+                    </tr>
                     <tr>
                         <td>
                             <label for="codigo">Introduce tu código:</label>
@@ -33,25 +36,13 @@
                         </td>
                     </tr>
                     <tr>
-                        <td colspan="2" class="tablaBoton"><button type="submit">Consultar</button></td>
+                        <td></td>
+                        <td class="tablaBoton"><button type="submit">Consultar</button></td>
                     </tr>
                 </table>
             </form>
         </section>
     </main>
-    <section class="foot">
-        <p>&copy; 2024 ReparaTech - Todos los derechos reservados.</p><br/>
-        <table class="tableFoot">
-            <tr>
-                <td><a href="Pagina_Principal.html">Página Principa</a></td>
-                <td><a href="Servicios_Informáticos.html">Servicios Informáticos</a></td>
-            </tr>
-            <tr>
-                <td><a href="estado.html">Estado Reparación</a></td>
-                <td><a href="contacto.html">Contactanos</a></td>
-            </tr>
-        </table>
-    </section>
 </body>
 
 </html>
