@@ -1,5 +1,5 @@
 .fromInicioSesion {
-    font-family: Arial, sans-serif;
+    font-family: "Montserrat", sans-serif;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -11,7 +11,7 @@
 
 
 .contenidoForm {
-    background-color: white;
+    background-color: #f4f4f4;
     padding: 50px;
     border-radius: 8px;
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
@@ -49,7 +49,7 @@ tr {
     padding: 10px;
     margin-top: 20px;
     background-color: #3A4767;
-    color: white;
+    color: #f4f4f4;
     border: none;
     border-radius: 5px;
     cursor: pointer;
