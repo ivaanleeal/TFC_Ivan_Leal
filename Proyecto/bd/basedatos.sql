@@ -94,8 +94,8 @@ CREATE TABLE reparacion_parte (
   tarea INT NOT NULL,
   pieza VARCHAR(100) NOT NULL,
   PRIMARY KEY (parte, tarea, pieza),
-  CONSTRAINT fk_reparacion_partes FOREIGN KEY (parte) 
-    REFERENCES partes(numero_parte) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT fk_reparacion_tareas FOREIGN KEY (parte, tarea) 
+    REFERENCES tareas(numero_parte, id_tarea) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT fk_reparacion_piezas FOREIGN KEY (pieza) 
     REFERENCES piezas(codigo_pieza) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;

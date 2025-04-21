@@ -98,14 +98,13 @@ class UsuarioController
 
                 $_SESSION['nombreUsu'] = $usuario->getUsuario();
                 $_SESSION['privilegio'] = $usuario->getPrivilegio();
+                $_SESSION['telefono'] = $usuario->getTelefono();
 
-                if($usuario->getPrivilegio()==0){
+                if ($usuario->getPrivilegio() == 0) {
                     header('Location: index.php?c=Usuario&a=usuarioIniciado');
-                }else{
+                } else {
                     header('Location: index.php?c=Usuario&a=usuarioIniciadoAdmin');
                 }
-
-                
             } else {
 
                 $errores[] = "Usuario o Contraseña mal escritos";
@@ -151,6 +150,7 @@ class UsuarioController
         if (!isset($_SESSION['nombreUsu'])) {
             require_once '../view/usuario/login.php';
         } else {
+            $datos = $this->model->obtenerReparaciones($_SESSION['telefono']);
             require_once '../view/usuario/historial-Repara.php';
         }
         require_once '../view/footer.php';

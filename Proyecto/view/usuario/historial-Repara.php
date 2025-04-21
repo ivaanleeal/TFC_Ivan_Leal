@@ -1,7 +1,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contacto - Reparaciones Informáticas</title>
+    <title>Contacto - datos Informáticas</title>
     <link rel="icon" href="https://yt3.ggpht.com/ssGR_sKs0gRpkLzFhxUig46rmwq73x6PzDsmaQh_Mu6jYG8SRsfSciptLPqMudHZpYQQRfOR=s108-c-k-c0x00ffffff-no-rj" type="image/x-icon">
     <link rel="stylesheet" href="../Estilos/estilos.css">
 </head>
@@ -18,6 +18,88 @@
         </nav>
     </header>
 
-    <section >
-        
+    <section>
+        <h1>Reparaciones de tus dispositivos <?php echo $_SESSION['nombreUsu']; ?>:</h1>
+
+        <!-- Filtro de búsqueda -->
+        <span>Buscar Por Equipo: </span> <input type="text" id="filtroTabla" class="buscar" placeholder="Buscar Equipo...">
+
+        <?php
+        $datosAgrupadas = [];
+
+        foreach ($datos as $reparacion) {
+            $clave = $reparacion['MarcaEquipo'] . ' ' . $reparacion['ModeloEquipo'] . ' ' . $reparacion['FechaParte'];
+
+            if (!isset($datosAgrupadas[$clave])) {
+                $datosAgrupadas[$clave] = [
+                    'MarcaEquipo' => $reparacion['MarcaEquipo'],
+                    'ModeloEquipo' => $reparacion['ModeloEquipo'],
+                    'FechaParte' => $reparacion['FechaParte'],
+                    'NotasParte' => $reparacion['NotasParte'],
+                    'tareas' => []
+                ];
+            }
+
+            $datosAgrupadas[$clave]['tareas'][] = [
+                'ReparacionTarea' => $reparacion['ReparacionTarea'],
+                'parte' => $reparacion['parte'],
+                'ReparacionPieza' => $reparacion['ReparacionPieza'],
+                'PiezaNombre' => $reparacion['PiezaNombre'],
+                'descripcion' => $reparacion['TareaDescripccion'],
+                'MarcaPieza' => $reparacion['MarcaPieza'],
+                'ModeloPieza' => $reparacion['ModeloPieza'],
+                'TareaTiempo' => $reparacion['TareaTiempo']
+            ];
+        }
+
+        foreach ($datosAgrupadas as $reparacion) {
+            echo '<div class="fromData">';
+            echo '<h2>Equipo: ' . $reparacion['MarcaEquipo'] . ' ' . $reparacion['ModeloEquipo'] . '</h2>';
+            echo '<h3>Fecha parte: ' . $reparacion['FechaParte'] . '</h3>';
+            echo '<h3>Nota: ' . $reparacion['NotasParte'] . '</h3>';
+            echo '<table>';
+            echo '<thead>';
+            echo '<tr>';
+            echo '<th>Tarea</th>';
+            echo '<th>Descripción</th>';
+            echo '<th>Pieza Substituida o Arreglada</th>';
+            echo '<th>Marca Pieza</th>';
+            echo '<th>Modelo Pieza</th>';
+            echo '<th>Minutos</th>';
+            echo '</tr>';
+            echo '</thead>';
+            echo '<tbody>';
+
+            foreach ($reparacion['tareas'] as $tarea) {
+                echo '<tr>';
+                echo '<td>' . $tarea['ReparacionTarea'] . '</td>';
+                echo '<td>' . $tarea['descripcion'] . '</td>';
+                echo '<td>' . $tarea['PiezaNombre'] . '</td>';
+                echo '<td>' . $tarea['MarcaPieza'] . '</td>';
+                echo '<td>' . $tarea['ModeloPieza'] . '</td>';
+                echo '<td>' . $tarea['TareaTiempo'] . '</td>';
+                echo '</tr>';
+            }
+
+            echo '</tbody>';
+            echo '</table>';
+            echo '</div>';
+            echo '<br><br>';
+        }
+        ?>
+    </section>
+
+    <script>
+        document.getElementById('filtroTabla').addEventListener('keyup', function() {
+            const filtro = this.value.toLowerCase();
+            const tablas = document.querySelectorAll('.fromData');
+
+            tablas.forEach(tabla => {
+                const textoTabla = tabla.innerText.toLowerCase();
+                tabla.style.display = textoTabla.includes(filtro) ? '' : 'none';
+            });
+        });
+    </script>
+
+
     </section>

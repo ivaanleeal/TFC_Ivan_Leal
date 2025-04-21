@@ -7,7 +7,7 @@
 
 p {
     text-align: justify;
-  }
+}
 
 html,
 body {
@@ -42,16 +42,19 @@ header {
     text-decoration: underline;
     color: #f4f4f4;
 }
+
 .logo a:hover {
     font-size: 30px;
     font-weight: bold;
     color: #f4f4f4;
 }
+
 nav a {
     color: #f4f4f4;
     margin: 0 10px;
     text-decoration: underline;
 }
+
 nav a:hover {
     text-decoration: underline;
 }
@@ -81,14 +84,17 @@ main {
     text-align: left;
     height: 500px;
 }
-   
+
 
 .pruebaMenu td {
-    color: #f4f4f4; 
+    color: #f4f4f4;
     padding: 0.5rem;
-    font-size: 18px; /* o el que esté usando .inicio */
-    line-height: 1.6; /* igual que el body */
-    letter-spacing: normal; /* o ajusta si hay diferencias visuales */
+    font-size: 18px;
+    /* o el que esté usando .inicio */
+    line-height: 1.6;
+    /* igual que el body */
+    letter-spacing: normal;
+    /* o ajusta si hay diferencias visuales */
 }
 
 .pruebaMenuDos {
@@ -102,11 +108,14 @@ main {
 }
 
 .pruebaMenuDos td {
-    color: #f4f4f4; 
+    color: #f4f4f4;
     padding: 0.5rem;
-    font-size: 18px; /* o el que esté usando .inicio */
-    line-height: 1.6; /* igual que el body */
-    letter-spacing: normal; /* o ajusta si hay diferencias visuales */
+    font-size: 18px;
+    /* o el que esté usando .inicio */
+    line-height: 1.6;
+    /* igual que el body */
+    letter-spacing: normal;
+    /* o ajusta si hay diferencias visuales */
 }
 
 
@@ -154,36 +163,36 @@ h1 {
     color: #f4f4f4;
 }
 
-.infoInicio p{
+.infoInicio p {
     color: black;
     text-align: justify;
 }
 
 
 /*Tamaño letras*/
-body{
+body {
     font-size: 18px
 }
 
 /*Enlaces Body*/
-a{
+a {
     font-size: 18px;
     text-decoration: underline;
 }
 
-body a:hover{
+body a:hover {
     text-decoration: none;
     font-size: 16px
 }
 
 /* Form styles */
 
-.fromCon{
+.fromCon {
     width: 80%
 }
 
 /*Titulo Form Estado*/
-#titiEstado{
+#titiEstado {
     text-align: left
 }
 
@@ -211,15 +220,15 @@ form table {
     width: 100%;
 }
 
-h1{
+h1 {
     text-align: center;
 }
 
-.enlacesUsu button{
+.enlacesUsu button {
     margin-left: 10px;
 }
 
-input,
+.fromCon input,
 textarea {
     width: 100%;
     padding: 0.5rem;
@@ -244,7 +253,8 @@ button {
     padding: 1rem;
     text-align: center;
 }
-.foot p {    
+
+.foot p {
     text-align: center;
 }
 
@@ -265,15 +275,16 @@ button {
 }
 
 /*Tabla pagina estados*/
-.estadoTabla{
+.estadoTabla {
     width: 80%;
 }
 
-.errortexto{
+.errortexto {
     color: red;
     text-align: center;
 }
-.errorcaja{
+
+.errorcaja {
     border: red solid 3px;
 }
 
@@ -282,7 +293,7 @@ button {
 }
 
 
-.codigo{
+.codigo {
     width: auto;
 }
 
@@ -290,18 +301,69 @@ button {
     float: left;
 }
 
-.estadoTabla label{
+.estadoTabla label {
     text-align: left;
 }
 
 /*Formulario Contacto*/
-.fromCon button{
+.fromCon button {
     float: left;
 }
 
 
-.fromCon label{
+.fromCon label {
     text-align: left;
+}
+
+.fromData {
+    background-color: #414850;
+    color: #ffffff;
+    padding: 50px;
+    border-radius: 8px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    width: auto;
+}
+
+
+
+.fromData table {
+    width: 90%;
+    margin: 20px auto;
+    border-collapse: collapse;
+    background-color: #f9f9f9;
+    color: #333;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.fromData th,
+.fromData td {
+    padding: 12px 15px;
+    border: 1px solid #ccc;
+    text-align: center;
+}
+
+.fromData thead {
+    background-color: #3a4767;
+    color: white;
+    font-weight: bold;
+}
+
+.fromData tbody tr:nth-child(even) {
+    background-color: #dfdbdb;
+}
+
+.fromData tbody tr:hover {
+    background-color: #d6eaff;
+}
+
+.buscar {
+    width: 30%;
+    padding: 0.5rem;
+    margin-bottom: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
 }
 
 /* Responsive styles */
