@@ -28,7 +28,8 @@
         $datosAgrupadas = [];
 
         foreach ($datos as $reparacion) {
-            $clave = $reparacion['MarcaEquipo'] . ' ' . $reparacion['ModeloEquipo'] . ' ' . $reparacion['FechaParte'];
+            $fechaFormateada = date("d/m/Y", strtotime($reparacion['FechaParte']));
+            $clave = $reparacion['MarcaEquipo'] . ' ' . $reparacion['ModeloEquipo'] . ' ' . $fechaFormateada;
 
             if (!isset($datosAgrupadas[$clave])) {
                 $datosAgrupadas[$clave] = [
@@ -55,7 +56,7 @@
         foreach ($datosAgrupadas as $reparacion) {
             echo '<div class="fromData">';
             echo '<h2>Equipo: ' . $reparacion['MarcaEquipo'] . ' ' . $reparacion['ModeloEquipo'] . '</h2>';
-            echo '<h3>Fecha parte: ' . $reparacion['FechaParte'] . '</h3>';
+            echo '<h3>Fecha parte: ' .date("d/m/Y", strtotime($reparacion['FechaParte'])) . '</h3>';
             echo '<h3>Nota: ' . $reparacion['NotasParte'] . '</h3>';
             echo '<table>';
             echo '<thead>';
