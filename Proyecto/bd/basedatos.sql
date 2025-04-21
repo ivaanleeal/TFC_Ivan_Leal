@@ -122,7 +122,7 @@ INSERT INTO equipos (id_equipo, marca, modelo, SO, cliente_telefono) VALUES
 INSERT INTO piezas (codigo_pieza, nombre, marca, modelo) VALUES
 ('BAT001', 'Batería', 'Apple', 'iPhone 13'),
 ('CAM002', 'Cámara', 'Xiaomi', 'Mi 11'),
-('PCB003', 'Placa madre', 'Samsung', 'Galaxy S22');
+('PCB003', 'Placa Base', 'Samsung', 'Galaxy S22');
 
 -- Insertar datos en la tabla partes
 INSERT INTO partes (numero_parte, fecha, notas, cliente_telefono, id_equipo, empleado_dni) VALUES
@@ -133,7 +133,7 @@ INSERT INTO partes (numero_parte, fecha, notas, cliente_telefono, id_equipo, emp
 -- Insertar datos en la tabla tareas
 INSERT INTO tareas (numero_parte, id_tarea, descripcion, estado, tiempo, imagen, empleado_dni) VALUES
 (1, 1, 'Reemplazar batería', 'En progreso', 120, '/imagenes/bateria.png', '12345678A'),
-(2, 2, 'Diagnóstico de placa madre', 'Completado', 240, '/imagenes/placa.png', '87654321B'),
+(2, 2, 'Diagnóstico de placa Base', 'Completado', 240, '/imagenes/placa.png', '87654321B'),
 (3, 3, 'Reparar cámara trasera', 'Pendiente', NULL, '/imagenes/camara.png', '56789012C');
 
 -- Insertar datos en la tabla reparacion_parte

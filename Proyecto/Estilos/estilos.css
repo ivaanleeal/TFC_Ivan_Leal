@@ -24,7 +24,7 @@ body {
     line-height: 1.6;
 }
 
-/* Header styles */
+
 .header_paginas,
 header {
     background-color: var(--primary-color);
@@ -59,7 +59,6 @@ nav a:hover {
     text-decoration: underline;
 }
 
-/* Main content styles */
 main {
     text-align: center;
 }
@@ -90,11 +89,8 @@ main {
     color: #f4f4f4;
     padding: 0.5rem;
     font-size: 18px;
-    /* o el que esté usando .inicio */
     line-height: 1.6;
-    /* igual que el body */
     letter-spacing: normal;
-    /* o ajusta si hay diferencias visuales */
 }
 
 .pruebaMenuDos {
@@ -111,11 +107,8 @@ main {
     color: #f4f4f4;
     padding: 0.5rem;
     font-size: 18px;
-    /* o el que esté usando .inicio */
     line-height: 1.6;
-    /* igual que el body */
     letter-spacing: normal;
-    /* o ajusta si hay diferencias visuales */
 }
 
 
@@ -169,12 +162,12 @@ h1 {
 }
 
 
-/*Tamaño letras*/
+
 body {
     font-size: 18px
 }
 
-/*Enlaces Body*/
+
 a {
     font-size: 18px;
     text-decoration: underline;
@@ -185,13 +178,13 @@ body a:hover {
     font-size: 16px
 }
 
-/* Form styles */
+
 
 .fromCon {
     width: 80%
 }
 
-/*Titulo Form Estado*/
+
 #titiEstado {
     text-align: left
 }
@@ -246,7 +239,7 @@ button {
     cursor: pointer;
 }
 
-/* Footer styles */
+
 .foot {
     background-color: #000;
     color: #f4f4f4;
@@ -274,7 +267,7 @@ button {
     text-decoration: none;
 }
 
-/*Tabla pagina estados*/
+
 .estadoTabla {
     width: 80%;
 }
@@ -305,7 +298,7 @@ button {
     text-align: left;
 }
 
-/*Formulario Contacto*/
+
 .fromCon button {
     float: left;
 }
@@ -316,46 +309,76 @@ button {
 }
 
 .fromData {
-    background-color: #414850;
+    background-color: #2d2f36; 
     color: #ffffff;
-    padding: 50px;
-    border-radius: 8px;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    padding: 40px;
+    border-radius: 12px;
+    box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.2);
     width: auto;
+    margin-bottom: 40px;
 }
-
 
 
 .fromData table {
-    width: 90%;
+    width: 95%;
     margin: 20px auto;
-    border-collapse: collapse;
-    background-color: #f9f9f9;
+    border-collapse: separate;
+    border-spacing: 0;
+    background-color: #ffffff;
     color: #333;
-    border-radius: 8px;
+    border-radius: 10px;
     overflow: hidden;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
 }
+
+
+.fromData thead {
+    background: linear-gradient(to right, #3a4767, #6c7da7); 
+    color: #fff;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
 
 .fromData th,
 .fromData td {
-    padding: 12px 15px;
-    border: 1px solid #ccc;
+    padding: 14px 18px;
+    border-bottom: 1px solid #ddd;
     text-align: center;
+    transition: background-color 0.3s ease;
 }
 
-.fromData thead {
-    background-color: #3a4767;
-    color: white;
-    font-weight: bold;
-}
 
 .fromData tbody tr:nth-child(even) {
-    background-color: #dfdbdb;
+    background-color: #f0f7ff;
 }
 
+
 .fromData tbody tr:hover {
-    background-color: #d6eaff;
+    background-color: #d4ecff;
+}
+
+
+.fromData tbody td:first-child {
+    font-weight: 600;
+    color: #3a4767;
+}
+
+@media screen and (max-width: 800px) {
+    .fromData th,
+    .fromData td {
+        padding: 10px 5px;
+        font-size: 14px;
+    }
+
+    .tabla-responsive table {
+        min-width: 40%;
+    }
+
+    .fromData thead {
+        font-size: 10px;
+    }
 }
 
 .buscar {
@@ -366,7 +389,7 @@ button {
     border-radius: 4px;
 }
 
-/* Responsive styles */
+
 @media screen and (max-width: 768px) {
     :root {
         --font-size-base: 14px;

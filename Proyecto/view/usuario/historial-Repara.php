@@ -13,7 +13,7 @@
         <nav>
             <a href="../public/index.php">Inicio</a>
             <a href="../public/index.php?c=usuario&a=usuarioContacto">Contacto</a>
-            <a href="../public/index.php?c=usuario&a=usuarioIniciado">Menú</a>
+            <a href="../public/index.php?c=usuario&a=usuarioIniciado">Menú Usuario</a>
             <a href="../public/index.php?c=usuario&a=logout">Cerrar Sesión</a>
         </nav>
     </header>
@@ -21,8 +21,8 @@
     <section>
         <h1>Reparaciones de tus dispositivos <?php echo $_SESSION['nombreUsu']; ?>:</h1>
 
-        <!-- Filtro de búsqueda -->
-        <span>Buscar Por Equipo: </span> <input type="text" id="filtroTabla" class="buscar" placeholder="Buscar Equipo...">
+        
+        <h4>Buscar Por Equipo: </h4> <input type="text" id="filtroTabla" class="buscar" placeholder="Buscar Por NombreEquipo...">
 
         <?php
         $datosAgrupadas = [];
