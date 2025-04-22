@@ -74,43 +74,6 @@ main {
     text-align: left;
 }
 
-.pruebaMenu {
-    background-size: cover;
-    background-position: center;
-    background-attachment: scroll;
-    padding: 2rem 1rem;
-    color: #f4f4f4 !important;
-    text-align: left;
-    height: 500px;
-}
-
-
-.pruebaMenu td {
-    color: #f4f4f4;
-    padding: 0.5rem;
-    font-size: 18px;
-    line-height: 1.6;
-    letter-spacing: normal;
-}
-
-.pruebaMenuDos {
-    background-size: cover;
-    background-position: center;
-    background-attachment: scroll;
-    padding: 2rem 1rem;
-    color: #f4f4f4 !important;
-    text-align: left;
-    height: 500px;
-}
-
-.pruebaMenuDos td {
-    color: #f4f4f4;
-    padding: 0.5rem;
-    font-size: 18px;
-    line-height: 1.6;
-    letter-spacing: normal;
-}
-
 
 .inicio {
     background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.5) 30%, rgba(0, 0, 0, 0.9) 100%),
@@ -127,15 +90,9 @@ main {
         url(../Imagenes/ventilador.jpg);
 }
 
-.pruebaMenu {
-    background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.6) 30%, rgba(0, 0, 0, 0.9) 100%),
-        url(../Imagenes/server.gif);
-}
 
-.pruebaMenuDos {
-    background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.6) 30%, rgba(0, 0, 0, 0.9) 100%),
-        url(../Imagenes/lineas.gif);
-}
+
+
 
 h1 {
     font-size: 2.5rem;
@@ -277,6 +234,40 @@ button {
     text-align: center;
 }
 
+.bienvenida {
+    text-align: center;
+    font-size: 2rem;
+    color: #3a4767;
+    margin-bottom: 30px;
+}
+
+.tarjeta {
+    background-color: #2d2f36; 
+    border-radius: 12px;
+    padding: 20px;
+    margin: 20px auto;
+    width: 80%;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    color: white;
+}
+.tarjeta h3 {
+    color: white;
+}
+.tarjeta button {
+    background-color: #3a4767;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    margin-top: 10px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+.tarjeta button:hover {
+    background-color: #556080;
+}
+
 .errorcaja {
     border: red solid 3px;
 }
@@ -310,12 +301,13 @@ button {
 
 .fromData {
     background-color: #2d2f36; 
-    color: #ffffff;
-    padding: 40px;
     border-radius: 12px;
-    box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.2);
-    width: auto;
-    margin-bottom: 40px;
+    padding: 20px;
+    margin: 20px auto;
+    width: 80%;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    color: white;
 }
 
 
@@ -387,6 +379,15 @@ button {
     margin-bottom: 1rem;
     border: 1px solid #ccc;
     border-radius: 4px;
+}
+
+
+.busqueda{
+    border-radius: 12px;
+    padding: 20px;
+    margin: 20px auto;
+    width: 80%;
+    text-align: center;
 }
 
 

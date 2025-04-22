@@ -4,6 +4,8 @@
     <title>Contacto - Reparaciones Informáticas</title>
     <link rel="icon" href="https://yt3.ggpht.com/ssGR_sKs0gRpkLzFhxUig46rmwq73x6PzDsmaQh_Mu6jYG8SRsfSciptLPqMudHZpYQQRfOR=s108-c-k-c0x00ffffff-no-rj" type="image/x-icon">
     <link rel="stylesheet" href="../Estilos/estilos.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
 </head>
 
 <body>
@@ -18,58 +20,31 @@
         </nav>
     </header>
 
-    <section >
-        <h1>Hola <?php echo $_SESSION['nombreUsu']; ?> bienbenido de nuevo</h1>
+    <section>
+        <h1 class="bienvenida">Hola <?php echo $_SESSION['nombreUsu']; ?> bienbenido de nuevo</h1>
         <div class="enlacesUsu">
             <nav>
                 <button onclick="location.href='index.php?c=usuario&a=logout'">Cerrar sesión</button>
                 <br><br>
-                
+
                 <br><br>
             </nav>
         </div>
     </section>
 
-    <section class="pruebaMenu">
-        <table class="servicios">
-            <tr>
-                <td colspan="3">
-                    <h1>Accede a tus Servicios</h1>
-                </td>
-            </tr>
-            <tr>
-                <td colspan="2">
-                    <h3>Historial de reparaciones:</h3>
-                </td>
-            </tr>
-            <tr>
-                <td colspan="2">
-                    <p class="infoServiInicio">Aquí podras ver todas las reparaciones de todos tus equipos con toda la información del parte. </p>
-                </td>
-                <td>
-                <button onclick="location.href='index.php?c=usuario&a=usuarioHistorial'">Ver Historial de reparaciones</button>
-                </td>
-            </tr>
-        </table>
+    <section class="tarjeta">
+        <h3><i class="fas fa-history"></i> Historial de reparaciones</h3>
+        <p>Aquí podrás ver todas las reparaciones de tus equipos con la información completa del parte.</p>
+        <button onclick="location.href='index.php?c=usuario&a=usuarioHistorial'">Ver Historial</button>
     </section>
-    <section class="pruebaMenuDos">
-        <table class="servicios">
 
-            <tr>
-                <td colspan="2">
-                    <h3>Estado de la Rearación:</h3>
-                </td>
-            </tr>
-            <tr>
-                <td colspan="2">
-                    <p class="infoServiInicio">Aquí podras ver el estado en el que se encuentra tu equipo a tiempo real "Solo está funcional si tiees una reparación en proceso". </p>
-                </td>
-                <td>
-                    <button onclick="location.href='index.php?c=usuario&a=usuarioRepara'">Ver Estado de la Reparación</button>
-                </td>
-            </tr>
-        </table>
+    <section class="tarjeta">
+        <h3><i class="fas fa-tools"></i> Estado de reparación</h3>
+        <p>Aquí podrás ver el estado en el que se encuentra tu reparación a tiempo real.</p>
+        <button onclick="location.href='index.php?c=usuario&a=usuarioRepara'">Ver Estado de la Reparación</button>
     </section>
+   
+   
 
 
 

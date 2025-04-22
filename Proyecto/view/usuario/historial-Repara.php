@@ -4,6 +4,7 @@
     <title>Contacto - datos Informáticas</title>
     <link rel="icon" href="https://yt3.ggpht.com/ssGR_sKs0gRpkLzFhxUig46rmwq73x6PzDsmaQh_Mu6jYG8SRsfSciptLPqMudHZpYQQRfOR=s108-c-k-c0x00ffffff-no-rj" type="image/x-icon">
     <link rel="stylesheet" href="../Estilos/estilos.css">
+    <script src="../JS/ordenar.js" defer></script>
 </head>
 
 <body>
@@ -21,8 +22,19 @@
     <section>
         <h1>Reparaciones de tus dispositivos <?php echo $_SESSION['nombreUsu']; ?>:</h1>
 
-        
-        <h4>Buscar Por Equipo: </h4> <input type="text" id="filtroTabla" class="buscar" placeholder="Buscar Por NombreEquipo...">
+        <section class="busqueda">
+            <h4>Buscar Por Equipo: </h4>
+            <input type="text" id="filtroTabla" class="buscar" placeholder="Buscar Por NombreEquipo...">
+
+            <h4>Filtrar por Fecha:</h4>
+            <input type="date" id="filtroFecha" class="buscar">
+
+            <br>
+
+            <button id="btnLimpiarFiltros">Limpiar Filtros</button>
+            <button id="btnOrdenarFechas">Ordenar: Más recientes ↓</button>
+        </section>
+
 
         <?php
         $datosAgrupadas = [];
@@ -35,6 +47,7 @@
                 $datosAgrupadas[$clave] = [
                     'MarcaEquipo' => $reparacion['MarcaEquipo'],
                     'ModeloEquipo' => $reparacion['ModeloEquipo'],
+                    'EquipoId' => $reparacion['EquipoId'],
                     'FechaParte' => $reparacion['FechaParte'],
                     'NotasParte' => $reparacion['NotasParte'],
                     'tareas' => []
@@ -56,7 +69,8 @@
         foreach ($datosAgrupadas as $reparacion) {
             echo '<div class="fromData">';
             echo '<h2>Equipo: ' . $reparacion['MarcaEquipo'] . ' ' . $reparacion['ModeloEquipo'] . '</h2>';
-            echo '<h3>Fecha parte: ' .date("d/m/Y", strtotime($reparacion['FechaParte'])) . '</h3>';
+            echo '<h2>Código Equipo: ' . $reparacion['EquipoId']. '</h2>';
+            echo '<h3>Fecha parte: ' . date("d/m/Y", strtotime($reparacion['FechaParte'])) . '</h3>';
             echo '<h3>Nota: ' . $reparacion['NotasParte'] . '</h3>';
             echo '<table>';
             echo '<thead>';
@@ -88,19 +102,4 @@
             echo '<br><br>';
         }
         ?>
-    </section>
-
-    <script>
-        document.getElementById('filtroTabla').addEventListener('keyup', function() {
-            const filtro = this.value.toLowerCase();
-            const tablas = document.querySelectorAll('.fromData');
-
-            tablas.forEach(tabla => {
-                const textoTabla = tabla.innerText.toLowerCase();
-                tabla.style.display = textoTabla.includes(filtro) ? '' : 'none';
-            });
-        });
-    </script>
-
-
     </section>

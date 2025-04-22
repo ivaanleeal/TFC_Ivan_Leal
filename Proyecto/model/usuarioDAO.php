@@ -64,7 +64,8 @@ class UsuarioDAO
     PI.marca as MarcaPieza, 
     PI.modelo as ModeloPieza, 
     T.descripcion as TareaDescripccion, 
-    T.tiempo as TareaTiempo 
+    T.tiempo as TareaTiempo,
+    E.id_equipo as EquipoId 
 FROM clientes C
 INNER JOIN partes P ON P.cliente_telefono = C.telefono
 INNER JOIN equipos E ON E.id_equipo = P.id_equipo
