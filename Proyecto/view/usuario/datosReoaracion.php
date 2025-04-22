@@ -7,7 +7,6 @@
     <title>Datos - TPCSI</title>
     <link rel="icon" href="https://yt3.ggpht.com/ssGR_sKs0gRpkLzFhxUig46rmwq73x6PzDsmaQh_Mu6jYG8SRsfSciptLPqMudHZpYQQRfOR=s108-c-k-c0x00ffffff-no-rj" type="image/x-icon">
     <link rel="stylesheet" href="../Estilos/estilos.css">
-    <script src="../JS/ordenar.js" defer></script>
 </head>
 
 <body>
@@ -90,7 +89,9 @@
 
                 $color = ($porcentaje < 33.33) ? '#ff2f2f' : (($porcentaje < 66.66) ? '#fffc2f' : '#4caf50');
 
+                echo '<div class="barra-progreso-blanca">';
                 echo '<div class="barra-progreso" style="width: ' . $porcentaje . '%; background-color: ' . $color . '; height: 20px; margin-bottom: 10px;"></div>';
+                echo '</div>';
 
                 if (round($porcentaje) == 100) {
                     echo '<p style="color: green; font-weight: bold;">✅ Reparación completada. ¡Listo para ser recogido!</p>';
