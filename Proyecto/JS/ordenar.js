@@ -12,7 +12,7 @@ const filtroTexto = document.getElementById('filtroTabla');
 
         tablas.forEach(tabla => {
             const contenido = tabla.innerText.toLowerCase();
-            const fechaElemento = tabla.querySelector('h3:nth-child(2)');
+            const fechaElemento = tabla.querySelector('h3:nth-child(3)');
             let fechaTexto = '';
 
             if (fechaElemento) {

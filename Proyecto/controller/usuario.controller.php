@@ -156,6 +156,17 @@ class UsuarioController
         require_once '../view/footer.php';
     }
 
+    public function usuarioEstadoRepara()
+    {
+        if (!isset($_SESSION['nombreUsu'])) {
+            require_once '../view/usuario/login.php';
+        } else {
+            $datos = $this->model->obtenerEstado($_SESSION['telefono']);
+            require_once '../view/usuario/datosReoaracion.php';
+        }
+        require_once '../view/footer.php';
+    }
+
     public function usuarioRepara()
     {
         if (!isset($_SESSION['nombreUsu'])) {

@@ -79,4 +79,37 @@ WHERE telefono = ?");
             die($e->getMessage());
         }
     }
+
+    public function obtenerEstado($id)
+    {
+        try {
+            $stm = $this->pdo->prepare("SELECT 
+    P.Seguimiento AS seguimientoParte, 
+    P.Recogido AS ParteRecogido, 
+    E.marca AS MarcaEquipo, 
+    E.modelo AS ModeloEquipo, 
+    R.parte, 
+    R.tarea AS ReparacionTarea, 
+    R.Pieza AS ReparacionPieza, 
+    PI.nombre AS PiezaNombre, 
+    PI.marca AS MarcaPieza, 
+    PI.modelo AS ModeloPieza, 
+    T.descripcion AS TareaDescripccion, 
+    T.tiempo AS TareaTiempo,
+    T.estado AS TareaEstado,       
+    E.id_equipo AS EquipoId 
+FROM clientes C
+INNER JOIN partes P ON P.cliente_telefono = C.telefono
+INNER JOIN equipos E ON E.id_equipo = P.id_equipo
+INNER JOIN tareas T ON T.numero_parte = P.numero_parte
+INNER JOIN reparacion_parte R ON R.parte = T.numero_parte AND R.tarea = T.id_tarea
+INNER JOIN piezas PI ON PI.codigo_pieza = R.pieza
+WHERE telefono = ?
+");
+            $stm->execute(array($id));
+            return $stm->fetchAll(PDO::FETCH_ASSOC);
+        } catch (Exception $e) {
+            die($e->getMessage());
+        }
+    }
 }

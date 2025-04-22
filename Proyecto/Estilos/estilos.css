@@ -174,9 +174,6 @@ h1 {
     text-align: center;
 }
 
-.enlacesUsu button {
-    margin-left: 10px;
-}
 
 .fromCon input,
 textarea {
@@ -187,14 +184,7 @@ textarea {
     border-radius: 4px;
 }
 
-button {
-    background-color: var(--primary-color);
-    color: #f4f4f4;
-    padding: 0.5rem 1rem;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-}
+
 
 
 .foot {
@@ -241,8 +231,16 @@ button {
     margin-bottom: 30px;
 }
 
+.botonesOpcciones {
+    border-radius: 12px;
+    padding: 20px;
+    margin: 20px auto;
+    width: 80%;
+    text-align: center;
+}
+
 .tarjeta {
-    background-color: #2d2f36; 
+    background-color: #2d2f36;
     border-radius: 12px;
     padding: 20px;
     margin: 20px auto;
@@ -251,10 +249,12 @@ button {
     text-align: center;
     color: white;
 }
+
 .tarjeta h3 {
     color: white;
 }
-.tarjeta button {
+
+button {
     background-color: #3a4767;
     color: white;
     border: none;
@@ -264,7 +264,8 @@ button {
     cursor: pointer;
     transition: background-color 0.3s ease;
 }
-.tarjeta button:hover {
+
+button:hover {
     background-color: #556080;
 }
 
@@ -300,7 +301,7 @@ button {
 }
 
 .fromData {
-    background-color: #2d2f36; 
+    background-color: #2d2f36;
     border-radius: 12px;
     padding: 20px;
     margin: 20px auto;
@@ -325,7 +326,7 @@ button {
 
 
 .fromData thead {
-    background: linear-gradient(to right, #3a4767, #6c7da7); 
+    background: linear-gradient(to right, #3a4767, #6c7da7);
     color: #fff;
     font-weight: bold;
     text-transform: uppercase;
@@ -358,6 +359,7 @@ button {
 }
 
 @media screen and (max-width: 800px) {
+
     .fromData th,
     .fromData td {
         padding: 10px 5px;
@@ -373,6 +375,23 @@ button {
     }
 }
 
+
+.barra-progreso-contenedor {
+    width: 100%;
+    height: 20px;
+    background-color: #e0e0e0;
+    border-radius: 10px;
+    margin: 10px 0;
+    overflow: hidden;
+}
+
+.barra-progreso {
+    height: 100%;
+    width: 0%;
+    transition: width 0.4s ease;
+    border-radius: 10px;
+}
+
 .buscar {
     width: 30%;
     padding: 0.5rem;
@@ -382,7 +401,7 @@ button {
 }
 
 
-.busqueda{
+.busqueda {
     border-radius: 12px;
     padding: 20px;
     margin: 20px auto;
