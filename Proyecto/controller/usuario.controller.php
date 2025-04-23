@@ -59,8 +59,6 @@ class UsuarioController
             $usuarioNombre = $_REQUEST['usuario'];
             $password = $_REQUEST['password'];
             $privilegio = $_REQUEST['privilegio'];
-            $whatsap = $_REQUEST['whatsap'];
-            $setLlamar = $_REQUEST['llamada'];
 
             $usuario = new Usuario();
 
@@ -70,8 +68,8 @@ class UsuarioController
             $usuario->setUsuario($usuarioNombre);
             $usuario->setContrasena($password);
             $usuario->setPrivilegio($privilegio);
-            $usuario->setWhatsap($whatsap);
-            $usuario->setLlamar($setLlamar);
+            $usuario->setWhatsap(isset($_REQUEST['whatsap']) ? 1 : 0);
+            $usuario->setLlamar(isset($_REQUEST['llamada']) ? 1 : 0); 
 
             $this->model->registrar($usuario);
 
@@ -96,13 +94,67 @@ class UsuarioController
 
             require_once '../view/usuario/usuario-editar.php';
             require_once '../view/footer.php';
-        }else {
+        } else {
             if (isset($_SESSION['nombreUsu'])) {
                 header('Location: index.php?c=Usuario&a=usuarioIniciado');
             } else {
                 header('Location: index.php?c=Usuario&a=login');
             }
         }
+    }
+
+
+    public function eliminar()
+    {
+        if ($_SESSION['privilegio'] == 1) {
+
+            if (isset($_REQUEST['telefono'])) {
+
+                $this->model->eliminarUsuario($_REQUEST['telefono']);
+
+                header('Location: index.php?c=Usuario&a=menuRegistro');
+            }
+        } else {
+            if (isset($_SESSION['nombreUsu'])) {
+                header('Location: index.php?c=Usuario&a=usuarioIniciado');
+            } else {
+                header('Location: index.php?c=Usuario&a=login');
+            }
+        }
+        echo "hola";
+    }
+
+    public function actualizar() {
+        if (!isset($_SESSION['nombreUsu'])) {
+            require_once '../view/usuario/login.php';
+        } else {
+            if ($_SESSION['privilegio'] == 1) {
+
+                $opciones = ['cost' => 12,];
+
+                $usuario = new Usuario();
+                
+                $usuario = $this->model->obtener($_REQUEST['telefono']);        
+                
+                $usuario->setTelefono($_REQUEST['telefono']);
+                $usuario->setNombre($_REQUEST['nombre']);
+                $usuario->setApellidos($_REQUEST['apellidos']);
+                $usuario->setUsuario($_REQUEST['usuario']);
+                $usuario->setContrasena(password_hash($_REQUEST['contrasena'], PASSWORD_BCRYPT, $opciones));
+                $usuario->setPrivilegio($_REQUEST['privilegio']);
+                $usuario->setWhatsap(isset($_REQUEST['whatsap']) ? 1 : 0);
+                $usuario->setLlamar(isset($_REQUEST['llamada']) ? 1 : 0);        
+               
+                $this->model->actualizarCurso($usuario);
+        
+
+                header('Location: index.php?c=usuario&a=editar&telefono=' . $_REQUEST['telefono']);
+
+            } else {
+                require_once '../view/usuario/inicioUsuario.php';
+            }
+        }
+        require_once '../view/footer.php';
     }
 
     public function login()

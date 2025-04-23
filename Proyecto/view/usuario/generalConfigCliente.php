@@ -64,7 +64,13 @@
             echo '<td>' . ($cliente->getWhatsap() ? 'Sí' : 'No') . '</td>';
             echo '<td>' . ($cliente->getLlamar() ? 'Sí' : 'No') . '</td>';
             echo "<td><button onclick=\"location.href='index.php?c=usuario&a=editar&telefono={$cliente->getTelefono()}'\">Editar Cliente</button></td>";
-            echo "<td> <button onclick=\"location.href='index.php?c=usuario&a=eliminar'\">Eliminar Cliente</button></td>";
+            echo "<td>
+            <button onclick=\"if(confirm('¿Estás seguro de que quieres eliminar este cliente?')) { 
+                window.location.href='index.php?c=usuario&a=eliminar&telefono=" . $cliente->getTelefono() . "'; 
+            }\">
+                Eliminar Cliente
+            </button>
+            </td>";
             echo '</tr>';
             echo '</tbody>';
             echo '</table>';

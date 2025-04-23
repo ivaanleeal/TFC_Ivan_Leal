@@ -86,7 +86,6 @@ class UsuarioDAO
     public function actualizarCurso(Usuario $usuario) {
         try {
             $sql = "UPDATE `clientes` SET 
-                        telefono = :telefono,
                         nombre = :nombre,
                         apellido = :apellido,
                         usuario = :usuario,
@@ -94,7 +93,7 @@ class UsuarioDAO
                         privilegio = :privilegio,
                         whatsap = :whatsap,
                         llamar = :llamar
-                    WHERE id = :id";
+                    WHERE telefono = :telefono";
         
             $sentencia = $this->pdo->prepare($sql);
         

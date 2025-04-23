@@ -24,18 +24,19 @@
     <section class="botonesOpcciones">
         <h1 class="bienvenida">Editar Cliente</h1>
         <button onclick="window.history.back()">⬅ Página Anterior</button>
+        <button onclick="location.href='index.php?c=usuario&a=menuRegistro'">Volver Listado Usuarios</button>
         <button onclick="location.href='index.php?c=usuario&a=logout'">Cerrar sesión</button>
     </section>
 
 
 
 
-    <form method="post" action="index.php?c=usuario&a=registrarUsuario" class="formDatos">
+    <form method="post" action="index.php?c=usuario&a=actualizar" class="formDatos">
         <div class="fromCon">
             <h2 class="bienvenida">Datos del Usuario</h2>
 
             <label for="teléfono">Teléfono</label>
-            <input type="text" name="telefono" class="form-control" required maxlength="9" placeholder="Número de Télefono" value="<?php echo $usuario->getTelefono();?>"/>
+            <input type="text" name="telefono" class="form-control" required maxlength="9" placeholder="Número de Télefono" disabled value="<?php echo $usuario->getTelefono(); ?>"/>
 
             <label for="nombre">Nombre</label>
             <input type="text" name="nombre" class="form-control" required placeholder="Nombre completo" value="<?php echo $usuario->getNombre() ;?>"/>
@@ -47,7 +48,7 @@
             <input type="text" name="usuario" class="form-control" required placeholder="Nombre de usuario" value="<?php echo $usuario->getUsuario() ;?>"/>
 
             <label for="password">Contraseña</label>
-            <input type="password" name="password" class="form-control" required placeholder="Contraseña segura" value="<?php echo $usuario->getContrasena() ;?>"/>
+            <input type="password" name="contrasena" class="form-control" required placeholder="Contraseña segura" value="<?php echo $usuario->getContrasena() ;?>"/>
 
             <label for="privilegio">Privilegio</label>
             <select name="privilegio" required>
