@@ -63,11 +63,53 @@ class UsuarioDAO
     public function obtener($id)
     {
         try {
-            $stm = $this->pdo->prepare("SELECT * FROM clientes WHERE id = ?");
+            $stm = $this->pdo->prepare("SELECT telefono, nombre, apellido, usuario, contrasena, privilegio, whatsap, llamar FROM clientes WHERE telefono = ?");
             $stm->execute(array($id));
             return $stm->fetchObject("Usuario");
         } catch (Exception $e) {
             die($e->getMessage());
+        }
+    }
+
+    public function eliminarUsuario($id) {
+        try {
+            $sql = "DELETE FROM `clientes` "
+                    . " WHERE telefono=:telefono";
+            $sentencia = $this->pdo->prepare($sql);
+            $sentencia->bindValue(':telefono', $id);
+            $sentencia->execute();
+        } catch (Exception $e) {
+            $e->getMessage();
+        }
+    }
+
+    public function actualizarCurso(Usuario $usuario) {
+        try {
+            $sql = "UPDATE `clientes` SET 
+                        telefono = :telefono,
+                        nombre = :nombre,
+                        apellido = :apellido,
+                        usuario = :usuario,
+                        contrasena = :contrasena,
+                        privilegio = :privilegio,
+                        whatsap = :whatsap,
+                        llamar = :llamar
+                    WHERE id = :id";
+        
+            $sentencia = $this->pdo->prepare($sql);
+        
+            $sentencia->bindValue(':telefono', $usuario->getTelefono());
+            $sentencia->bindValue(':nombre', $usuario->getNombre());
+            $sentencia->bindValue(':apellido', $usuario->getApellidos());
+            $sentencia->bindValue(':usuario', $usuario->getUsuario());
+            $sentencia->bindValue(':contrasena', $usuario->getContrasena());
+            $sentencia->bindValue(':privilegio', $usuario->getPrivilegio());
+            $sentencia->bindValue(':whatsap', $usuario->getWhatsap());
+            $sentencia->bindValue(':llamar', $usuario->getLlamar());
+        
+            $sentencia->execute();
+        } catch (Exception $e) {
+            echo "Error al actualizar: " . $e->getMessage();
         }
     }
 

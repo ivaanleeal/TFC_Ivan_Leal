@@ -20,56 +20,89 @@ class UsuarioController
 
     public function menuRegistro()
     {
-        $datos = $this->model->obtenerTodos();
-        require_once '../view/usuario/generalConfigCliente.php';
+
+        if (!isset($_SESSION['nombreUsu'])) {
+            require_once '../view/usuario/login.php';
+        } else {
+            if ($_SESSION['privilegio'] == 1) {
+                $datos = $this->model->obtenerTodos();
+                require_once '../view/usuario/generalConfigCliente.php';
+            } else {
+                require_once '../view/usuario/inicioUsuario.php';
+            }
+        }
         require_once '../view/footer.php';
     }
 
     public function iniciarRegistro()
     {
-        //$datos = $this->model->obtenerTodos();
-        require_once '../view/usuario/registroUsuario.php';
+        if (!isset($_SESSION['nombreUsu'])) {
+            require_once '../view/usuario/login.php';
+        } else {
+            if ($_SESSION['privilegio'] == 1) {
+                require_once '../view/usuario/registroUsuario.php';
+            } else {
+                require_once '../view/usuario/login.php';
+            }
+        }
         require_once '../view/footer.php';
     }
 
     public function registrarUsuario()
     {
-        //Después de la validación
-        $telefono = $_REQUEST['telefono'];
-        $nombre = $_REQUEST['nombre'];
-        $apellidos = $_REQUEST['apellidos'];
-        $usuarioNombre = $_REQUEST['usuario'];
-        $password = $_REQUEST['password'];
-        $privilegio = 0;
-        $whatsap = $_REQUEST['whatsap'];
-        $setLlamar = $_REQUEST['llamar'];
 
-        $usuario = new Usuario();
+        if (isset($_SESSION['nombreUsu']) && $_SESSION['privilegio'] == 1) {
 
-        $usuario->setTelefono($telefono);
-        $usuario->setNombre($nombre);
-        $usuario->setApellidos($apellidos);
-        $usuario->setUsuario($usuarioNombre);
-        $usuario->setContrasena($password);
-        $usuario->setPrivilegio($privilegio);
-        $usuario->setWhatsap($whatsap);
-        $usuario->setLlamar($setLlamar);
+            $telefono = $_REQUEST['telefono'];
+            $nombre = $_REQUEST['nombre'];
+            $apellidos = $_REQUEST['apellidos'];
+            $usuarioNombre = $_REQUEST['usuario'];
+            $password = $_REQUEST['password'];
+            $privilegio = $_REQUEST['privilegio'];
+            $whatsap = $_REQUEST['whatsap'];
+            $setLlamar = $_REQUEST['llamada'];
 
-        $this->model->registrar($usuario);
+            $usuario = new Usuario();
 
-        header('Location: index.php?Usuario&a=AdminListaClientes');
+            $usuario->setTelefono($telefono);
+            $usuario->setNombre($nombre);
+            $usuario->setApellidos($apellidos);
+            $usuario->setUsuario($usuarioNombre);
+            $usuario->setContrasena($password);
+            $usuario->setPrivilegio($privilegio);
+            $usuario->setWhatsap($whatsap);
+            $usuario->setLlamar($setLlamar);
+
+            $this->model->registrar($usuario);
+
+            header('Location: index.php?c=Usuario&a=menuRegistro');
+        } else {
+            if (isset($_SESSION['nombreUsu'])) {
+                header('Location: index.php?c=Usuario&a=usuarioIniciado');
+            } else {
+                header('Location: index.php?c=Usuario&a=login');
+            }
+        }
     }
 
     public function editar()
     {
-        $usuario = new Usuario();
+        if (isset($_SESSION['nombreUsu']) && $_SESSION['privilegio'] == 1) {
+            $usuario = new Usuario();
 
-        if (isset($_REQUEST['id'])) {
-            $usuario = $this->model->obtener($_REQUEST['id']);
+            if (isset($_REQUEST['telefono'])) {
+                $usuario = $this->model->obtener($_REQUEST['telefono']);
+            }
+
+            require_once '../view/usuario/usuario-editar.php';
+            require_once '../view/footer.php';
+        }else {
+            if (isset($_SESSION['nombreUsu'])) {
+                header('Location: index.php?c=Usuario&a=usuarioIniciado');
+            } else {
+                header('Location: index.php?c=Usuario&a=login');
+            }
         }
-
-        require_once '../view/usuario/usuario-editar.php';
-        require_once '../view/footer.php';
     }
 
     public function login()
@@ -89,9 +122,6 @@ class UsuarioController
         $contrasena = $_REQUEST['password'];
 
         $errores = [];
-
-
-
 
 
         $usuario = $this->model->obtenerPorUsuario($usuarioNombre);
