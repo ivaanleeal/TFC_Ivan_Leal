@@ -16,21 +16,23 @@ class UsuarioController
         $this->model = new UsuarioDAO();
     }
 
-    /*public function index()
-    {
-        require_once '../view/headerStart.php';
-        require_once '../view/usuario/inicio.php';
-        require_once '../view/footer.php';
-    }*/
 
-    /*public function iniciarRegistro()
-    {
-        require_once '../view/headerStart.php';
-        require_once '../view/usuario/registro.php';
-        require_once '../view/footer.php';
-    }*/
 
-    public function registrar()
+    public function menuRegistro()
+    {
+        $datos = $this->model->obtenerTodos();
+        require_once '../view/usuario/generalConfigCliente.php';
+        require_once '../view/footer.php';
+    }
+
+    public function iniciarRegistro()
+    {
+        //$datos = $this->model->obtenerTodos();
+        require_once '../view/usuario/registroUsuario.php';
+        require_once '../view/footer.php';
+    }
+
+    public function registrarUsuario()
     {
         //Después de la validación
         $telefono = $_REQUEST['telefono'];
@@ -38,7 +40,7 @@ class UsuarioController
         $apellidos = $_REQUEST['apellidos'];
         $usuarioNombre = $_REQUEST['usuario'];
         $password = $_REQUEST['password'];
-        $privilegio = 2;
+        $privilegio = 0;
         $whatsap = $_REQUEST['whatsap'];
         $setLlamar = $_REQUEST['llamar'];
 
@@ -55,7 +57,7 @@ class UsuarioController
 
         $this->model->registrar($usuario);
 
-        header('Location: index.php?c=usuario');
+        header('Location: index.php?Usuario&a=AdminListaClientes');
     }
 
     public function editar()
@@ -144,6 +146,19 @@ class UsuarioController
         }
         require_once '../view/footer.php';
     }
+
+
+    public function AdminListaClientes()
+    {
+        if (!isset($_SESSION['nombreUsu'])) {
+            require_once '../view/usuario/login.php';
+        } else {
+            require_once '../view/usuario/inicioAdmin.php';
+        }
+        require_once '../view/footer.php';
+    }
+
+
 
     public function usuarioHistorial()
     {

@@ -247,11 +247,56 @@ textarea {
     width: 80%;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
     text-align: center;
-    color: white;
+    color: white;    
+    transition: transform 0.2s ease;
+}
+
+.tarjeta:hover {
+    transform: scale(1.03);
 }
 
 .tarjeta h3 {
     color: white;
+}
+
+
+.gridTarjetas {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    padding: 20px;
+    max-width: 1500px;
+    margin: 0 auto;
+}
+
+.tarjetaAdmin {
+    background-color: #2d2f36;
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    color: white;
+    transition: transform 0.2s ease;
+}
+
+.tarjetaAdmin:hover {
+    transform: scale(1.03);
+}
+
+.tarjetaAdmin h3 {
+    color: white;
+}
+
+@media (max-width: 1024px) {
+    .gridTarjetas {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 600px) {
+    .gridTarjetas {
+        grid-template-columns: 1fr;
+    }
 }
 
 button {
@@ -308,8 +353,14 @@ button:hover {
     width: 80%;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
     text-align: center;
-    color: white;
+    color: white; 
+    transition: transform 0.2s ease;
 }
+
+.fromData:hover {
+    transform: scale(1.03);
+}
+
 
 
 .fromData table {

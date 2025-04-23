@@ -3,7 +3,7 @@ class Usuario
 {
     private $telefono;
     private $nombre;
-    private $apellidos;
+    private $apellido;
     private $usuario;
     private $contrasena;
     private $privilegio;
@@ -23,7 +23,7 @@ class Usuario
 
     public function getApellidos()
     {
-        return $this->apellidos;
+        return $this->apellido;
     }
 
     public function getUsuario()
@@ -64,7 +64,7 @@ class Usuario
 
     public function setApellidos($apellidos): void
     {
-        $this->apellidos = $apellidos;
+        $this->apellido = $apellidos;
     }
 
     public function setUsuario($usuario): void

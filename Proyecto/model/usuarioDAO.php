@@ -15,27 +15,49 @@ class UsuarioDAO
     }
 
 
+    public function obtenerTodos()
+    {
+        try {
+            $stmt = $this->pdo->prepare("SELECT telefono, nombre, apellido, usuario, contrasena, privilegio, whatsap, llamar FROM clientes");
+            $stmt->execute();
+            return $stmt->fetchAll(PDO::FETCH_CLASS, 'usuario');
+        } catch (Exception $e) {
+            die($e->getMessage());
+        }
+    }
+
 
     public function obtenerPorUsuario(string $usuario): ?Usuario
     {
-        $stmt = $this->pdo->prepare("SELECT * FROM clientes WHERE usuario = :usuario");
-        $stmt->execute(['usuario' => $usuario]);
-        $data = $stmt->fetchAll(PDO::FETCH_CLASS, 'usuario'); //Devuelve array 
+        try {
+            $stmt = $this->pdo->prepare("SELECT * FROM clientes WHERE usuario = :usuario");
+            $stmt->execute(['usuario' => $usuario]);
+            $data = $stmt->fetchAll(PDO::FETCH_CLASS, 'usuario'); //Devuelve array 
 
-        return $data ? $data[0] : null;
+            return $data ? $data[0] : null;
+        } catch (Exception $e) {
+            die($e->getMessage());
+        }
     }
 
     public function registrar(Usuario $usuario)
     {
-        $stmt = $this->pdo->prepare("INSERT INTO clientes (telefono, nombre, apellido, usuario, email, contrasena, privilegio) VALUES (:telefono, :nombre, :apellido, :usuario, :contrasena, :privilegio)");
-        $stmt->execute([
-            'telefono' => $usuario->getTelefono(),
-            'nombre' => $usuario->getNombre(),
-            'apellido' => $usuario->getApellidos(),
-            'usuario' => $usuario->getUsuario(),
-            'contrasena' => password_hash($usuario->getContrasena(), PASSWORD_DEFAULT),
-            'privilegio' => $usuario->getPrivilegio()
-        ]);
+        try {
+            $stmt = $this->pdo->prepare("INSERT INTO clientes (telefono, nombre, apellido, usuario, contrasena, privilegio, Whatsap, Llamar) VALUES (:telefono, :nombre, :apellido, :usuario, :contrasena, :privilegio, :whatsap, :llamar)");
+            $stmt->execute([
+                'telefono' => $usuario->getTelefono(),
+                'nombre' => $usuario->getNombre(),
+                'apellido' => $usuario->getApellidos(),
+                'usuario' => $usuario->getUsuario(),
+                'contrasena' => password_hash($usuario->getContrasena(), PASSWORD_DEFAULT),
+                'privilegio' => $usuario->getPrivilegio(),
+                'whatsap' => $usuario->getWhatsap(),
+                'llamar' => $usuario->getLlamar(),
+
+            ]);
+        } catch (Exception $e) {
+            die($e->getMessage());
+        }
     }
 
     public function obtener($id)
