@@ -26,4 +26,4 @@
         <button onclick="location.href='index.php?c=usuario&a=logout'">Cerrar sesión</button>
     </section>
 
-    <div class="error">❌ No se puede eliminar el Empleado porque tiene datos asociados.</div>
+    <div class="error">❌ No puede haber dos empleados con la misma Clave.</div>

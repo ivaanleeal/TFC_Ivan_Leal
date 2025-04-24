@@ -79,7 +79,7 @@
 
             <hr />
 
-            <button id="enviar" class="btn btn-success">Registrar</button>
+            <button id="enviar" class="btn btn-success">Guardar</button>
         </div>
     </form>
 

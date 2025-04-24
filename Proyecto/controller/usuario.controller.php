@@ -73,9 +73,14 @@ class UsuarioController
             $usuario->setWhatsap(isset($_REQUEST['whatsap']) ? 1 : 0);
             $usuario->setLlamar(isset($_REQUEST['llamada']) ? 1 : 0);
 
-            $this->model->registrar($usuario);
+            $resultado =  $this->model->registrar($usuario);
 
-            header('Location: index.php?c=Usuario&a=menuRegistro');
+            if ($resultado) {
+                header('Location: index.php?c=Usuario&a=menuRegistro');
+            } else {
+                header('Location: index.php?c=Usuario&a=errorDuplicado');
+            }
+
         } else {
             if (isset($_SESSION['nombreUsu'])) {
                 header('Location: index.php?c=Usuario&a=usuarioIniciado');
@@ -241,6 +246,16 @@ class UsuarioController
             require_once '../view/usuario/login.php';
         } else {
             require_once '../view/usuario/error.php';
+        }
+        require_once '../view/footer.php';
+    }
+
+    public function errorDuplicado()
+    {
+        if (!isset($_SESSION['nombreUsu'])) {
+            require_once '../view/usuario/login.php';
+        } else {
+            require_once '../view/usuario/errorDuplicado.php';
         }
         require_once '../view/footer.php';
     }

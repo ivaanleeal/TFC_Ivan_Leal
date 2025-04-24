@@ -55,8 +55,9 @@ class UsuarioDAO
                 'llamar' => $usuario->getLlamar(),
 
             ]);
+            return true;
         } catch (Exception $e) {
-            die($e->getMessage());
+            return false;
         }
     }
 
@@ -71,10 +72,11 @@ class UsuarioDAO
         }
     }
 
-    public function eliminarUsuario($id) {
+    public function eliminarUsuario($id)
+    {
         try {
             $sql = "DELETE FROM `clientes` "
-                    . " WHERE telefono=:telefono";
+                . " WHERE telefono=:telefono";
             $sentencia = $this->pdo->prepare($sql);
             $sentencia->bindValue(':telefono', $id);
             $sentencia->execute();
@@ -84,7 +86,8 @@ class UsuarioDAO
         }
     }
 
-    public function actualizarCurso(Usuario $usuario) {
+    public function actualizarCurso(Usuario $usuario)
+    {
         try {
             $sql = "UPDATE `clientes` SET 
                         nombre = :nombre,
@@ -95,9 +98,9 @@ class UsuarioDAO
                         whatsap = :whatsap,
                         llamar = :llamar
                     WHERE telefono = :telefono";
-        
+
             $sentencia = $this->pdo->prepare($sql);
-        
+
             $sentencia->bindValue(':telefono', $usuario->getTelefono());
             $sentencia->bindValue(':nombre', $usuario->getNombre());
             $sentencia->bindValue(':apellido', $usuario->getApellidos());
@@ -106,7 +109,7 @@ class UsuarioDAO
             $sentencia->bindValue(':privilegio', $usuario->getPrivilegio());
             $sentencia->bindValue(':whatsap', $usuario->getWhatsap());
             $sentencia->bindValue(':llamar', $usuario->getLlamar());
-        
+
             $sentencia->execute();
         } catch (Exception $e) {
             echo "Error al actualizar: " . $e->getMessage();

@@ -27,7 +27,7 @@
     </section>
 
     <section class="botonesOpcciones">
-        <button onclick="location.href='index.php?c=usuario&a=iniciarRegistro'">Crear Nuevo Empleado</button>
+        <button onclick="location.href='index.php?c=empleado&a=iniciarRegistro'">Crear Nuevo Empleado</button>
     </section>
 
     <section class="botonesOpcciones">
