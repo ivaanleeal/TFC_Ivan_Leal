@@ -129,4 +129,3 @@ function error(elemento) {
 function validarOK(elemento) {
     elemento.classList.add("validocaja");
 }
-

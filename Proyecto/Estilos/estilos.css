@@ -270,6 +270,60 @@ textarea {
 }
 
 
+.error {
+    background-color: #f8d7da;
+    color: #842029;
+    border-left: 6px solid #dc3545;
+    padding: 16px 20px;
+    margin: 20px auto;
+    max-width: 600px;
+    border-radius: 8px;
+    font-family: 'Segoe UI', sans-serif;
+    font-size: 16px;
+    box-shadow: 0 4px 12px rgba(220, 53, 69, 0.2);
+    position: relative;
+    animation: errorAccion 0.6s ease-out;
+}
+
+@keyframes errorAccion {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+.bien {
+    background-color: #d1e7dd;
+    color: #0f5132;
+    border-left: 6px solid #198754;
+    padding: 16px 20px;
+    margin: 20px auto;
+    max-width: 600px;
+    border-radius: 8px;
+    font-family: 'Segoe UI', sans-serif;
+    font-size: 16px;
+    box-shadow: 0 4px 12px rgba(25, 135, 84, 0.2);
+    position: relative;
+    animation: bienAccion 0.6s ease-out;
+}
+
+@keyframes bienAccion {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
 .gridTarjetas {
     display: grid;
     grid-template-columns: repeat(4, 1fr);

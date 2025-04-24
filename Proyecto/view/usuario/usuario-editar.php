@@ -5,6 +5,7 @@
     <link rel="icon" href="https://yt3.ggpht.com/ssGR_sKs0gRpkLzFhxUig46rmwq73x6PzDsmaQh_Mu6jYG8SRsfSciptLPqMudHZpYQQRfOR=s108-c-k-c0x00ffffff-no-rj" type="image/x-icon">
     <link rel="stylesheet" href="../Estilos/estilos.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="../JS/validacionDatosClientes.js" defer></script>
 </head>
 
 <body>
@@ -35,24 +36,34 @@
         <div class="fromCon">
             <h2 class="bienvenida">Datos del Usuario</h2>
 
-            <label for="teléfono">Teléfono</label>
-            <input type="text" name="telefono" class="form-control" required maxlength="9" placeholder="Número de Télefono" disabled value="<?php echo $usuario->getTelefono(); ?>"/>
+            <label for="telefono">Teléfono</label>
+            <input type="text" name="telefono" id="telefono" class="form-control" required maxlength="9" placeholder="Número de Télefono" readonly value="<?php echo $usuario->getTelefono(); ?>" />
+            <span id="errortelefono" class="errortexto"></span>
+            <br><br>
 
             <label for="nombre">Nombre</label>
-            <input type="text" name="nombre" class="form-control" required placeholder="Nombre completo" value="<?php echo $usuario->getNombre() ;?>"/>
+            <input type="text" name="nombre" id="nombre" class="form-control" required placeholder="Nombre completo" value="<?php echo $usuario->getNombre(); ?>" />
+            <span id="errornombre" class="errortexto"></span>
+            <br><br>
 
             <label for="apellidos">Apellidos</label>
-            <input type="text" name="apellidos" class="form-control" required placeholder="Apellidos completos" value="<?php echo $usuario->getApellidos() ;?>"/>
+            <input type="text" name="apellidos" id="apellidos" class="form-control" required placeholder="Apellidos completos" value="<?php echo $usuario->getApellidos(); ?>" />
+            <span id="errorapellido" class="errortexto"></span>
+            <br><br>
 
             <label for="usuario">Usuario</label>
-            <input type="text" name="usuario" class="form-control" required placeholder="Nombre de usuario" value="<?php echo $usuario->getUsuario() ;?>"/>
+            <input type="text" name="usuario" id="usuario" class="form-control" required placeholder="Nombre de usuario" value="<?php echo $usuario->getUsuario(); ?>" />
+            <span id="errorusuario" class="errortexto"></span>
+            <br><br>
 
             <label for="password">Contraseña</label>
-            <input type="password" name="contrasena" class="form-control" required placeholder="Contraseña segura" value="<?php echo $usuario->getContrasena() ;?>"/>
+            <input type="password" name="contrasena" id="password" class="form-control" required placeholder="Contraseña segura" value="<?php echo $usuario->getContrasena(); ?>" />
+            <span id="errorpassword" class="errortexto"></span>
+            <br><br>
 
             <label for="privilegio">Privilegio</label>
             <select name="privilegio" required>
-                <<option value="0" <?= $usuario->getPrivilegio() == 0 ? 'selected' : '' ?>>Usuario Normal</option>
+                <option value="0" <?= $usuario->getPrivilegio() == 0 ? 'selected' : '' ?>>Usuario Normal</option>
                 <option value="1" <?= $usuario->getPrivilegio() == 1 ? 'selected' : '' ?>>Usuario Administrador</option>
             </select>
 
@@ -68,7 +79,7 @@
 
             <hr />
 
-            <button class="btn btn-success">Registrar</button>
+            <button id="enviar" class="btn btn-success">Registrar</button>
         </div>
     </form>
 

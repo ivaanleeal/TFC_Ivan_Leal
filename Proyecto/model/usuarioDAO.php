@@ -78,8 +78,9 @@ class UsuarioDAO
             $sentencia = $this->pdo->prepare($sql);
             $sentencia->bindValue(':telefono', $id);
             $sentencia->execute();
+            return true;
         } catch (Exception $e) {
-            $e->getMessage();
+            return false;
         }
     }
 

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 22-04-2025 a las 17:22:22
+-- Tiempo de generación: 24-04-2025 a las 11:52:40
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.0.30
 
@@ -44,8 +44,9 @@ CREATE TABLE `clientes` (
 
 INSERT INTO `clientes` (`telefono`, `nombre`, `apellido`, `usuario`, `contrasena`, `privilegio`, `Whatsap`, `Llamar`) VALUES
 ('600123456', 'Juan', 'Pérez', 'juancito', '$2a$12$zhclWgnrq1gK9Jug0kDfQeMC4RsBqvNHgNX/c8LrmSQCN1gA512zy', 0, 1, 0),
-('600555333', 'Luis', 'Martínez', 'luisito', '12345', 0, 1, 1),
-('600987654', 'Ana', 'García', 'anita', '12345', 0, 0, 1);
+('600555333', 'Luis', 'Martínez', 'luisito', '$2a$12$zhclWgnrq1gK9Jug0kDfQeMC4RsBqvNHgNX/c8LrmSQCN1gA512zy', 0, 1, 1),
+('600987654', 'Ana', 'García', 'anita', '$2a$12$zhclWgnrq1gK9Jug0kDfQeMC4RsBqvNHgNX/c8LrmSQCN1gA512zy', 0, 0, 1),
+('666666666', 'Pelao', 'Loco', 'pelao', '$2y$10$OnIM3a2Uo3XfWbHVIid9h.HawKAc5Xyxbden91i/lrFyZwrf.XzXC', 0, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -89,7 +90,8 @@ CREATE TABLE `equipos` (
 INSERT INTO `equipos` (`id_equipo`, `marca`, `modelo`, `SO`, `cliente_telefono`) VALUES
 (1, 'Apple', 'iPhone 13', 'iOS', '600123456'),
 (2, 'Samsung', 'Galaxy S22', 'Android', '600987654'),
-(3, 'Xiaomi', 'Mi 11', 'Android', '600555333');
+(3, 'Xiaomi', 'Mi 11', 'Android', '600555333'),
+(4, 'nnnbnb', 'nbnbnb', 'nbnbnb', '666666666');
 
 -- --------------------------------------------------------
 
@@ -275,7 +277,7 @@ ALTER TABLE `tareas`
 -- AUTO_INCREMENT de la tabla `equipos`
 --
 ALTER TABLE `equipos`
-  MODIFY `id_equipo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_equipo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT de la tabla `mensajes`
@@ -303,29 +305,29 @@ ALTER TABLE `tareas`
 -- Filtros para la tabla `equipos`
 --
 ALTER TABLE `equipos`
-  ADD CONSTRAINT `fk_equipos_clientes` FOREIGN KEY (`cliente_telefono`) REFERENCES `clientes` (`telefono`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `fk_equipos_clientes` FOREIGN KEY (`cliente_telefono`) REFERENCES `clientes` (`telefono`) ON DELETE NO ACTION ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `partes`
 --
 ALTER TABLE `partes`
-  ADD CONSTRAINT `fk_partes_clientes` FOREIGN KEY (`cliente_telefono`) REFERENCES `clientes` (`telefono`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `fk_partes_empleados` FOREIGN KEY (`empleado_dni`) REFERENCES `empleados` (`DNI`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `fk_partes_equipos` FOREIGN KEY (`id_equipo`) REFERENCES `equipos` (`id_equipo`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `fk_partes_clientes` FOREIGN KEY (`cliente_telefono`) REFERENCES `clientes` (`telefono`) ON DELETE NO ACTION ON UPDATE CASCADE,
+  ADD CONSTRAINT `fk_partes_empleados` FOREIGN KEY (`empleado_dni`) REFERENCES `empleados` (`DNI`) ON DELETE NO ACTION ON UPDATE CASCADE,
+  ADD CONSTRAINT `fk_partes_equipos` FOREIGN KEY (`id_equipo`) REFERENCES `equipos` (`id_equipo`) ON DELETE NO ACTION ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `reparacion_parte`
 --
 ALTER TABLE `reparacion_parte`
-  ADD CONSTRAINT `fk_reparacion_piezas` FOREIGN KEY (`pieza`) REFERENCES `piezas` (`codigo_pieza`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `fk_reparacion_tareas` FOREIGN KEY (`parte`,`tarea`) REFERENCES `tareas` (`numero_parte`, `id_tarea`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `fk_reparacion_piezas` FOREIGN KEY (`pieza`) REFERENCES `piezas` (`codigo_pieza`) ON DELETE NO ACTION ON UPDATE CASCADE,
+  ADD CONSTRAINT `fk_reparacion_tareas` FOREIGN KEY (`parte`,`tarea`) REFERENCES `tareas` (`numero_parte`, `id_tarea`) ON DELETE NO ACTION ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `tareas`
 --
 ALTER TABLE `tareas`
-  ADD CONSTRAINT `fk_tareas_empleados` FOREIGN KEY (`empleado_dni`) REFERENCES `empleados` (`DNI`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `fk_tareas_partes` FOREIGN KEY (`numero_parte`) REFERENCES `partes` (`numero_parte`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `fk_tareas_empleados` FOREIGN KEY (`empleado_dni`) REFERENCES `empleados` (`DNI`) ON DELETE NO ACTION ON UPDATE CASCADE,
+  ADD CONSTRAINT `fk_tareas_partes` FOREIGN KEY (`numero_parte`) REFERENCES `partes` (`numero_parte`) ON DELETE NO ACTION ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

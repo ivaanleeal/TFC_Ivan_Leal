@@ -35,7 +35,7 @@
         <section class="tarjetaAdmin">
             <h3><i class="fas fa-user-cog"></i> Configuración de Empleados</h3>
             <p>Aquí podrás gestionar el personal técnico de la empresa.</p>
-            <button onclick="location.href='index.php?c=usuario&a=usuarioRepara'">Administrar Empleados</button>
+            <button onclick="location.href='index.php?c=empleado&a=menuEmpleado'">Administrar Empleados</button>
         </section>
 
         <section class="tarjetaAdmin">
@@ -57,7 +57,7 @@
         </section>
 
         <section class="tarjetaAdmin">
-            <h3><i class="fas fa-screwdriAdministrar-wrench"></i> Configuración de Reparaciones</h3>
+            <h3><i class="fas fa-tools"></i> Configuración de Reparaciones</h3>
             <p>Aquí podrás controlar todas las reparaciones en curso y finalizadas.</p>
             <button onclick="location.href='index.php?c=usuario&a=usuarioRepara'">Administrar Reparaciones</button>
         </section>
