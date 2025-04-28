@@ -1,24 +1,24 @@
 <?php
 
-require_once '../model/empleadoDAO.php';
-require_once '../model/entidades/empleado.php';
+require_once '../model/equipoDAO.php';
+require_once '../model/entidades/equipo.php';
 
 
 
 
-class EmpleadoController
+class EquipoController
 {  
 
     private $model; //Representa las operaciones de BD para el curso.
 
     public function __construct()
     {
-        $this->model = new EmpleadoDAO();
+        $this->model = new EquipoDAO();
     }
 
 
 
-    public function menuEmpleado()
+    public function menuEquipo()
     {
 
         if (!isset($_SESSION['nombreUsu'])) {
@@ -26,7 +26,23 @@ class EmpleadoController
         } else {
             if ($_SESSION['privilegio'] == 1) {
                 $datos = $this->model->obtenerTodos();
-                require_once '../view/empleado/generalConfigEmpleado.php';
+                require_once '../view/equipo/generalConfigEquipo.php';
+            } else {
+                require_once '../view/usuario/inicioUsuario.php';
+            }
+        }
+        require_once '../view/footer.php';
+    }
+
+    public function menuSoloUnEquipo()
+    {
+
+        if (!isset($_SESSION['nombreUsu'])) {
+            require_once '../view/usuario/login.php';
+        } else {
+            if ($_SESSION['privilegio'] == 1) {
+                $datos = $this->model->obtener($_REQUEST['id_equipo']);
+                require_once '../view/equipo/generalConfigEquipo.php';
             } else {
                 require_once '../view/usuario/inicioUsuario.php';
             }
@@ -40,7 +56,10 @@ class EmpleadoController
             require_once '../view/usuario/login.php';
         } else {
             if ($_SESSION['privilegio'] == 1) {
-                require_once '../view/empleado/registroEmpleado.php';
+                $datos = $this->model->obtenerTodos();
+                //echo "<pre>";
+            //print_r($datos);
+                require_once '../view/equipo/registroEquipo.php';
             } else {
                 require_once '../view/usuario/login.php';
             }
@@ -48,29 +67,31 @@ class EmpleadoController
         require_once '../view/footer.php';
     }
 
-    public function registrarEmpleado()
+    public function registrarequipo()
     {
 
         if (isset($_SESSION['nombreUsu']) && $_SESSION['privilegio'] == 1) {
 
-            $dni = $_REQUEST['dni'];
-            $nombre = $_REQUEST['nombre'];
-            $apellidos = $_REQUEST['apellidos'];
+            $id = $_REQUEST['id_equipo'];
+            $marca = $_REQUEST['marca'];
+            $modelo = $_REQUEST['modelo'];
+            $so = $_REQUEST['so'];
+            $cliente = $_REQUEST['cliente_telefono'];
 
-            $empleado = new Empleado();
+            $equipo = new equipo();
 
-            $empleado->setDni($dni);
-            $empleado->setNombre($nombre);
-            $empleado->setApellidos($apellidos);
-
-           
-
-            $resultado =  $this->model->registrar($empleado);
+            $equipo->setIdEquipo($id);
+            $equipo->setMarca($marca);
+            $equipo->setModelo($modelo);
+            $equipo->setSO($so);
+            $equipo->setClienteTelefono($cliente);
+            
+            $resultado =  $this->model->registrar($equipo);
 
                 if ($resultado) {
-                    header('Location: index.php?c=empleado&a=menuEmpleado');
+                    header('Location: index.php?c=equipo&a=menuequipo');
                 } else {
-                    header('Location: index.php?c=empleado&a=errorDuplicado');
+                    header('Location: index.php?c=equipo&a=errorDuplicado');
                 }
 
             
@@ -86,12 +107,12 @@ class EmpleadoController
     public function editar()
     {
         if (isset($_SESSION['nombreUsu']) && $_SESSION['privilegio'] == 1) {
-            $empleado = new Empleado();
+            $equipo = new equipo();
 
-            if (isset($_REQUEST['dni'])) {
-                $empleado = $this->model->obtener($_REQUEST['dni']);
+            if (isset($_REQUEST['id_equipo'])) {
+                $equipo = $this->model->obtener($_REQUEST['id_equipo']);
             }
-            require_once '../view/empleado/empleado-editar.php';
+            require_once '../view/equipo/equipo-editar.php';
             require_once '../view/footer.php';
         } else {
             if (isset($_SESSION['nombreUsu'])) {
@@ -107,14 +128,14 @@ class EmpleadoController
     {
         if ($_SESSION['privilegio'] == 1) {
 
-            if (isset($_REQUEST['dni'])) {
+            if (isset($_REQUEST['id_equipo'])) {
 
-                $resultado = $this->model->eliminarEmpleado($_REQUEST['dni']);
+                $resultado = $this->model->eliminarEquipo($_REQUEST['id_equipo']);
 
                 if ($resultado) {
-                    header('Location: index.php?c=empleado&a=bien');
+                    header('Location: index.php?c=equipo&a=bien');
                 } else {
-                    header('Location: index.php?c=empleado&a=error');
+                    header('Location: index.php?c=equipo&a=error');
                 }
             }
         } else {
@@ -133,18 +154,18 @@ class EmpleadoController
         } else {
             if ($_SESSION['privilegio'] == 1) {
 
-                $empleado = new Empleado();
-                echo $_REQUEST['dni'];
-                $empleado = $this->model->obtener($_REQUEST['dni']);
+                $equipo = new equipo();
+                echo $_REQUEST['id_equipo'];
+                $equipo = $this->model->obtener($_REQUEST['id_equipo']);
                 
-                $empleado->setDni($_REQUEST['dni']);
-                $empleado->setNombre($_REQUEST['nombre']);
-                $empleado->setApellidos($_REQUEST['apellidos']);
+                $equipo->setid_equipo($_REQUEST['id_equipo']);
+                $equipo->setNombre($_REQUEST['nombre']);
+                $equipo->setApellidos($_REQUEST['apellidos']);
 
-                $this->model->actualizarEmpleado($empleado);
+                $this->model->actualizarequipo($equipo);
 
 
-                header('Location: index.php?c=empleado&a=editar&dni=' . $_REQUEST['dni']);
+                header('Location: index.php?c=equipo&a=editar&id_equipo=' . $_REQUEST['id_equipo']);
             } else {
                 require_once '../view/usuario/inicioUsuario.php';
             }
@@ -158,7 +179,7 @@ class EmpleadoController
         if (!isset($_SESSION['nombreUsu'])) {
             require_once '../view/usuario/login.php';
         } else {
-            require_once '../view/empleado/error.php';
+            require_once '../view/equipo/error.php';
         }
         require_once '../view/footer.php';
     }
@@ -168,7 +189,7 @@ class EmpleadoController
         if (!isset($_SESSION['nombreUsu'])) {
             require_once '../view/usuario/login.php';
         } else {
-            require_once '../view/empleado/errorDuplicado.php';
+            require_once '../view/equipo/errorDuplicado.php';
         }
         require_once '../view/footer.php';
     }
@@ -178,7 +199,7 @@ class EmpleadoController
         if (!isset($_SESSION['nombreUsu'])) {
             require_once '../view/usuario/login.php';
         } else {
-            require_once '../view/empleado/check.php';
+            require_once '../view/equipo/check.php';
         }
         require_once '../view/footer.php';
     }

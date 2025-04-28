@@ -25,7 +25,24 @@ class UsuarioController
             require_once '../view/usuario/login.php';
         } else {
             if ($_SESSION['privilegio'] == 1) {
-                $datos = $this->model->obtenerTodos();
+                $datos= $this->model->obtenerTodos();
+                require_once '../view/usuario/generalConfigCliente.php';
+
+            } else {
+                require_once '../view/usuario/inicioUsuario.php';
+            }
+        }
+        require_once '../view/footer.php';
+    }
+
+    public function menuSoloUnRegistro()
+    {
+
+        if (!isset($_SESSION['nombreUsu'])) {
+            require_once '../view/usuario/login.php';
+        } else {
+            if ($_SESSION['privilegio'] == 1) {
+                $datos = [$this->model->obtener($_REQUEST['telefono'])];
                 require_once '../view/usuario/generalConfigCliente.php';
 
             } else {

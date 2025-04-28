@@ -41,7 +41,7 @@
         <section class="tarjetaAdmin">
             <h3><i class="fas fa-desktop"></i> Configuración de Equipos</h3>
             <p>Aquí podrás gestionar los equipos informáticos registrados.</p>
-            <button onclick="location.href='index.php?c=usuario&a=usuarioRepara'">Administrar Equipos</button>
+            <button onclick="location.href='index.php?c=equipo&a=menuEquipo'">Administrar Equipos</button>
         </section>
 
         <section class="tarjetaAdmin">
