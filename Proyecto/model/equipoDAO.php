@@ -53,7 +53,7 @@ class EquipoDAO
             ]);
             return true;
         } catch (Exception $e) {
-            return false;            
+            return false;
         }
     }
 
@@ -86,16 +86,19 @@ class EquipoDAO
     {
         try {
             $sql = "UPDATE `Equipos` SET 
-                        dni = :dni,
-                        nombre = :nombre,
-                        apellido = :apellido
-                    WHERE dni = :dni";
+                        marca = :marca,
+                        modelo = :modelo,
+                        so = :so, 
+                        cliente_telefono = :cliente_telefono
+                    WHERE id_equipo = :id_equipo";
 
             $sentencia = $this->pdo->prepare($sql);
 
-            $sentencia->bindValue(':dni', $Equipo->getdni());
-            $sentencia->bindValue(':nombre', $Equipo->getNombre());
-            $sentencia->bindValue(':apellido', $Equipo->getApellidos());
+            $sentencia->bindValue(':id_equipo', $Equipo->getIdEquipo());
+            $sentencia->bindValue(':marca', $Equipo->getMarca());
+            $sentencia->bindValue(':modelo', $Equipo->getModelo());
+            $sentencia->bindValue(':so', $Equipo->getSO());
+            $sentencia->bindValue(':cliente_telefono', $Equipo->getClienteTelefono());
 
             $sentencia->execute();
         } catch (Exception $e) {

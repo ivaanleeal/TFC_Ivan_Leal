@@ -25,4 +25,4 @@
         <button onclick="location.href='index.php?c=usuario&a=logout'">Cerrar sesión</button>
     </section>
 
-    <div class="bien">✅ Elemento Equipo creado correctamente.</div>
+    <div class="bien">✅ Equipo eliminado correctamente.</div>

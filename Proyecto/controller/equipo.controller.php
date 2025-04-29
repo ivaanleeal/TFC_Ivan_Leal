@@ -57,8 +57,6 @@ class EquipoController
         } else {
             if ($_SESSION['privilegio'] == 1) {
                 $datos = $this->model->obtenerTodos();
-                //echo "<pre>";
-            //print_r($datos);
                 require_once '../view/equipo/registroEquipo.php';
             } else {
                 require_once '../view/usuario/login.php';
@@ -110,6 +108,7 @@ class EquipoController
             $equipo = new equipo();
 
             if (isset($_REQUEST['id_equipo'])) {
+                $datos = $this->model->obtenerTodos();
                 $equipo = $this->model->obtener($_REQUEST['id_equipo']);
             }
             require_once '../view/equipo/equipo-editar.php';
@@ -155,17 +154,18 @@ class EquipoController
             if ($_SESSION['privilegio'] == 1) {
 
                 $equipo = new equipo();
-                echo $_REQUEST['id_equipo'];
                 $equipo = $this->model->obtener($_REQUEST['id_equipo']);
                 
-                $equipo->setid_equipo($_REQUEST['id_equipo']);
-                $equipo->setNombre($_REQUEST['nombre']);
-                $equipo->setApellidos($_REQUEST['apellidos']);
+                $equipo->setIdEquipo($_REQUEST['id_equipo']);
+                $equipo->setMarca($_REQUEST['marca']);
+                $equipo->setModelo($_REQUEST['modelo']);
+                $equipo->setSO($_REQUEST['so']);
+                $equipo->setClienteTelefono($_REQUEST['cliente_telefono']);
 
                 $this->model->actualizarequipo($equipo);
 
 
-                header('Location: index.php?c=equipo&a=editar&id_equipo=' . $_REQUEST['id_equipo']);
+                header('Location: index.php?c=equipo&a=update');
             } else {
                 require_once '../view/usuario/inicioUsuario.php';
             }
@@ -203,4 +203,16 @@ class EquipoController
         }
         require_once '../view/footer.php';
     }
+
+
+    public function update()
+    {
+        if (!isset($_SESSION['nombreUsu'])) {
+            require_once '../view/usuario/login.php';
+        } else {
+            require_once '../view/equipo/update.php';
+        }
+        require_once '../view/footer.php';
+    }
+
 }

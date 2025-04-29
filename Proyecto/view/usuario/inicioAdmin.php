@@ -47,7 +47,7 @@
         <section class="tarjetaAdmin">
             <h3><i class="fas fa-file-alt"></i> Configuración de Partes</h3>
             <p>Aquí podrás crear y administrar partes de reparación.</p>
-            <button onclick="location.href='index.php?c=usuario&a=usuarioRepara'">Administrar Partes</button>
+            <button onclick="location.href='index.php?c=parte&a=menuParte'">Administrar Partes</button>
         </section>
 
         <section class="tarjetaAdmin">

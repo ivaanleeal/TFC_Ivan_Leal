@@ -30,36 +30,42 @@
 
 
 
-    <form method="post" action="index.php?c=equipo&a=registrarequipo" class="formDatos">
+    <form method="post" action="index.php?c=equipo&a=actualizar" class="formDatos">
         <div class="fromCon">
             <h2 class="bienvenida">Datos del Empleado</h2>
 
+            <label for="id_equipo">Marca</label>
+            <input type="text" name="id_equipo" id="id_equipo" class="form-control" required readonly value="<?php echo $equipo->getIdEquipo(); ?>" />
+            <span id="errorid_equipo" class="errortexto"></span>
+            <br><br>
+
             <label for="marca">Marca</label>
-            <input type="text" name="marca" id="marca" class="form-control" required placeholder="Marca" />
+            <input type="text" name="marca" id="marca" class="form-control" required placeholder="Marca" value="<?php echo $equipo->getMarca(); ?>" />
             <span id="errormarca" class="errortexto"></span>
             <br><br>
 
             <label for="modelo">Modelo</label>
-            <input type="text" name="modelo" id="modelo" class="form-control" required placeholder="Modelo" />
+            <input type="text" name="modelo" id="modelo" class="form-control" required placeholder="Modelo" value="<?php echo $equipo->getModelo(); ?>" />
             <span id="errormodelo" class="errortexto"></span>
             <br><br>
 
             <label for="so">Sistema Operativo</label>
-            <input type="text" name="so" id="so" class="form-control" required maxlength="9" placeholder="Sistema Operativo" />
+            <input type="text" name="so" id="so" class="form-control" required maxlength="9" placeholder="Sistema Operativo" value="<?php echo $equipo->getSO(); ?>" />
             <span id="errorso" class="errortexto"></span>
             <br><br>
 
             <label for="cliente">Cliente</label>
-            <select name="cliente_telefono" id="cliente_telefono" class="form-control">
-                <option default>Seleccione Uno ...</option>
+            <select name="cliente_telefono" id="cliente_telefono" class="form-control" required>
+                <option disabled selected>Seleccione Uno ...</option>
                 <?php
-
-                foreach ($datos as $equipo) {                  
-                    echo "<option value='" . $equipo->getClienteTelefono() . "'>" . $equipo->getClienteTelefono() . "</option>";
+                $telefonoAsignado = $equipo->getClienteTelefono();
+                
+                foreach ($datos as $cliente) {
+                    $telefono = $cliente->getClienteTelefono();
+                    $selected = ($telefono == $telefonoAsignado) ? 'selected' : '';
+                    echo "<option value='$telefono' $selected>$telefono</option>";
                 }
-
                 ?>
-
             </select>
             <span id="errorcliente" class="errortexto"></span>
             <br><br>

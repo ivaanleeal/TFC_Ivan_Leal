@@ -51,7 +51,7 @@
 
             <label for="cliente">Cliente</label>
             <select name="cliente_telefono" id="cliente_telefono" class="form-control">
-                <option default>Seleccione Uno ...</option>
+                <option disabled default>Seleccione Uno ...</option>
                 <?php
 
                 foreach ($datos as $equipo) {                  

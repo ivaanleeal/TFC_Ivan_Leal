@@ -176,7 +176,7 @@ class UsuarioController
                 $this->model->actualizarCurso($usuario);
 
 
-                header('Location: index.php?c=usuario&a=editar&telefono=' . $_REQUEST['telefono']);
+                header('Location: index.php?c=usuario&a=update');
             } else {
                 require_once '../view/usuario/inicioUsuario.php';
             }
@@ -283,6 +283,17 @@ class UsuarioController
             require_once '../view/usuario/login.php';
         } else {
             require_once '../view/usuario/check.php';
+        }
+        require_once '../view/footer.php';
+    }
+
+
+    public function update()
+    {
+        if (!isset($_SESSION['nombreUsu'])) {
+            require_once '../view/usuario/login.php';
+        } else {
+            require_once '../view/usuario/update.php';
         }
         require_once '../view/footer.php';
     }

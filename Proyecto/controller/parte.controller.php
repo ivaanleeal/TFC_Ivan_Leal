@@ -18,7 +18,7 @@ class EmpleadoController
 
 
 
-    public function menuEmpleado()
+    public function menuParte()
     {
 
         if (!isset($_SESSION['nombreUsu'])) {
@@ -26,22 +26,6 @@ class EmpleadoController
         } else {
             if ($_SESSION['privilegio'] == 1) {
                 $datos = $this->model->obtenerTodos();
-                require_once '../view/empleado/generalConfigEmpleado.php';
-            } else {
-                require_once '../view/usuario/inicioUsuario.php';
-            }
-        }
-        require_once '../view/footer.php';
-    }
-
-    public function menuSoloUnEmpleado()
-    {
-
-        if (!isset($_SESSION['nombreUsu'])) {
-            require_once '../view/usuario/login.php';
-        } else {
-            if ($_SESSION['privilegio'] == 1) {
-                $datos = $this->model->obtener($_REQUEST['dni']);
                 require_once '../view/empleado/generalConfigEmpleado.php';
             } else {
                 require_once '../view/usuario/inicioUsuario.php';
