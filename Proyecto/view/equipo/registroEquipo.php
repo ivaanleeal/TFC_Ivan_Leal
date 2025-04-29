@@ -5,7 +5,7 @@
     <link rel="icon" href="https://yt3.ggpht.com/ssGR_sKs0gRpkLzFhxUig46rmwq73x6PzDsmaQh_Mu6jYG8SRsfSciptLPqMudHZpYQQRfOR=s108-c-k-c0x00ffffff-no-rj" type="image/x-icon">
     <link rel="stylesheet" href="../Estilos/estilos.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
+    <script src="../JS/validacionDatosEquipo.js" defer></script>
 </head>
 
 <body>
@@ -51,7 +51,7 @@
 
             <label for="cliente">Cliente</label>
             <select name="cliente_telefono" id="cliente_telefono" class="form-control">
-                <option disabled default>Seleccione Uno ...</option>
+                <option default>Seleccione Uno ...</option>
                 <?php
 
                 foreach ($datos as $equipo) {                  

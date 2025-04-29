@@ -1,7 +1,7 @@
 <?php
-require_once 'entidades/empleado.php';
+require_once 'entidades/parte.php';
 
-class EmpleadoDAO
+class ParteDAO
 {
     private $pdo;
 
@@ -18,9 +18,9 @@ class EmpleadoDAO
     public function obtenerTodos()
     {
         try {
-            $stmt = $this->pdo->prepare("SELECT dni, nombre, apellido FROM empleados");
+            $stmt = $this->pdo->prepare("SELECT numero_parte, fecha, notas, seguimiento, recogido, cliente_telefono, id_equipo, empleado_dni FROM partes");
             $stmt->execute();
-            return $stmt->fetchAll(PDO::FETCH_CLASS, 'Empleado');
+            return $stmt->fetchAll(PDO::FETCH_CLASS, 'Parte');
         } catch (Exception $e) {
             die($e->getMessage());
         }

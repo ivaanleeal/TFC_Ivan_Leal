@@ -1,19 +1,19 @@
 <?php
 
-require_once '../model/empleadoDAO.php';
-require_once '../model/entidades/empleado.php';
+require_once '../model/parteDAO.php';
+require_once '../model/entidades/parte.php';
 
 
 
 
-class EmpleadoController
+class ParteController
 {  
 
     private $model; //Representa las operaciones de BD para el curso.
 
     public function __construct()
     {
-        $this->model = new EmpleadoDAO();
+        $this->model = new ParteDAO();
     }
 
 
@@ -26,7 +26,7 @@ class EmpleadoController
         } else {
             if ($_SESSION['privilegio'] == 1) {
                 $datos = $this->model->obtenerTodos();
-                require_once '../view/empleado/generalConfigEmpleado.php';
+                require_once '../view/parte/generalConfigParte.php';
             } else {
                 require_once '../view/usuario/inicioUsuario.php';
             }
@@ -40,7 +40,8 @@ class EmpleadoController
             require_once '../view/usuario/login.php';
         } else {
             if ($_SESSION['privilegio'] == 1) {
-                require_once '../view/empleado/registroEmpleado.php';
+                $datos = $this->model->obtenerTodos();
+                require_once '../view/parte/registroParte.php';
             } else {
                 require_once '../view/usuario/login.php';
             }
@@ -48,20 +49,27 @@ class EmpleadoController
         require_once '../view/footer.php';
     }
 
-    public function registrarEmpleado()
+    public function registrarParte()
     {
 
         if (isset($_SESSION['nombreUsu']) && $_SESSION['privilegio'] == 1) {
 
-            $dni = $_REQUEST['dni'];
-            $nombre = $_REQUEST['nombre'];
-            $apellidos = $_REQUEST['apellidos'];
+            $fecha = $_REQUEST['fecha'];
+            $notas = $_REQUEST['notas'];
+            $seguimiento = $_REQUEST['seguimiento'];
+            $recogido = $_REQUEST['recogido'];
+            $cliente_telefono = $_REQUEST['cliente_telefono'];
+            $equipo = $_REQUEST['equipo'];
+            $empleado = $_REQUEST['empleado'];
 
-            $empleado = new Empleado();
+            $parte = new Empleado();
 
-            $empleado->setDni($dni);
-            $empleado->setNombre($nombre);
-            $empleado->setApellidos($apellidos);
+            $empleado->setDni($fecha);
+            $empleado->setNombre($notas);
+            $empleado->setApellidos($seguimiento);
+            $empleado->setDni($recogido);
+            $empleado->setNombre($cliente_telefono);           
+            $empleado->setApellidos($equipo);
 
            
 

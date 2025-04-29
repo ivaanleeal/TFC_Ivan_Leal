@@ -5,7 +5,7 @@
     <link rel="icon" href="https://yt3.ggpht.com/ssGR_sKs0gRpkLzFhxUig46rmwq73x6PzDsmaQh_Mu6jYG8SRsfSciptLPqMudHZpYQQRfOR=s108-c-k-c0x00ffffff-no-rj" type="image/x-icon">
     <link rel="stylesheet" href="../Estilos/estilos.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
+    <script src="../JS/ordenarEquipos.js" defer></script>
 </head>
 
 <body>
@@ -31,8 +31,8 @@
     </section>
 
     <section class="botonesOpcciones">
-        <h4>Buscar: </h4><input type="text" id="filtroTexto" class="buscar" placeholder="Buscar por Código">
-        <button id="btnLimpiarFiltros">Limpiar</button>
+        <h4>Buscar: </h4><input type="text" id="filtroTexto" class="buscar" placeholder="Buscar por código de equipo..." />
+        <button type="button" id="btnLimpiarFiltros">Limpiar</button>
     </section>
 
     <section id="contenedorEquipos">
@@ -56,7 +56,7 @@
             echo '<td>' . $equipo->getMarca() . '</td>';
             echo '<td>' . $equipo->getModelo() . '</td>';
             echo '<td>' . $equipo->getSO() . '</td>';
-            echo '<td><a href="index.php?c=usuario&a=menuSoloUnRegistro&telefono='.$equipo->getClienteTelefono().'">'. $equipo->getClienteTelefono().'</a></td>';
+            echo '<td><a href="index.php?c=usuario&a=menuSoloUnRegistro&telefono=' . $equipo->getClienteTelefono() . '">' . $equipo->getClienteTelefono() . '</a></td>';
             echo "<td><button onclick=\"location.href='index.php?c=equipo&a=editar&id_equipo={$equipo->getIdEquipo()}'\">Editar Equipo</button></td>";
             echo "<td>
             <button onclick=\"if(confirm('¿Estás seguro de que quieres eliminar este Equipo?')) { 
