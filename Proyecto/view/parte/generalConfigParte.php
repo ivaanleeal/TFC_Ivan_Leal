@@ -5,7 +5,7 @@
     <link rel="icon" href="https://yt3.ggpht.com/ssGR_sKs0gRpkLzFhxUig46rmwq73x6PzDsmaQh_Mu6jYG8SRsfSciptLPqMudHZpYQQRfOR=s108-c-k-c0x00ffffff-no-rj" type="image/x-icon">
     <link rel="stylesheet" href="../Estilos/estilos.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <script src="../JS/ordenarEmpleados.js" defer></script>
+    <script src="../JS/ordenarPartes.js" defer></script>
 </head>
 
 <body>
@@ -31,13 +31,19 @@
     </section>
 
     <section class="botonesOpcciones">
-        <h4>Buscar: </h4><input type="text" id="filtroTexto" class="buscar" placeholder="Buscar por Numero Parte o Fecha">
+        <h4>Buscar: </h4>
+        <input type="text" id="filtroTexto" class="buscar" placeholder="Buscar por Numero Parte o Fecha">
+        <button id="ordenarParte">Ordenar por Nº Parte</button>
+        <button id="ordenarFecha">Ordenar por Fecha</button>
+        <button id="ordenarCliente">Ordenar por Cliente</button>
+        <button id="ordenarEquipo">Ordenar por Equipo</button>
+        <button id="ordenarEmpleado">Ordenar por Empleado</button>
         <button id="btnLimpiarFiltros">Limpiar</button>
     </section>
 
     <section id="contenedorpartes">
         <?php
-       
+
         foreach ($datos as $parte) {
             echo '<div class="fromData">';
             echo '<h2>Número Parte: ' . $parte->getNumeroParte() . '</h2>';

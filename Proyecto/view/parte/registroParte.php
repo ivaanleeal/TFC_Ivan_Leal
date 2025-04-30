@@ -5,7 +5,7 @@
     <link rel="icon" href="https://yt3.ggpht.com/ssGR_sKs0gRpkLzFhxUig46rmwq73x6PzDsmaQh_Mu6jYG8SRsfSciptLPqMudHZpYQQRfOR=s108-c-k-c0x00ffffff-no-rj" type="image/x-icon">
     <link rel="stylesheet" href="../Estilos/estilos.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <script src="../JS/validacionDatosEmpleados.js"></script>
+    <script src="../JS/filtarPartes.js" defer></script>
 </head>
 
 <body>
@@ -32,7 +32,7 @@
 
     <form method="post" action="index.php?c=parte&a=registrarParte" class="formDatos">
         <div class="fromCon">
-            <h2 class="bienvenida">Datos del Empleado</h2>
+            <h2 class="bienvenida">Datos del Parte</h2>
 
             <label for="fecha">Fecha</label>
             <input type="date" name="fecha" id="fecha" class="form-control"
@@ -67,8 +67,8 @@
                 <option default>Seleccione Uno ...</option>
                 <?php
 
-                foreach ($datos as $equipo) {
-                    echo "<option value='" . $equipo->getClienteTelefono() . "'>" . $equipo->getClienteTelefono() . "</option>";
+                foreach ($datosUsu as $usuario) {
+                    echo "<option value='" . $usuario->getTelefono() . "'>" . $usuario->getTelefono() . " " . $usuario->getNombre() . " " . $usuario->getApellidos() . "</option>";
                 }
 
                 ?>
@@ -79,16 +79,16 @@
 
             <label for="equipo">Equipo</label>
             <select name="equipo" id="equipo" class="form-control">
-                <option default>Seleccione Uno ...</option>
-                <?php
-
-                foreach ($datos as $equipo) {
-                    echo "<option value='" . $equipo->getIdEquipo() . "'>" . $equipo->getIdEquipo() . "</option>";
-                }
-
-                ?>
-
+                <option value="">Seleccione Uno ...</option>
+                <?php foreach ($datosEqui as $equipo): ?>
+                    <option
+                        value="<?= $equipo->getIdEquipo(); ?>"
+                        data-cliente="<?= $equipo->getClienteTelefono(); ?>">
+                        <?= $equipo->getIdEquipo() . " - " . $equipo->getMarca(); ?>
+                    </option>
+                <?php endforeach; ?>
             </select>
+
             <span id="errorcliente" class="errortexto"></span>
             <br><br>
 
@@ -97,8 +97,8 @@
                 <option default>Seleccione Uno ...</option>
                 <?php
 
-                foreach ($datos as $equipo) {
-                    echo "<option value='" . $equipo->getEmpleadoDni() . "'>" . $equipo->getEmpleadoDni() . "</option>";
+                foreach ($datosEmple as $empleado) {
+                    echo "<option value='" . $empleado->getDni() . "'>" . $empleado->getNombre() . " " . $empleado->getApellidos() . "</option>";
                 }
 
                 ?>

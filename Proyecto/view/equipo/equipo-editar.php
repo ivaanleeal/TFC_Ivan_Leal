@@ -34,7 +34,7 @@
         <div class="fromCon">
             <h2 class="bienvenida">Datos del Empleado</h2>
 
-            <label for="id_equipo">Marca</label>
+            <label for="id_equipo">Código</label>
             <input type="text" name="id_equipo" id="id_equipo" class="form-control" required readonly value="<?php echo $equipo->getIdEquipo(); ?>" />
             <span id="errorid_equipo" class="errortexto"></span>
             <br><br>

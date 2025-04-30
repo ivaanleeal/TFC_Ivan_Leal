@@ -41,6 +41,9 @@ class ParteController
         } else {
             if ($_SESSION['privilegio'] == 1) {
                 $datos = $this->model->obtenerTodos();
+                $datosUsu = $this->model->obtenerUsuarios();
+                $datosEqui = $this->model->obtenerPorEquipos();
+                $datosEmple = $this->model->obtenerEmpleados();
                 require_once '../view/parte/registroParte.php';
             } else {
                 require_once '../view/usuario/login.php';
@@ -54,6 +57,7 @@ class ParteController
 
         if (isset($_SESSION['nombreUsu']) && $_SESSION['privilegio'] == 1) {
 
+            
             $fecha = $_REQUEST['fecha'];
             $notas = $_REQUEST['notas'];
             $seguimiento = $_REQUEST['seguimiento'];
@@ -62,23 +66,25 @@ class ParteController
             $equipo = $_REQUEST['equipo'];
             $empleado = $_REQUEST['empleado'];
 
-            $parte = new Empleado();
+            $parte = new Parte();
+           
+            $parte->setFecha($fecha);
+            $parte->setNotas($notas);
+            $parte->setSeguimiento($seguimiento);
+            $parte->setRecogido($recogido);
+            $parte->setClienteTelefono($cliente_telefono);           
+            $parte->setIdEquipo($equipo);
+            $parte->setEmpleadoDni($empleado);
 
-            $empleado->setDni($fecha);
-            $empleado->setNombre($notas);
-            $empleado->setApellidos($seguimiento);
-            $empleado->setDni($recogido);
-            $empleado->setNombre($cliente_telefono);           
-            $empleado->setApellidos($equipo);
 
            
 
-            $resultado =  $this->model->registrar($empleado);
+            $resultado =  $this->model->registrar($parte);
 
                 if ($resultado) {
-                    header('Location: index.php?c=empleado&a=menuEmpleado');
+                    header('Location: index.php?c=parte&a=menuParte');
                 } else {
-                    header('Location: index.php?c=empleado&a=errorDuplicado');
+                    header('Location: index.php?c=parte&a=errorDuplicado');
                 }
 
             
@@ -94,12 +100,15 @@ class ParteController
     public function editar()
     {
         if (isset($_SESSION['nombreUsu']) && $_SESSION['privilegio'] == 1) {
-            $empleado = new Empleado();
+            $parte = new parte();
 
             if (isset($_REQUEST['dni'])) {
-                $empleado = $this->model->obtener($_REQUEST['dni']);
+                $parte = $this->model->obtener($_REQUEST['dni']);
+                $datosUsu = $this->model->obtenerUsuarios();
+                $datosEqui = $this->model->obtenerPorEquipos();
+                $datosEmple = $this->model->obtenerEmpleados();
             }
-            require_once '../view/empleado/empleado-editar.php';
+            require_once '../view/parte/parte-editar.php';
             require_once '../view/footer.php';
         } else {
             if (isset($_SESSION['nombreUsu'])) {
@@ -117,12 +126,12 @@ class ParteController
 
             if (isset($_REQUEST['dni'])) {
 
-                $resultado = $this->model->eliminarEmpleado($_REQUEST['dni']);
+                $resultado = $this->model->eliminarparte($_REQUEST['dni']);
 
                 if ($resultado) {
-                    header('Location: index.php?c=empleado&a=bien');
+                    header('Location: index.php?c=parte&a=bien');
                 } else {
-                    header('Location: index.php?c=empleado&a=error');
+                    header('Location: index.php?c=parte&a=error');
                 }
             }
         } else {
@@ -141,17 +150,17 @@ class ParteController
         } else {
             if ($_SESSION['privilegio'] == 1) {
 
-                $empleado = new Empleado();
-                $empleado = $this->model->obtener($_REQUEST['dni']);
+                $parte = new parte();
+                $parte = $this->model->obtener($_REQUEST['dni']);
                 
-                $empleado->setDni($_REQUEST['dni']);
-                $empleado->setNombre($_REQUEST['nombre']);
-                $empleado->setApellidos($_REQUEST['apellidos']);
+                $parte->setDni($_REQUEST['dni']);
+                $parte->setNombre($_REQUEST['nombre']);
+                $parte->setApellidos($_REQUEST['apellidos']);
 
-                $this->model->actualizarEmpleado($empleado);
+                $this->model->actualizarparte($parte);
 
 
-                header('Location: index.php?c=empleado&a=update');
+                header('Location: index.php?c=parte&a=update');
             } else {
                 require_once '../view/usuario/inicioUsuario.php';
             }
@@ -165,7 +174,7 @@ class ParteController
         if (!isset($_SESSION['nombreUsu'])) {
             require_once '../view/usuario/login.php';
         } else {
-            require_once '../view/empleado/error.php';
+            require_once '../view/parte/error.php';
         }
         require_once '../view/footer.php';
     }
@@ -175,7 +184,7 @@ class ParteController
         if (!isset($_SESSION['nombreUsu'])) {
             require_once '../view/usuario/login.php';
         } else {
-            require_once '../view/empleado/errorDuplicado.php';
+            require_once '../view/parte/errorDuplicado.php';
         }
         require_once '../view/footer.php';
     }
@@ -185,7 +194,7 @@ class ParteController
         if (!isset($_SESSION['nombreUsu'])) {
             require_once '../view/usuario/login.php';
         } else {
-            require_once '../view/empleado/check.php';
+            require_once '../view/parte/check.php';
         }
         require_once '../view/footer.php';
     }
@@ -195,7 +204,7 @@ class ParteController
         if (!isset($_SESSION['nombreUsu'])) {
             require_once '../view/usuario/login.php';
         } else {
-            require_once '../view/empleado/update.php';
+            require_once '../view/parte/update.php';
         }
         require_once '../view/footer.php';
     }

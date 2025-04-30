@@ -43,9 +43,8 @@ class EquipoDAO
     public function registrar(Equipo $Equipo)
     {
         try {
-            $stmt = $this->pdo->prepare("INSERT INTO Equipos (id_equipo, marca, modelo, so, cliente_telefono) VALUES (:id_equipo, :marca, :modelo, :so, :cliente_telefono)");
+            $stmt = $this->pdo->prepare("INSERT INTO Equipos (marca, modelo, so, cliente_telefono) VALUES (:marca, :modelo, :so, :cliente_telefono)");
             $stmt->execute([
-                'id_equipo' => $Equipo->getIdEquipo(),
                 'marca' => $Equipo->getMarca(),
                 'modelo' => $Equipo->getModelo(),
                 'so' => $Equipo->getSO(),

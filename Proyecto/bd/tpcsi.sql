@@ -114,7 +114,7 @@ CREATE TABLE `mensajes` (
 --
 
 CREATE TABLE `partes` (
-  `numero_parte` int(11) NOT NULL,
+  `numero_parte` int(11) NOT NULL AUTO_INCREMENT,
   `fecha` date NOT NULL,
   `notas` text NOT NULL,
   `Seguimiento` varchar(50) DEFAULT NULL,

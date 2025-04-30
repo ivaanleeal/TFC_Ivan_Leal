@@ -70,7 +70,7 @@ class EquipoController
 
         if (isset($_SESSION['nombreUsu']) && $_SESSION['privilegio'] == 1) {
 
-            $id = $_REQUEST['id_equipo'];
+            
             $marca = $_REQUEST['marca'];
             $modelo = $_REQUEST['modelo'];
             $so = $_REQUEST['so'];
@@ -78,7 +78,7 @@ class EquipoController
 
             $equipo = new equipo();
 
-            $equipo->setIdEquipo($id);
+           
             $equipo->setMarca($marca);
             $equipo->setModelo($modelo);
             $equipo->setSO($so);
