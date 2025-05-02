@@ -23,9 +23,12 @@
             <h2 class="clientes">Accede a tu Área</h2>
             <form class="contenidoForm" method="post" action="index.php?c=usuario&a=loginVerificar">
                 Nombre Usuario
-                <input type="text" name="usuario" placeholder="Escriba su nombre de Usuario" class="input-estilo"><br />
+                <input type="text" name="usuario" placeholder="Escriba su nombre de Usuario" class="input-estilo"
+                    value="<?php echo isset($_COOKIE['usuario']) ? htmlspecialchars($_COOKIE['usuario']) : ''; ?>">
+                <br />
                 <p id="errorUsu"></p>
                 <br /><br />
+
 
                 Contraseña Usuario
                 <input type="password" name="password" placeholder="Escriba su Contraseña" class="input-estilo"><br />
@@ -34,7 +37,10 @@
 
 
                 <label for="recordar">Recordar</label>
-                <input type="checkbox" id="recordar" checked>
+                <label>
+                    <input type="checkbox" name="recordar" <?php if (isset($_COOKIE['usuario'])) echo 'checked'; ?> checked>
+                </label>
+
 
                 <button class="boton" id="enviar" type="submit">Entrar</button>
 

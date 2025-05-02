@@ -200,6 +200,12 @@ class UsuarioController
         $usuarioNombre = $_REQUEST['usuario'];
         $contrasena = $_REQUEST['password'];
 
+        if (isset($_POST['recordar'])) {
+            setcookie('usuario', $_REQUEST['usuario'], time() + (86400 * 30), "/"); 
+        } else {
+            setcookie('usuario', '', time() - 3600, "/"); 
+        }
+
         $errores = [];
 
 
@@ -354,8 +360,6 @@ class UsuarioController
 
         session_destroy();
         $_SESSION = array();
-
-        //header('Location: index.php?c=Usuario&a=login');// Preguntar
 
         header('Location: index.php');
     }

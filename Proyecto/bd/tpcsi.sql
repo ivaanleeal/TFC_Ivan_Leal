@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 24-04-2025 a las 11:52:40
+-- Tiempo de generación: 02-05-2025 a las 13:49:29
 -- Versión del servidor: 10.4.32-MariaDB
--- Versión de PHP: 8.0.30
+-- Versión de PHP: 8.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -44,7 +44,7 @@ CREATE TABLE `clientes` (
 
 INSERT INTO `clientes` (`telefono`, `nombre`, `apellido`, `usuario`, `contrasena`, `privilegio`, `Whatsap`, `Llamar`) VALUES
 ('600123456', 'Juan', 'Pérez', 'juancito', '$2a$12$zhclWgnrq1gK9Jug0kDfQeMC4RsBqvNHgNX/c8LrmSQCN1gA512zy', 0, 1, 0),
-('600555333', 'Luis', 'Martínez', 'luisito', '$2a$12$zhclWgnrq1gK9Jug0kDfQeMC4RsBqvNHgNX/c8LrmSQCN1gA512zy', 0, 1, 1),
+('600555333', 'Luis', 'Martínez', 'luisito', '$2a$12$zhclWgnrq1gK9Jug0kDfQeMC4RsBqvNHgNX/c8LrmSQCN1gA512zy', 1, 1, 1),
 ('600987654', 'Ana', 'García', 'anita', '$2a$12$zhclWgnrq1gK9Jug0kDfQeMC4RsBqvNHgNX/c8LrmSQCN1gA512zy', 0, 0, 1),
 ('666666666', 'Pelao', 'Loco', 'pelao', '$2y$10$OnIM3a2Uo3XfWbHVIid9h.HawKAc5Xyxbden91i/lrFyZwrf.XzXC', 0, 1, 1);
 
@@ -114,15 +114,14 @@ CREATE TABLE `mensajes` (
 --
 
 CREATE TABLE `partes` (
-  `numero_parte` int(11) NOT NULL AUTO_INCREMENT,
+  `numero_parte` int(11) NOT NULL,
   `fecha` date NOT NULL,
   `notas` text NOT NULL,
   `Seguimiento` varchar(50) DEFAULT NULL,
   `Recogido` tinyint(1) NOT NULL DEFAULT 0,
   `cliente_telefono` varchar(9) NOT NULL,
   `id_equipo` int(11) NOT NULL,
-  `empleado_dni` varchar(9) NOT NULL,
-  PRIMARY KEY (`numero_parte`)
+  `empleado_dni` varchar(9) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -131,8 +130,8 @@ CREATE TABLE `partes` (
 
 INSERT INTO `partes` (`numero_parte`, `fecha`, `notas`, `Seguimiento`, `Recogido`, `cliente_telefono`, `id_equipo`, `empleado_dni`) VALUES
 (1, '2025-02-21', 'El cliente reportó un problema de batería.', '120252021JLP', 0, '600123456', 1, '12345678A'),
-(2, '2025-01-21', 'El dispositivo no enciende.', '123456LP', 1, '600123456', 2, '87654321B'),
-(3, '2025-03-22', 'Problemas con la cámara trasera.', NULL, 1, '600123456', 3, '56789012C');
+(2, '2025-01-21', 'El dispositivo no enciende.', '123456LP', 1, '600123456', 1, '87654321B'),
+(3, '2025-03-22', 'Problemas con la cámara trasera.', '7878788', 1, '600123456', 1, '56789012C');
 
 -- --------------------------------------------------------
 
@@ -244,6 +243,7 @@ ALTER TABLE `mensajes`
 -- Indices de la tabla `partes`
 --
 ALTER TABLE `partes`
+  ADD PRIMARY KEY (`numero_parte`),
   ADD KEY `fk_partes_clientes` (`cliente_telefono`),
   ADD KEY `fk_partes_equipos` (`id_equipo`),
   ADD KEY `fk_partes_empleados` (`empleado_dni`);
@@ -289,7 +289,7 @@ ALTER TABLE `mensajes`
 -- AUTO_INCREMENT de la tabla `partes`
 --
 ALTER TABLE `partes`
-  MODIFY `numero_parte` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `numero_parte` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT de la tabla `tareas`
