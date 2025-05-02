@@ -121,7 +121,8 @@ CREATE TABLE `partes` (
   `Recogido` tinyint(1) NOT NULL DEFAULT 0,
   `cliente_telefono` varchar(9) NOT NULL,
   `id_equipo` int(11) NOT NULL,
-  `empleado_dni` varchar(9) NOT NULL
+  `empleado_dni` varchar(9) NOT NULL,
+  PRIMARY KEY (`numero_parte`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -243,7 +244,6 @@ ALTER TABLE `mensajes`
 -- Indices de la tabla `partes`
 --
 ALTER TABLE `partes`
-  ADD PRIMARY KEY (`numero_parte`),
   ADD KEY `fk_partes_clientes` (`cliente_telefono`),
   ADD KEY `fk_partes_equipos` (`id_equipo`),
   ADD KEY `fk_partes_empleados` (`empleado_dni`);

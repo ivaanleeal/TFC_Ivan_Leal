@@ -37,6 +37,12 @@
 
     <section id="contenedorEquipos">
         <?php
+
+        $clientesPorTelefono = [];
+        foreach ($datosUsu as $cliente) {
+            $clientesPorTelefono[$cliente->getTelefono()] = $cliente->getNombre() . ' ' . $cliente->getApellidos();
+        }
+
         foreach ($datos as $equipo) {
             echo '<div class="fromData">';
             echo '<h2>Código Equipo: ' . $equipo->getIdEquipo() . '</h2>';
@@ -56,7 +62,7 @@
             echo '<td>' . $equipo->getMarca() . '</td>';
             echo '<td>' . $equipo->getModelo() . '</td>';
             echo '<td>' . $equipo->getSO() . '</td>';
-            echo '<td><a href="index.php?c=usuario&a=menuSoloUnRegistro&telefono=' . $equipo->getClienteTelefono() . '">' . $equipo->getClienteTelefono() . '</a></td>';
+            echo '<td><a href="index.php?c=usuario&a=menuSoloUnRegistro&telefono=' . $equipo->getClienteTelefono() . '">' . $equipo->getClienteTelefono() . ' - ' . $clientesPorTelefono[$equipo->getClienteTelefono()] . '</a></td>';
             echo "<td><button onclick=\"location.href='index.php?c=equipo&a=editar&id_equipo={$equipo->getIdEquipo()}'\">Editar Equipo</button></td>";
             echo "<td>
             <button onclick=\"if(confirm('¿Estás seguro de que quieres eliminar este Equipo?')) { 

@@ -1,5 +1,6 @@
 <?php
 require_once 'entidades/equipo.php';
+require_once 'entidades/usuario.php';
 
 class EquipoDAO
 {
@@ -35,6 +36,17 @@ class EquipoDAO
             $data = $stmt->fetchAll(PDO::FETCH_CLASS, 'Equipo'); //Devuelve array 
 
             return $data ? $data[0] : null;
+        } catch (Exception $e) {
+            die($e->getMessage());
+        }
+    }
+
+    public function obtenerUsuarios()
+    {
+        try {
+            $stmt = $this->pdo->prepare("SELECT telefono, nombre, apellido, usuario, contrasena, privilegio, whatsap, llamar FROM clientes");
+            $stmt->execute();
+            return $stmt->fetchAll(PDO::FETCH_CLASS, 'usuario');
         } catch (Exception $e) {
             die($e->getMessage());
         }

@@ -44,6 +44,22 @@
     <section id="contenedorpartes">
         <?php
 
+        $clientesPorTelefono = [];
+        foreach ($datosUsu as $cliente) {
+            $clientesPorTelefono[$cliente->getTelefono()] = $cliente->getNombre() . ' ' . $cliente->getApellidos();
+        }
+
+        $empleadosPorDni = [];
+        foreach ($datosEmple as $empleado) {
+            $empleadosPorDni[$empleado->getDni()] = $empleado->getNombre() . ' ' . $empleado->getApellidos();
+        }
+
+        $equiposPorId = [];
+        foreach ($datosEqui as $equipo) {
+            $equiposPorId[$equipo->getIdEquipo()] = $equipo->getMarca() . ' ' . $equipo->getModelo();
+        }
+
+
         foreach ($datos as $parte) {
             echo '<div class="fromData">';
             echo '<h2>Número Parte: ' . $parte->getNumeroParte() . '</h2>';
@@ -66,13 +82,13 @@
             echo '<td>' . $parte->getNotas() . '</td>';
             echo '<td>' . $parte->getSeguimiento() . '</td>';
             echo '<td>' . ($parte->getRecogido() ? 'Sí' : 'No') . '</td>';
-            echo '<td>' . $parte->getClienteTelefono() . '</td>';
-            echo '<td>' . $parte->getIdEquipo() . '</td>';
-            echo '<td>' . $parte->getEmpleadoDni() . '</td>';
-            echo "<td><button onclick=\"location.href='index.php?c=parte&a=editar&dni={$parte->getNumeroParte()}'\">Editar Parte</button></td>";
+            echo '<td><a href="index.php?c=usuario&a=menuSoloUnRegistro&telefono=' . $parte->getClienteTelefono() . '">' . $parte->getClienteTelefono() . ' - ' . $clientesPorTelefono[$parte->getClienteTelefono()] . '</a></td>';
+            echo '<td><a href="index.php?c=equipo&a=menuSoloUnEquipo&id_equipo=' . $parte->getIdEquipo() . '">' . $parte->getIdEquipo() . ' - ' . $equiposPorId[$parte->getIdEquipo()] . '</a></td>';
+            echo '<td><a href="index.php?c=empleado&a=menuSoloUnEmpleado&dni=' . $parte->getEmpleadoDni() . '">' . $parte->getEmpleadoDni() . ' - ' . $empleadosPorDni[$parte->getEmpleadoDni()] . '</a></td>';
+            echo "<td><button onclick=\"location.href='index.php?c=parte&a=editar&id_parte={$parte->getNumeroParte()}'\">Editar Parte</button></td>";
             echo "<td>
             <button onclick=\"if(confirm('¿Estás seguro de que quieres eliminar este Parte?')) { 
-                window.location.href='index.php?c=parte&a=eliminar&dni=" . $parte->getNumeroParte() . "'; 
+                window.location.href='index.php?c=parte&a=eliminar&id_parte=" . $parte->getNumeroParte() . "'; 
             }\">
                 Eliminar Parte
             </button>

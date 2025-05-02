@@ -124,15 +124,16 @@ class ParteDAO
             $sql = "UPDATE `partes` SET 
                         fecha = :fecha,
                         notas = :notas,
-                        seguimiento = :apellido
-                        recogido = :apellido
-                        cliente_telefono = :apellido
-                        id_equipo = :apellido
-                        empleado_dni = :apellido
+                        seguimiento = :seguimiento,
+                        recogido = :recogido,
+                        cliente_telefono = :cliente_telefono,
+                        id_equipo = :id_equipo,
+                        empleado_dni = :empleado_dni
                     WHERE numero_parte = :numero_parte";
 
             $sentencia = $this->pdo->prepare($sql);
 
+            $sentencia->bindValue(':numero_parte', $parte->getNumeroParte());
             $sentencia->bindValue(':fecha', $parte->getFecha());
             $sentencia->bindValue(':notas', $parte->getNotas());
             $sentencia->bindValue(':seguimiento', $parte->getSeguimiento());

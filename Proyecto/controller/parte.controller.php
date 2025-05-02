@@ -26,6 +26,9 @@ class ParteController
         } else {
             if ($_SESSION['privilegio'] == 1) {
                 $datos = $this->model->obtenerTodos();
+                $datosUsu = $this->model->obtenerUsuarios();
+                $datosEqui = $this->model->obtenerPorEquipos();
+                $datosEmple = $this->model->obtenerEmpleados();
                 require_once '../view/parte/generalConfigParte.php';
             } else {
                 require_once '../view/usuario/inicioUsuario.php';
@@ -102,8 +105,8 @@ class ParteController
         if (isset($_SESSION['nombreUsu']) && $_SESSION['privilegio'] == 1) {
             $parte = new parte();
 
-            if (isset($_REQUEST['dni'])) {
-                $parte = $this->model->obtener($_REQUEST['dni']);
+            if (isset($_REQUEST['id_parte'])) {
+                $parte = $this->model->obtener($_REQUEST['id_parte']);
                 $datosUsu = $this->model->obtenerUsuarios();
                 $datosEqui = $this->model->obtenerPorEquipos();
                 $datosEmple = $this->model->obtenerEmpleados();
@@ -124,9 +127,9 @@ class ParteController
     {
         if ($_SESSION['privilegio'] == 1) {
 
-            if (isset($_REQUEST['dni'])) {
+            if (isset($_REQUEST['id_parte'])) {
 
-                $resultado = $this->model->eliminarparte($_REQUEST['dni']);
+                $resultado = $this->model->eliminarparte($_REQUEST['id_parte']);
 
                 if ($resultado) {
                     header('Location: index.php?c=parte&a=bien');
@@ -151,11 +154,18 @@ class ParteController
             if ($_SESSION['privilegio'] == 1) {
 
                 $parte = new parte();
-                $parte = $this->model->obtener($_REQUEST['dni']);
+                $parte = $this->model->obtener($_REQUEST['id_parte']);
                 
-                $parte->setDni($_REQUEST['dni']);
-                $parte->setNombre($_REQUEST['nombre']);
-                $parte->setApellidos($_REQUEST['apellidos']);
+               
+                $parte->setNumeroParte($_REQUEST['id_parte']);
+                $parte->setFecha($_REQUEST['fecha']);
+                $parte->setNotas($_REQUEST['notas']);
+                $parte->setSeguimiento($_REQUEST['seguimiento']);
+                $parte->setRecogido($_REQUEST['recogido']);
+                $parte->setClienteTelefono($_REQUEST['cliente_telefono']);           
+                $parte->setIdEquipo($_REQUEST['equipo']);
+                $parte->setEmpleadoDni($_REQUEST['empleado']);
+                
 
                 $this->model->actualizarparte($parte);
 

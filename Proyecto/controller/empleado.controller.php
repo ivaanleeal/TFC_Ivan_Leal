@@ -41,7 +41,7 @@ class EmpleadoController
             require_once '../view/usuario/login.php';
         } else {
             if ($_SESSION['privilegio'] == 1) {
-                $datos = $this->model->obtener($_REQUEST['dni']);
+                $datos = [$this->model->obtener($_REQUEST['dni'])];
                 require_once '../view/empleado/generalConfigEmpleado.php';
             } else {
                 require_once '../view/usuario/inicioUsuario.php';

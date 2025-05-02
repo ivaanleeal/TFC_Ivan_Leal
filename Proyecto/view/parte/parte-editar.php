@@ -21,7 +21,7 @@
     </header>
 
     <section class="botonesOpcciones">
-        <h1 class="bienvenida">Crear Nuevo Parte</h1>
+        <h1 class="bienvenida">Actualizar Parte</h1>
         <button onclick="window.history.back()">⬅ Página Anterior</button>
         <button onclick="location.href='index.php?c=parte&a=menuParte'">Volver Listado Partes</button>
         <button onclick="location.href='index.php?c=usuario&a=logout'">Cerrar sesión</button>
@@ -30,7 +30,7 @@
 
 
 
-    <form method="post" action="index.php?c=parte&a=registrarParte" class="formDatos">
+    <form method="post" action="index.php?c=parte&a=actualizar" class="formDatos">
         <div class="fromCon">
             <h2 class="bienvenida">Datos del Parte</h2>
 
@@ -49,7 +49,7 @@
 
             <label for="notas">Notas</label>
             <br>
-            <textarea name="notas" id="notas" class="form-control" required maxlength="9" placeholder="¿Qué le pasa al equipo?"><?php echo $parte->getNotas(); ?></textarea>
+            <textarea name="notas" id="notas" class="form-control" required placeholder="¿Qué le pasa al equipo?"><?php echo $parte->getNotas(); ?></textarea>
             <span id="errornotas" class="errortexto"></span>
             <br><br>
 
@@ -76,14 +76,15 @@
                 foreach ($datosUsu as $cli) {
                     $telefono = $cli->getTelefono();
                     $selected = ($telefono == $clienteAsignado) ? 'selected' : '';
-                    echo "<option value='$telefono' $selected>$telefono</option>";
+                    echo "<option value='$telefono' $selected>".$cli->getTelefono() . " " . $cli->getNombre() . " " . $cli->getApellidos()."</option>";
                 }
                 ?>
             </select>
             <span id="errorcliente" class="errortexto"></span>
             <br><br>
 
-            <label for="equipo">Equipo</label>
+
+            
             <label for="equipo">Equipo</label>
             <select name="equipo" id="equipo" class="form-control">
                 <option default>Seleccione Uno ...</option>
