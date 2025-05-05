@@ -1,24 +1,24 @@
 <?php
 
-require_once '../model/empleadoDAO.php';
-require_once '../model/entidades/empleado.php';
+require_once '../model/tareaDAO.php';
+require_once '../model/entidades/tarea.php';
 
 
 
 
-class EmpleadoController
-{  
+class TareaController
+{
 
     private $model; //Representa las operaciones de BD para el curso.
 
     public function __construct()
     {
-        $this->model = new EmpleadoDAO();
+        $this->model = new TareaDAO();
     }
 
 
 
-    public function menuEmpleado()
+    public function menuTarea()
     {
 
         if (!isset($_SESSION['nombreUsu'])) {
@@ -26,7 +26,8 @@ class EmpleadoController
         } else {
             if ($_SESSION['privilegio'] == 1) {
                 $datos = $this->model->obtenerTodos();
-                require_once '../view/empleado/generalConfigEmpleado.php';
+                $datosEmple = $this->model->obtenerEmpleados();
+                require_once '../view/tarea/generalConfigTarea.php';
             } else {
                 require_once '../view/usuario/inicioUsuario.php';
             }
@@ -34,7 +35,7 @@ class EmpleadoController
         require_once '../view/footer.php';
     }
 
-    public function menuSoloUnEmpleado()
+    public function menuSoloUnaTarea()
     {
 
         if (!isset($_SESSION['nombreUsu'])) {
@@ -56,7 +57,9 @@ class EmpleadoController
             require_once '../view/usuario/login.php';
         } else {
             if ($_SESSION['privilegio'] == 1) {
-                require_once '../view/empleado/registroEmpleado.php';
+                $datosEmple = $this->model->obtenerEmpleados();
+                $datosParte = $this->model->obtenerPartes();
+                require_once '../view/tarea/registroTarea.php';
             } else {
                 require_once '../view/usuario/login.php';
             }
@@ -64,32 +67,45 @@ class EmpleadoController
         require_once '../view/footer.php';
     }
 
-    public function registrarEmpleado()
+    public function registrarTarea()
     {
 
         if (isset($_SESSION['nombreUsu']) && $_SESSION['privilegio'] == 1) {
 
-            $dni = $_REQUEST['dni'];
-            $nombre = $_REQUEST['nombre'];
-            $apellidos = $_REQUEST['apellidos'];
+            $parte = $_REQUEST['parte'];
+            $descripccion = $_REQUEST['descripccion'];
+            $estado = $_REQUEST['estado'];
+            $tiempo = $_REQUEST['tiempo'];
+            $empleado = $_REQUEST['empleado'];
 
-            $empleado = new Empleado();
+            $imagen = $_FILES['imagen']['name'];
+            $rutaTemp = $_FILES['imagen']['tmp_name'];
+            $rutaDestino = "../imagenesSubidas/" . $imagen;
+            move_uploaded_file($rutaTemp, $rutaDestino);
+            $imagenBien = "..\\imagenesSubidas\\$imagen";
 
-            $empleado->setDni($dni);
-            $empleado->setNombre($nombre);
-            $empleado->setApellidos($apellidos);
+            $ultimoId = $this->model->obtenerUltimoIdTarea($parte);
+            $nuevoId = $ultimoId !== null ? $ultimoId + 1 : 1;
 
-           
+            $tarea = new Tarea();
 
-            $resultado =  $this->model->registrar($empleado);
+            $tarea->setNumeroParte($parte);
+            $tarea->setIdTarea($nuevoId);
+            $tarea->setDescripcion($descripccion);
+            $tarea->setEstado($estado);
+            $tarea->setTiempo($tiempo);
+            $tarea->setImagen($imagenBien);
+            $tarea->setEmpleadoDni($empleado);
 
-                if ($resultado) {
-                    header('Location: index.php?c=empleado&a=menuEmpleado');
-                } else {
-                    header('Location: index.php?c=empleado&a=errorDuplicado');
-                }
 
-            
+
+            $resultado =  $this->model->registrar($tarea);
+
+            if ($resultado) {
+                header('Location: index.php?c=tarea&a=menutarea');
+            } else {
+                header('Location: index.php?c=tarea&a=errorDuplicado');
+            }
         } else {
             if (isset($_SESSION['nombreUsu'])) {
                 header('Location: index.php?c=Usuario&a=usuarioIniciado');
@@ -102,7 +118,7 @@ class EmpleadoController
     public function editar()
     {
         if (isset($_SESSION['nombreUsu']) && $_SESSION['privilegio'] == 1) {
-            $empleado = new Empleado();
+            $tarea = new tarea();
 
             if (isset($_REQUEST['dni'])) {
                 $empleado = $this->model->obtener($_REQUEST['dni']);
@@ -151,7 +167,7 @@ class EmpleadoController
 
                 $empleado = new Empleado();
                 $empleado = $this->model->obtener($_REQUEST['dni']);
-                
+
                 $empleado->setDni($_REQUEST['dni']);
                 $empleado->setNombre($_REQUEST['nombre']);
                 $empleado->setApellidos($_REQUEST['apellidos']);

@@ -32,7 +32,7 @@
 
     <form method="post" action="index.php?c=equipo&a=actualizar" class="formDatos">
         <div class="fromCon">
-            <h2 class="bienvenida">Datos del Empleado</h2>
+            <h2 class="bienvenida">Datos del Equipo</h2>
 
             <label for="id_equipo">Código</label>
             <input type="text" name="id_equipo" id="id_equipo" class="form-control" required readonly value="<?php echo $equipo->getIdEquipo(); ?>" />
@@ -58,12 +58,12 @@
             <select name="cliente_telefono" id="cliente_telefono" class="form-control" required>
                 <option disabled selected>Seleccione Uno ...</option>
                 <?php
-                $telefonoAsignado = $equipo->getClienteTelefono();
-                
-                foreach ($datos as $cliente) {
-                    $telefono = $cliente->getClienteTelefono();
-                    $selected = ($telefono == $telefonoAsignado) ? 'selected' : '';
-                    echo "<option value='$telefono' $selected>$telefono</option>";
+                $clienteAsignado = $equipo->getClienteTelefono();
+
+                foreach ($datosUsu as $cli) {
+                    $telefono = $cli->getTelefono();
+                    $selected = ($telefono == $clienteAsignado) ? 'selected' : '';
+                    echo "<option value='$telefono' $selected>" . $cli->getTelefono() . " " . $cli->getNombre() . " " . $cli->getApellidos() . "</option>";
                 }
                 ?>
             </select>

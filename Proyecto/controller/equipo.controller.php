@@ -59,6 +59,7 @@ class EquipoController
         } else {
             if ($_SESSION['privilegio'] == 1) {
                 $datos = $this->model->obtenerTodos();
+                $datosUsu = $this->model->obtenerUsuarios();
                 require_once '../view/equipo/registroEquipo.php';
             } else {
                 require_once '../view/usuario/login.php';
@@ -111,6 +112,7 @@ class EquipoController
 
             if (isset($_REQUEST['id_equipo'])) {
                 $datos = $this->model->obtenerTodos();
+                $datosUsu = $this->model->obtenerUsuarios();
                 $equipo = $this->model->obtener($_REQUEST['id_equipo']);
             }
             require_once '../view/equipo/equipo-editar.php';

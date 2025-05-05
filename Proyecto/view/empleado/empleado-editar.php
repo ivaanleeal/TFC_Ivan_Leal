@@ -23,7 +23,7 @@
 
 
     <section class="botonesOpcciones">
-        <h1 class="bienvenida">Empleado Cliente</h1>
+        <h1 class="bienvenida">Editar Empleado</h1>
         <button onclick="window.history.back()">⬅ Página Anterior</button>
         <button onclick="location.href='index.php?c=empleado&a=menuEmpleado'">Volver Listado Empleados</button>
         <button onclick="location.href='index.php?c=usuario&a=logout'">Cerrar sesión</button>

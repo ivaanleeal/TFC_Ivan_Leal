@@ -53,7 +53,7 @@
         <section class="tarjetaAdmin">
             <h3><i class="fas fa-tasks"></i> Configuración de Tareas</h3>
             <p>Aquí podrás asignar y seguir tareas relacionadas con los partes.</p>
-            <button onclick="location.href='index.php?c=usuario&a=usuarioRepara'">Administrar Tareas</button>
+            <button onclick="location.href='index.php?c=tarea&a=menuTarea'">Administrar Tareas</button>
         </section>
 
         <section class="tarjetaAdmin">

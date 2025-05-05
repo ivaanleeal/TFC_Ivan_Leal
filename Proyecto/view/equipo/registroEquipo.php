@@ -32,7 +32,7 @@
 
     <form method="post" action="index.php?c=equipo&a=registrarequipo" class="formDatos">
         <div class="fromCon">
-            <h2 class="bienvenida">Datos del Empleado</h2>
+            <h2 class="bienvenida">Datos del Equipo</h2>
 
             <label for="marca">Marca</label>
             <input type="text" name="marca" id="marca" class="form-control" required placeholder="Marca" />
@@ -54,8 +54,8 @@
                 <option default>Seleccione Uno ...</option>
                 <?php
 
-                foreach ($datos as $equipo) {                  
-                    echo "<option value='" . $equipo->getClienteTelefono() . "'>" . $equipo->getClienteTelefono() . "</option>";
+                foreach ($datosUsu as $usuario) {
+                    echo "<option value='" . $usuario->getTelefono() . "'>" . $usuario->getTelefono() . " " . $usuario->getNombre() . " " . $usuario->getApellidos() . "</option>";
                 }
 
                 ?>
