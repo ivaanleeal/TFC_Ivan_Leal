@@ -1,7 +1,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Editar Parte - TPCSI</title>
+    <title>Editar Tarea - TPCSI</title>
     <link rel="icon" href="https://yt3.ggpht.com/ssGR_sKs0gRpkLzFhxUig46rmwq73x6PzDsmaQh_Mu6jYG8SRsfSciptLPqMudHZpYQQRfOR=s108-c-k-c0x00ffffff-no-rj" type="image/x-icon">
     <link rel="stylesheet" href="../Estilos/estilos.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -21,94 +21,66 @@
     </header>
 
     <section class="botonesOpcciones">
-        <h1 class="bienvenida">Actualizar Parte</h1>
+        <h1 class="bienvenida">Actualizar Tarea</h1>
         <button onclick="window.history.back()">⬅ Página Anterior</button>
-        <button onclick="location.href='index.php?c=parte&a=menuParte'">Volver Listado Partes</button>
+        <button onclick="location.href='index.php?c=tarea&a=menuTarea'">Volver Listado Tareas</button>
         <button onclick="location.href='index.php?c=usuario&a=logout'">Cerrar sesión</button>
     </section>
 
 
 
 
-    <form method="post" action="index.php?c=parte&a=actualizar" class="formDatos">
+    <form method="post" action="index.php?c=tarea&a=actualizar" class="formDatos" enctype="multipart/form-data">
         <div class="fromCon">
-            <h2 class="bienvenida">Datos del Parte</h2>
+            <h2 class="bienvenida">Datos de la Tarea</h2>
 
-            <label for="id_parte">Código Parte</label>
-            <input type="text" name="id_parte" id="id_parte" class="form-control" required readonly value="<?php echo $parte->getNumeroParte(); ?>" />
-            <span id="errorid_parte" class="errortexto"></span>
+            <label for="numero_parte">Código Parte</label>
+            <input type="text" name="numero_parte" id="numero_parte" class="form-control" required readonly value="<?php echo $tarea->getNumeroParte(); ?>" />
+            <span id="errornumero_parte" class="errortexto"></span>
             <br><br>
 
-            <label for="fecha">Fecha</label>
-            <input type="date" name="fecha" id="fecha" class="form-control"
-                required maxlength="9"
-                value="<?php echo $parte->getFecha(); ?>" />
-            <span id="errorfecha" class="errortexto"></span>
+            <label for="id_tarea">Código Tarea</label>
+            <input type="text" name="id_tarea" id="id_tarea" class="form-control" required readonly value="<?php echo $tarea->getIdTarea(); ?>" />
+            <span id="errorid_tarea" class="errortexto"></span>
             <br><br>
 
 
-            <label for="notas">Notas</label>
+            <label for="Descripccion">Descripcción</label>
             <br>
-            <textarea name="notas" id="notas" class="form-control" required placeholder="¿Qué le pasa al equipo?"><?php echo $parte->getNotas(); ?></textarea>
-            <span id="errornotas" class="errortexto"></span>
+            <textarea name="descripccion" id="descripccion" class="form-control" required><?php echo $tarea->getDescripcion(); ?></textarea>
+            <span id="errordescripccion" class="errortexto"></span>
             <br><br>
 
-            <label for="seguimiento">Numero Seguimiento</label>
-            <input type="text" name="seguimiento" id="seguimiento" class="form-control" required placeholder="Numero seguimiento" value="<?php echo $parte->getSeguimiento(); ?>" />
-            <span id="errorseguimiento" class="errortexto"></span>
-            <br><br>
-
-            <label for="recogido">Recogido</label>
-            <select name="recogido" required>
+            <label for="estado">Estado</label>
+            <select name="estado" required>
                 <option default>Seleccione una...</option>
-                <option value="0" <?= $parte->getRecogido() == 0 ? 'selected' : '' ?>>No</option>
-                <option value="1" <?= $parte->getRecogido() == 1 ? 'selected' : '' ?>>Si</option>
+                <option value="0" <?= $tarea->getEstado() == 0 ? 'selected' : '' ?>>En Proceso</option>
+                <option value="1" <?= $tarea->getEstado() == 1 ? 'selected' : '' ?>>Finalizada</option>
             </select>
-            <span id="errorrecogido" class="errortexto"></span>
+            <span id="errorestado" class="errortexto"></span>
             <br><br>
 
-            <label for="cliente">Cliente</label>
-            <select name="cliente_telefono" id="cliente_telefono" class="form-control">
-                <option default>Seleccione Uno ...</option>
-                <?php
-                $clienteAsignado = $parte->getClienteTelefono();
-
-                foreach ($datosUsu as $cli) {
-                    $telefono = $cli->getTelefono();
-                    $selected = ($telefono == $clienteAsignado) ? 'selected' : '';
-                    echo "<option value='$telefono' $selected>".$cli->getTelefono() . " " . $cli->getNombre() . " " . $cli->getApellidos()."</option>";
-                }
-                ?>
-            </select>
-            <span id="errorcliente" class="errortexto"></span>
+            <label for="tiempo">Numero Tiempo</label>
+            <input type="number" name="tiempo" id="tiempo" class="form-control" required placeholder="200 h" value="<?php echo $tarea->getTiempo(); ?>" />
+            <span id="errortiempo" class="errortexto"></span>
             <br><br>
 
 
-            
-            <label for="equipo">Equipo</label>
-            <select name="equipo" id="equipo" class="form-control">
-                <option default>Seleccione Uno ...</option>
-                <?php
-                $equipoAsignado = $parte->getIdEquipo();
+            <?php if ($tarea->getImagen()){ ?>
+                <p>Imagen actual:</p>
+                <img src="../imagenesSubidas/<?php echo $tarea->getImagen(); ?>" alt="Imagen actual" width="150">
+                <p>Archivo: <?php echo $tarea->getImagen(); ?></p>
+            <?php } ?>
 
-                foreach ($datosEqui as $equi) {
-                    $idEquipo = $equi->getIdEquipo();
-                    $telefonoCliente = $equi->getClienteTelefono();
-                    $selected = ($idEquipo == $equipoAsignado) ? 'selected' : '';
-                    echo "<option value='$idEquipo' data-cliente='$telefonoCliente' $selected>$idEquipo / " . $equi->getMarca() . " / " . $equi->getModelo() . "</option>";
-                }
-
-                ?>
-            </select>
-
-            <span id="errorcliente" class="errortexto"></span>
-            <br><br>
+            <label for="imagen">Cambiar imagen (opcional):</label>
+            <input type="file" name="imagen" id="imagen" class="form-control" />
+            <span id="errorimagen" class="errortexto"></span>
 
             <label for="empleado">Empleado</label>
             <select name="empleado" id="empleado" class="form-control">
                 <option default>Seleccione Uno ...</option>
                 <?php
-                $empleadoAsignado = $parte->getEmpleadoDni();
+                $empleadoAsignado = $tarea->getEmpleadoDni();
 
                 foreach ($datosEmple as $emp) {
                     $dni = $emp->getDni();

@@ -1,7 +1,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Configuración tareas - TPCSI</title>
+    <title>Configuración Tareas - TPCSI</title>
     <link rel="icon" href="https://yt3.ggpht.com/ssGR_sKs0gRpkLzFhxUig46rmwq73x6PzDsmaQh_Mu6jYG8SRsfSciptLPqMudHZpYQQRfOR=s108-c-k-c0x00ffffff-no-rj" type="image/x-icon">
     <link rel="stylesheet" href="../Estilos/estilos.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -41,12 +41,24 @@
     <section id="contenedortareas">
         <?php
 
-        
-
         $empleadosPorDni = [];
         foreach ($datosEmple as $empleado) {
             $empleadosPorDni[$empleado->getDni()] = $empleado->getNombre() . ' ' . $empleado->getApellidos();
         }
+
+
+        $usuariosPorParte = [];
+
+        foreach ($datosPartes as $parte) {
+            $numeroParte = $parte[0];
+            $usuariosPorParte[$numeroParte] = [
+                'telefono' => $parte[1],
+                'nombre' => $parte[2],
+                'apellidos' => $parte[3]
+            ];
+        }
+
+
 
         foreach ($datos as $tarea) {
             echo '<div class="fromData">';
@@ -60,6 +72,7 @@
             echo '<th>Tiempo</th>';
             echo '<th>Imagen</th>';
             echo '<th>Empleado</th>';
+            echo '<th>Cliente</th>';
             echo '<th></th>';
             echo '<th></th>';
             echo '</tr>';
@@ -75,18 +88,32 @@
                 <img src="' . $tarea->getImagen() . '" alt="Imagen de la tarea" class="img-mini" onclick="abrirLightbox(this.src)">
             </td>';
 
-            
+
             echo '<td><a href="index.php?c=empleado&a=menuSoloUnEmpleado&dni=' . $tarea->getEmpleadoDni() . '">' . $tarea->getEmpleadoDni() . ' - ' . $empleadosPorDni[$tarea->getEmpleadoDni()] . '</a></td>';
-           
-            echo "<td><button onclick=\"location.href='index.php?c=tarea&a=editar&id_tarea={$tarea->getIdTarea()}'\">Editar tarea</button></td>";
-            
+
+            $np = $tarea->getNumeroParte();
+            $usuario = $usuariosPorParte[$np];
+
+            echo '<td><a href="index.php?c=usuario&a=menuSoloUnRegistro&telefono=' .
+                $usuario['telefono'] . '">' .
+                $usuario['telefono'] ." ".$usuario['nombre'] . ' ' . $usuario['apellidos'] .
+                '</a></td>';
+
+
+
+            echo "<td><button onclick=\"location.href='index.php?c=tarea&a=editar&numero_parte=" . $tarea->getNumeroParte() . "&id_tarea=" . $tarea->getIdTarea() . "';\">Editar Tarea </button></td>";
+
+
             echo "<td>
-            <button onclick=\"if(confirm('¿Estás seguro de que quieres eliminar este tarea?')) { 
-                window.location.href='index.php?c=tarea&a=eliminar&id_tarea=" . $tarea->getIdTarea() . "'; 
-            }\">
-                Eliminar tarea
-            </button>
+                <button onclick=\"
+                if(confirm('¿Estás seguro de que quieres eliminar esta tarea?')) {
+                window.location.href='index.php?c=tarea&a=eliminar&numero_parte=" . $tarea->getNumeroParte() . "&id_tarea=" . $tarea->getIdTarea() . "';
+                }
+                \">
+                    Eliminar tarea
+                </button>
             </td>";
+
             echo '</tr>';
             echo '</tbody>';
             echo '</table>';
@@ -95,8 +122,8 @@
         ?>
     </section>
 
-  
-<div id="lightbox" onclick="cerrarLightbox()">
-    <span id="cerrar">&times;</span>
-    <img id="lightbox-img">
-</div>
+
+    <div id="lightbox" onclick="cerrarLightbox()">
+        <span id="cerrar">&times;</span>
+        <img id="lightbox-img">
+    </div>

@@ -53,6 +53,36 @@ class TareaDAO
         }
     }
 
+    public function listarConUsuarios()
+    {
+        try {
+            $sql = "SELECT p.*, c.telefono, c.nombre, c.apellido
+                    FROM partes p
+                    INNER JOIN clientes c ON p.cliente_telefono = c.telefono"; // Ajusta los campos si son diferentes
+
+            $stmt = $this->pdo->prepare($sql);
+            $stmt->execute();
+
+            $partes = [];
+
+            $parte = [];
+
+            while ($fila = $stmt->fetch(PDO::FETCH_ASSOC)) {
+                $parte[] = [
+                    $partes[] = $fila['numero_parte'],
+                    $partes[] = $fila['telefono'],
+                    $partes[] = $fila['nombre'],
+                    $partes[] = $fila['apellido'],
+                ];
+            }
+
+            return $parte;
+        } catch (Exception $e) {
+            echo "Error al listar partes con usuarios: " . $e->getMessage();
+            return [];
+        }
+    }
+
     public function obtenerPartes()
     {
         try {
@@ -105,24 +135,25 @@ class TareaDAO
         }
     }
 
-    public function obtener($id)
+    public function obtener($idP, $idT)
     {
         try {
-            $stm = $this->pdo->prepare("SELECT dni, nombre, apellido FROM tareas WHERE dni = ?");
-            $stm->execute(array($id));
+            $stm = $this->pdo->prepare("SELECT numero_parte, id_tarea, descripcion, estado, tiempo, imagen, empleado_dni FROM tareas WHERE numero_parte = ? AND id_tarea = ?");
+            $stm->execute(array($idP, $idT));
             return $stm->fetchObject("tarea");
         } catch (Exception $e) {
             die($e->getMessage());
         }
     }
 
-    public function eliminartarea($id)
+    public function eliminartarea($idP, $idT)
     {
         try {
             $sql = "DELETE FROM `tareas` "
-                . " WHERE dni=:dni";
+                . " WHERE numero_parte=:numero_parte AND id_tarea = :id_tarea";
             $sentencia = $this->pdo->prepare($sql);
-            $sentencia->bindValue(':dni', $id);
+            $sentencia->bindValue(':numero_parte', $idP);
+            $sentencia->bindValue(':id_tarea', $idT);
             $sentencia->execute();
             return true;
         } catch (Exception $e) {
@@ -134,16 +165,23 @@ class TareaDAO
     {
         try {
             $sql = "UPDATE `tareas` SET 
-                        dni = :dni,
-                        nombre = :nombre,
-                        apellido = :apellido
-                    WHERE dni = :dni";
+                        descripcion = :descripcion,
+                        estado = :estado,
+                        tiempo = :tiempo,
+                        imagen = :imagen,
+                        empleado_dni = :empleado_dni
+                    WHERE numero_parte = :numero_parte AND id_tarea = :id_tarea";
 
             $sentencia = $this->pdo->prepare($sql);
 
-            $sentencia->bindValue(':dni', $tarea->getdni());
-            $sentencia->bindValue(':nombre', $tarea->getNombre());
-            $sentencia->bindValue(':apellido', $tarea->getApellidos());
+            $sentencia->bindValue(':numero_parte', $tarea->getNumeroParte());
+            $sentencia->bindValue(':id_tarea', $tarea->getIdTarea());
+            $sentencia->bindValue(':descripcion', $tarea->getDescripcion());
+            $sentencia->bindValue(':estado', $tarea->getEstado());
+            $sentencia->bindValue(':tiempo', $tarea->getTiempo());
+            $sentencia->bindValue(':imagen', $tarea->getImagen());
+            $sentencia->bindValue(':empleado_dni', $tarea->getEmpleadoDni());
+
 
             $sentencia->execute();
         } catch (Exception $e) {

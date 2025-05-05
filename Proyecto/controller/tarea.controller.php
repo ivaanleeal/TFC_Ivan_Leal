@@ -27,6 +27,8 @@ class TareaController
             if ($_SESSION['privilegio'] == 1) {
                 $datos = $this->model->obtenerTodos();
                 $datosEmple = $this->model->obtenerEmpleados();
+                $datosPartes = $this->model->listarConUsuarios(); 
+
                 require_once '../view/tarea/generalConfigTarea.php';
             } else {
                 require_once '../view/usuario/inicioUsuario.php';
@@ -42,8 +44,8 @@ class TareaController
             require_once '../view/usuario/login.php';
         } else {
             if ($_SESSION['privilegio'] == 1) {
-                $datos = [$this->model->obtener($_REQUEST['dni'])];
-                require_once '../view/empleado/generalConfigEmpleado.php';
+                $datos = [$this->model->obtener($_REQUEST['numero_parte'], $_REQUEST['id_tarea'])];
+                require_once '../view/tarea/generalConfigTarea.php';
             } else {
                 require_once '../view/usuario/inicioUsuario.php';
             }
@@ -120,11 +122,14 @@ class TareaController
         if (isset($_SESSION['nombreUsu']) && $_SESSION['privilegio'] == 1) {
             $tarea = new tarea();
 
-            if (isset($_REQUEST['dni'])) {
-                $empleado = $this->model->obtener($_REQUEST['dni']);
+            if (isset($_REQUEST['numero_parte']) &&  isset($_REQUEST['id_tarea'])) {
+                $tarea = $this->model->obtener($_REQUEST['numero_parte'], $_REQUEST['id_tarea']);
+                $datosEmple = $this->model->obtenerEmpleados();
+                require_once '../view/tarea/tarea-editar.php';
+                require_once '../view/footer.php';
+            } else {
+                header('Location: index.php?c=Usuario&a=usuarioIniciado');
             }
-            require_once '../view/empleado/empleado-editar.php';
-            require_once '../view/footer.php';
         } else {
             if (isset($_SESSION['nombreUsu'])) {
                 header('Location: index.php?c=Usuario&a=usuarioIniciado');
@@ -139,14 +144,14 @@ class TareaController
     {
         if ($_SESSION['privilegio'] == 1) {
 
-            if (isset($_REQUEST['dni'])) {
+            if (isset($_REQUEST['numero_parte']) && isset($_REQUEST['id_tarea'])) {
 
-                $resultado = $this->model->eliminarEmpleado($_REQUEST['dni']);
+                $resultado = $this->model->eliminarTarea($_REQUEST['numero_parte'], $_REQUEST['id_tarea']);
 
                 if ($resultado) {
-                    header('Location: index.php?c=empleado&a=bien');
+                    header('Location: index.php?c=tarea&a=bien');
                 } else {
-                    header('Location: index.php?c=empleado&a=error');
+                    header('Location: index.php?c=tarea&a=error');
                 }
             }
         } else {
@@ -165,17 +170,28 @@ class TareaController
         } else {
             if ($_SESSION['privilegio'] == 1) {
 
-                $empleado = new Empleado();
-                $empleado = $this->model->obtener($_REQUEST['dni']);
+                $tarea = new Tarea();
+                $tarea = $this->model->obtener($_REQUEST['numero_parte'], $_REQUEST['id_tarea']);
 
-                $empleado->setDni($_REQUEST['dni']);
-                $empleado->setNombre($_REQUEST['nombre']);
-                $empleado->setApellidos($_REQUEST['apellidos']);
+                
+                $imagen = $_FILES['imagen']['name'];
+                $rutaTemp = $_FILES['imagen']['tmp_name'];
+                $rutaDestino = "../imagenesSubidas/" . $imagen;
+                move_uploaded_file($rutaTemp, $rutaDestino);
+                $imagenBien = "..\\imagenesSubidas\\$imagen";
 
-                $this->model->actualizarEmpleado($empleado);
+                $tarea->setNumeroParte($_REQUEST['numero_parte']);
+                $tarea->setIdTarea($_REQUEST['id_tarea']);
+                $tarea->setDescripcion($_REQUEST['descripccion']);
+                $tarea->setEstado($_REQUEST['estado']);
+                $tarea->setTiempo($_REQUEST['tiempo']);
+                $tarea->setImagen($imagenBien);
+                $tarea->setEmpleadoDni($_REQUEST['empleado']);
 
 
-                header('Location: index.php?c=empleado&a=update');
+                $this->model->actualizarTarea($tarea);
+
+                header('Location: index.php?c=tarea&a=update');
             } else {
                 require_once '../view/usuario/inicioUsuario.php';
             }
@@ -189,7 +205,7 @@ class TareaController
         if (!isset($_SESSION['nombreUsu'])) {
             require_once '../view/usuario/login.php';
         } else {
-            require_once '../view/empleado/error.php';
+            require_once '../view/tarea/error.php';
         }
         require_once '../view/footer.php';
     }
@@ -199,7 +215,7 @@ class TareaController
         if (!isset($_SESSION['nombreUsu'])) {
             require_once '../view/usuario/login.php';
         } else {
-            require_once '../view/empleado/errorDuplicado.php';
+            require_once '../view/tarea/errorDuplicado.php';
         }
         require_once '../view/footer.php';
     }
@@ -209,7 +225,7 @@ class TareaController
         if (!isset($_SESSION['nombreUsu'])) {
             require_once '../view/usuario/login.php';
         } else {
-            require_once '../view/empleado/check.php';
+            require_once '../view/tarea/check.php';
         }
         require_once '../view/footer.php';
     }
@@ -219,7 +235,7 @@ class TareaController
         if (!isset($_SESSION['nombreUsu'])) {
             require_once '../view/usuario/login.php';
         } else {
-            require_once '../view/empleado/update.php';
+            require_once '../view/tarea/update.php';
         }
         require_once '../view/footer.php';
     }
