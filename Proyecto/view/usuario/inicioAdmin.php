@@ -65,7 +65,7 @@
         <section class="tarjetaAdmin">
             <h3><i class="fas fa-tools"></i> Configuración de Reparaciones</h3>
             <p>Aquí podrás controlar todas las reparaciones en curso y finalizadas.</p>
-            <button onclick="location.href='index.php?c=usuario&a=usuarioRepara'">Administrar Reparaciones</button>
+            <button onclick="location.href='index.php?c=reparacion&a=menuReparaion'">Administrar Reparaciones</button>
         </section>
 
         <section class="tarjetaAdmin">

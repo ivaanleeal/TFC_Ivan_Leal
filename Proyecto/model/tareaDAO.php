@@ -28,19 +28,7 @@ class TareaDAO
         }
     }
 
-
-    public function obtenerPortarea(string $tarea): ?Tarea
-    {
-        try {
-            $stmt = $this->pdo->prepare("SELECT * FROM tareas WHERE dni = :tarea");
-            $stmt->execute(['tarea' => $tarea]);
-            $data = $stmt->fetchAll(PDO::FETCH_CLASS, 'tarea'); 
-
-            return $data ? $data[0] : null;
-        } catch (Exception $e) {
-            die($e->getMessage());
-        }
-    }
+    
 
     public function obtenerEmpleados()
     {
