@@ -62,8 +62,8 @@
                 <option value="1">Finalizado</option>
             </select>
 
-            <label for="tiempo">Numero Tiempo</label>
-            <input type="number" name="tiempo" id="tiempo" class="form-control" required  placeholder="200 h"/>
+            <label for="tiempo">Tiempo Minutos</label>
+            <input type="number" name="tiempo" id="tiempo" class="form-control" required  placeholder="200 m"/>
             <span id="errortiempo" class="errortexto"></span>
             <br><br>
 

@@ -60,8 +60,8 @@
             <span id="errorestado" class="errortexto"></span>
             <br><br>
 
-            <label for="tiempo">Numero Tiempo</label>
-            <input type="number" name="tiempo" id="tiempo" class="form-control" required placeholder="200 h" value="<?php echo $tarea->getTiempo(); ?>" />
+            <label for="tiempo">Tiempo Minutos</label>
+            <input type="number" name="tiempo" id="tiempo" class="form-control" required placeholder="200 m" value="<?php echo $tarea->getTiempo(); ?>" />
             <span id="errortiempo" class="errortexto"></span>
             <br><br>
 

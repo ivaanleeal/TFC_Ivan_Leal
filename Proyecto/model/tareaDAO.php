@@ -34,7 +34,7 @@ class TareaDAO
         try {
             $stmt = $this->pdo->prepare("SELECT * FROM tareas WHERE dni = :tarea");
             $stmt->execute(['tarea' => $tarea]);
-            $data = $stmt->fetchAll(PDO::FETCH_CLASS, 'tarea'); //Devuelve array 
+            $data = $stmt->fetchAll(PDO::FETCH_CLASS, 'tarea'); 
 
             return $data ? $data[0] : null;
         } catch (Exception $e) {
@@ -58,7 +58,7 @@ class TareaDAO
         try {
             $sql = "SELECT p.*, c.telefono, c.nombre, c.apellido
                     FROM partes p
-                    INNER JOIN clientes c ON p.cliente_telefono = c.telefono"; // Ajusta los campos si son diferentes
+                    INNER JOIN clientes c ON p.cliente_telefono = c.telefono"; 
 
             $stmt = $this->pdo->prepare($sql);
             $stmt->execute();

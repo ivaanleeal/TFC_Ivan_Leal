@@ -69,7 +69,7 @@
             echo '<tr>';
             echo '<th>Descripcción</th>';
             echo '<th>Estado</th>';
-            echo '<th>Tiempo</th>';
+            echo '<th>Tiempo Minutos</th>';
             echo '<th>Imagen</th>';
             echo '<th>Empleado</th>';
             echo '<th>Cliente</th>';
@@ -106,7 +106,7 @@
 
             echo "<td>
                 <button onclick=\"
-                if(confirm('¿Estás seguro de que quieres eliminar esta tarea?')) {
+                if(confirm('¿Estás seguro de que quieres eliminar esta Tarea?')) {
                 window.location.href='index.php?c=tarea&a=eliminar&numero_parte=" . $tarea->getNumeroParte() . "&id_tarea=" . $tarea->getIdTarea() . "';
                 }
                 \">

@@ -57,15 +57,15 @@
         </section>
 
         <section class="tarjetaAdmin">
-            <h3><i class="fas fa-tools"></i> Configuración de Reparaciones</h3>
-            <p>Aquí podrás controlar todas las reparaciones en curso y finalizadas.</p>
-            <button onclick="location.href='index.php?c=usuario&a=usuarioRepara'">Administrar Reparaciones</button>
+            <h3><i class="fas fa-cogs"></i> Configuración de Piezas</h3>
+            <p>Aquí podrás administrar el inventario de piezas.</p>
+            <button onclick="location.href='index.php?c=pieza&a=menuPieza'">Administrar Piezas</button>
         </section>
 
         <section class="tarjetaAdmin">
-            <h3><i class="fas fa-cogs"></i> Configuración de Piezas</h3>
-            <p>Aquí podrás administrar el inventario de piezas.</p>
-            <button onclick="location.href='index.php?c=usuario&a=usuarioRepara'">Administrar Piezas</button>
+            <h3><i class="fas fa-tools"></i> Configuración de Reparaciones</h3>
+            <p>Aquí podrás controlar todas las reparaciones en curso y finalizadas.</p>
+            <button onclick="location.href='index.php?c=usuario&a=usuarioRepara'">Administrar Reparaciones</button>
         </section>
 
         <section class="tarjetaAdmin">
