@@ -37,7 +37,24 @@
 
     <section id="contenedorReparación">
         <?php
-       
+
+        $partesPorId = [];
+        foreach ($datosPartes as $parte) {
+            $partesPorId[$parte->getNumeroParte()] = $parte->getNotas();
+        }
+
+        $tareasPorId = [];
+        $tareasPorEmpleado = [];
+        foreach ($datosTareas as $tarea) {
+            $tareasPorId[$tarea->getIdTarea()] = $tarea->getDescripcion();
+            $tareasPorEmpleado[$tarea->getIdTarea()] = $tarea->getEmpleadoDni();
+        }
+
+        $piezasPorCodigo = [];
+        foreach ($datosPiezas as $pieza) {
+            $piezasPorCodigo[$pieza->getCodigoPieza()] = $pieza->getNombre() . ' - ' . $pieza->getMarca() . ' - ' . $pieza->getModelo();
+        }
+
         foreach ($datos as $reparacion) {
             echo '<div class="fromData">';
             echo '<table>';
@@ -52,17 +69,24 @@
             echo '</thead>';
             echo '<tbody>';
             echo '<tr>';
-            echo '<td>' . $reparacion->getParte() . '</td>';
-            echo '<td>' . $reparacion->getTarea() . '</td>';
-            echo '<td>' . $reparacion->getPieza() . '</td>';
-            echo "<td><button onclick=\"location.href='index.php?c=reparacion&a=editar&parte={$reparacion->getParte()}&tarea={$reparacion->getTarea()}'\">Editar Reparación</button></td>";
+
+
+            echo '<td><a href="index.php?c=parte&a=menuSoloUnParte&numero_parte=' . $reparacion->getParte() . '">' . $reparacion->getParte() . ' - ' . $partesPorId[$reparacion->getParte()] . '</a></td>';
+
+            echo '<td><a href="index.php?c=tarea&a=menuSoloUnaTarea&numero_parte=' . $reparacion->getParte() . '&id_tarea=' . $reparacion->getTarea() . '">' . $reparacion->getTarea() . ' - ' . ($tareasPorId[$reparacion->getTarea()] ?? 'Sin descripción') . '</a></td>';
+
+
+            echo '<td><a href="index.php?c=pieza&a=menuSoloUnaPieza&codigo&codigo_pieza=' . $reparacion->getPieza() . '">' . $reparacion->getPieza() . ' - ' . $piezasPorCodigo[$reparacion->getPieza()] . '</a></td>';
+
+
+            echo "<td><button onclick=\"location.href='index.php?c=reparacion&a=editar&parte=" . $reparacion->getParte() . "&tarea=" . $reparacion->getTarea() . "'\">Editar Reparación</button></td>";
+
             echo "<td>
-            <button onclick=\"if(confirm('¿Estás seguro de que quieres eliminar esta Reparación?')) { 
-                window.location.href='index.php?c=reparacion&a=eliminar&parte=". $reparacion->getParte()."&tarea=".$reparacion->getTarea()."'; 
-            }\">
-                Eliminar Reparación
-            </button>
-            </td>";
+        <button onclick=\"if(confirm('¿Estás seguro de que quieres eliminar esta Reparación?')) {
+            window.location.href='index.php?c=reparacion&a=eliminar&parte=" . $reparacion->getParte() . "&tarea=" . $reparacion->getTarea() . "';
+        }\">Eliminar Reparación</button>
+        </td>";
+
             echo '</tr>';
             echo '</tbody>';
             echo '</table>';

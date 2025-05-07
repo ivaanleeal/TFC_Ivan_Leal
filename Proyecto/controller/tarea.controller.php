@@ -45,6 +45,8 @@ class TareaController
         } else {
             if ($_SESSION['privilegio'] == 1) {
                 $datos = [$this->model->obtener($_REQUEST['numero_parte'], $_REQUEST['id_tarea'])];
+                $datosEmple = $this->model->obtenerEmpleados();
+                $datosPartes = $this->model->listarConUsuarios(); 
                 require_once '../view/tarea/generalConfigTarea.php';
             } else {
                 require_once '../view/usuario/inicioUsuario.php';

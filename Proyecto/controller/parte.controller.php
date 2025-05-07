@@ -37,6 +37,25 @@ class ParteController
         require_once '../view/footer.php';
     }
 
+    public function menuSoloUnParte()
+    {
+
+        if (!isset($_SESSION['nombreUsu'])) {
+            require_once '../view/usuario/login.php';
+        } else {
+            if ($_SESSION['privilegio'] == 1) {
+                $datos = [$this->model->obtener($_REQUEST['numero_parte'])];
+                $datosUsu = $this->model->obtenerUsuarios();
+                $datosEqui = $this->model->obtenerPorEquipos();
+                $datosEmple = $this->model->obtenerEmpleados();
+                require_once '../view/parte/generalConfigParte.php';
+            } else {
+                require_once '../view/usuario/inicioUsuario.php';
+            }
+        }
+        require_once '../view/footer.php';
+    }
+
     public function iniciarRegistro()
     {
         if (!isset($_SESSION['nombreUsu'])) {

@@ -27,6 +27,9 @@ class ReparacionController
         } else {
             if ($_SESSION['privilegio'] == 1) {
                 $datos = $this->model->obtenerTodos();
+                $datosPartes = $this->model->obtenerPartes();
+                $datosTareas = $this->model->obtenerTareas();
+                $datosPiezas = $this->model->obtenerPiezas();
                 require_once '../view/reparacion/generalConfigReparacion.php';
             } else {
                 require_once '../view/usuario/inicioUsuario.php';
