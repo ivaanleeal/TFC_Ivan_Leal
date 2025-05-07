@@ -71,7 +71,7 @@
         <section class="tarjetaAdmin">
             <h3><i class="fas fa-envelope-open-text"></i> Administrar Mensajes</h3>
             <p>Aquí podrás leer los mensajes enviados por los usuarios.</p>
-            <button onclick="location.href='index.php?c=usuario&a=usuarioRepara'">Administrar Mensajes</button>
+            <button onclick="location.href='index.php?c=mensaje&a=menuMensajes'">Administrar Mensajes</button>
         </section>
 
     </div>
