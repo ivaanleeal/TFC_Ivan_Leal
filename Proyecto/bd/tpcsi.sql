@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 02-05-2025 a las 13:49:29
+-- Tiempo de generación: 12-05-2025 a las 16:20:48
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -104,8 +104,18 @@ CREATE TABLE `mensajes` (
   `Nombre` char(50) NOT NULL DEFAULT '0',
   `Apellidos` char(100) NOT NULL DEFAULT '0',
   `Correo` char(100) NOT NULL DEFAULT '0',
-  `Mensaje` text NOT NULL
+  `Mensaje` text NOT NULL,
+  `Visto` tinyint(1) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `mensajes`
+--
+
+INSERT INTO `mensajes` (`id`, `Nombre`, `Apellidos`, `Correo`, `Mensaje`, `Visto`) VALUES
+(1, 'Ivan', 'Lhuibj', 'loco@gmail.com', 'hghghg\r\n', 1),
+(2, 'Ivan', 'Leal', 'ivancito@gmail.com', 'Hola Gente', 1),
+(3, '0HGHGHG', '0BGNGNGN', '0NGNGNG', 'GNGNGN', 1);
 
 -- --------------------------------------------------------
 
@@ -129,9 +139,9 @@ CREATE TABLE `partes` (
 --
 
 INSERT INTO `partes` (`numero_parte`, `fecha`, `notas`, `Seguimiento`, `Recogido`, `cliente_telefono`, `id_equipo`, `empleado_dni`) VALUES
-(1, '2025-02-21', 'El cliente reportó un problema de batería.', '120252021JLP', 0, '600123456', 1, '12345678A'),
-(2, '2025-01-21', 'El dispositivo no enciende.', '123456LP', 1, '600123456', 1, '87654321B'),
-(3, '2025-03-22', 'Problemas con la cámara trasera.', '7878788', 1, '600123456', 1, '56789012C');
+(1, '2025-02-21', 'El cliente reportó un problema de batería.', '120252021JLP', 1, '600123456', 1, '12345678A'),
+(2, '2025-01-21', 'El dispositivo no enciende.', '123456LP', 1, '666666666', 1, '87654321B'),
+(3, '2025-03-22', 'Problemas con la cámara trasera.', '7878788', 1, '600555333', 1, '56789012C');
 
 -- --------------------------------------------------------
 
@@ -154,7 +164,7 @@ INSERT INTO `piezas` (`codigo_pieza`, `nombre`, `marca`, `modelo`) VALUES
 ('BAT001', 'Batería', 'Apple', 'iPhone 13'),
 ('CAM002', 'Cámara', 'Xiaomi', 'Mi 11'),
 ('CAR001', 'Cargador', 'Asus', 'Loco'),
-('PCB003', 'Placa madre', 'Samsung', 'Galaxy S22'),
+('PCB003', 'Placa Base', 'Samsung', 'Galaxy S22'),
 ('RAM001', 'Ram', 'Kimston', '1587'),
 ('WIN10', 'Windows 10', 'Microsoft', '24H2');
 
@@ -178,9 +188,7 @@ INSERT INTO `reparacion_parte` (`parte`, `tarea`, `pieza`) VALUES
 (1, 1, 'BAT001'),
 (1, 2, 'CAR001'),
 (1, 3, 'RAM001'),
-(2, 1, 'PCB003'),
-(2, 2, 'WIN10'),
-(3, 1, 'CAM002');
+(2, 1, 'PCB003');
 
 -- --------------------------------------------------------
 
@@ -203,12 +211,14 @@ CREATE TABLE `tareas` (
 --
 
 INSERT INTO `tareas` (`numero_parte`, `id_tarea`, `descripcion`, `estado`, `tiempo`, `imagen`, `empleado_dni`) VALUES
-(1, 1, 'Reemplazar batería', 1, 120, '/imagenes/bateria.png', '12345678A'),
-(1, 2, 'Nuevo Cargador', 1, 0, NULL, '12345678A'),
-(1, 3, 'Aumentada Memoria Ram', 0, 50, NULL, '12345678A'),
-(2, 1, 'Diagnóstico de placa Base', 0, 240, '/imagenes/placa.png', '87654321B'),
-(2, 2, 'Intalado Windows 10', 0, 400, NULL, '56789012C'),
-(3, 1, 'Reparar cámara trasera', 0, 20, '/imagenes/camara.png', '56789012C');
+(1, 1, 'Reemplazar batería', 1, 120, '..\\imagenesSubidas\\sainz.jpg', '12345678A'),
+(1, 2, 'Nuevo Cargador', 1, 0, '..\\imagenesSubidas\\alonso.jpg', '12345678A'),
+(1, 3, 'Aumentada Memoria Ram', 1, 50, '..\\imagenesSubidas\\alonso.jpg', '12345678A'),
+(1, 4, ' b b ', 0, 44, '..\\imagenesSubidas\\sainz.jpg', '12345678A'),
+(2, 1, 'Diagnóstico de placa Base', 0, 240, '..\\imagenesSubidas\\alonso.jpg', '87654321B'),
+(2, 2, 'Intalado Windows 10', 0, 400, '..\\imagenesSubidas\\sainz.jpg', '56789012C'),
+(2, 3, ' b b ', 0, 44, '..\\imagenesSubidas\\alonso.jpg', '12345678A'),
+(3, 1, 'Reparar cámara trasera', 0, 20, '..\\imagenesSubidas\\alonso.jpg', '56789012C');
 
 --
 -- Índices para tablas volcadas
@@ -283,7 +293,7 @@ ALTER TABLE `equipos`
 -- AUTO_INCREMENT de la tabla `mensajes`
 --
 ALTER TABLE `mensajes`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de la tabla `partes`

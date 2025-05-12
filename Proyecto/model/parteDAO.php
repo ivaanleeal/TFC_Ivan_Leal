@@ -55,9 +55,9 @@ class ParteDAO
     public function obtenerPorEquipos()
     {
         try {
-            $stmt = $this->pdo->prepare("SELECT * FROM Equipos");
+            $stmt = $this->pdo->prepare("SELECT * FROM equipos");
             $stmt->execute();
-            return $stmt->fetchAll(PDO::FETCH_CLASS, 'Equipo');
+            return $stmt->fetchAll(PDO::FETCH_CLASS, 'equipo');
         } catch (Exception $e) {
             die($e->getMessage());
         }

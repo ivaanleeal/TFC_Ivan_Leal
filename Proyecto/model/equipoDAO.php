@@ -31,7 +31,7 @@ class EquipoDAO
     public function obtenerPorEquipo(string $Equipo): ?Equipo
     {
         try {
-            $stmt = $this->pdo->prepare("SELECT * FROM Equipos WHERE dni = :Equipo");
+            $stmt = $this->pdo->prepare("SELECT * FROM equipos WHERE dni = :Equipo");
             $stmt->execute(['Equipo' => $Equipo]);
             $data = $stmt->fetchAll(PDO::FETCH_CLASS, 'Equipo'); //Devuelve array 
 
@@ -55,7 +55,7 @@ class EquipoDAO
     public function registrar(Equipo $Equipo)
     {
         try {
-            $stmt = $this->pdo->prepare("INSERT INTO Equipos (marca, modelo, so, cliente_telefono) VALUES (:marca, :modelo, :so, :cliente_telefono)");
+            $stmt = $this->pdo->prepare("INSERT INTO equipos (marca, modelo, so, cliente_telefono) VALUES (:marca, :modelo, :so, :cliente_telefono)");
             $stmt->execute([
                 'marca' => $Equipo->getMarca(),
                 'modelo' => $Equipo->getModelo(),
@@ -82,7 +82,7 @@ class EquipoDAO
     public function eliminarEquipo($id)
     {
         try {
-            $sql = "DELETE FROM `Equipos` "
+            $sql = "DELETE FROM `equipos` "
                 . " WHERE id_equipo=:id_equipo";
             $sentencia = $this->pdo->prepare($sql);
             $sentencia->bindValue(':id_equipo', $id);
@@ -96,7 +96,7 @@ class EquipoDAO
     public function actualizarEquipo(Equipo $Equipo)
     {
         try {
-            $sql = "UPDATE `Equipos` SET 
+            $sql = "UPDATE `equipos` SET 
                         marca = :marca,
                         modelo = :modelo,
                         so = :so, 

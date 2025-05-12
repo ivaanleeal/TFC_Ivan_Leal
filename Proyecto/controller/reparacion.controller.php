@@ -1,6 +1,6 @@
 <?php
 
-require_once '../model/ReparacionDAO.php';
+require_once '../model/reparacionDAO.php';
 require_once '../model/entidades/reparacion.php';
 require_once '../model/entidades/parte.php';
 require_once '../model/entidades/tarea.php';
