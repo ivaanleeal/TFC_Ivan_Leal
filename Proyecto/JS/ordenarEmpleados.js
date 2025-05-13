@@ -1,26 +1,41 @@
-window.addEventListener("load", function () {
-    const filtro = document.getElementById("filtroTexto");
-    const contenedor = document.getElementById("contenedorClientes");
-    const tarjetas = contenedor.querySelectorAll(".fromData");
+document.addEventListener('DOMContentLoaded', () => {
+    const filtros = {
+        dni: document.getElementById('filtroDni'),
+        nombre: document.getElementById('filtroNombre'),
+        apellidos: document.getElementById('filtroApellidos')
+    };
 
-    filtro.addEventListener("input", function () {
-        const texto = filtro.value.toLowerCase().trim();
+    const btnLimpiar = document.getElementById('btnLimpiarFiltros');
+    const contenedores = document.querySelectorAll('#contenedorClientes .fromData');
 
-        tarjetas.forEach(function (tarjeta) {
-            const dni = tarjeta.querySelector("h2").textContent.toLowerCase();
+    function filtrarEmpleados() {
+        const dniFiltro = filtros.dni.value.trim().toLowerCase();
+        const nombreFiltro = filtros.nombre.value.trim().toLowerCase();
+        const apellidosFiltro = filtros.apellidos.value.trim().toLowerCase();
 
-            if (dni.includes(texto)) {
-                tarjeta.style.display = "block";
-            } else {
-                tarjeta.style.display = "none";
-            }
+        contenedores.forEach(contenedor => {
+            const dni = contenedor.querySelector('h2')?.textContent.toLowerCase() || '';
+            const nombre = contenedor.querySelector('td:nth-child(1)')?.textContent.toLowerCase() || '';
+            const apellidos = contenedor.querySelector('td:nth-child(2)')?.textContent.toLowerCase() || '';
+
+            const coincideDni = dni.includes(dniFiltro);
+            const coincideNombre = nombre.includes(nombreFiltro);
+            const coincideApellidos = apellidos.includes(apellidosFiltro);
+
+            const visible = coincideDni && coincideNombre && coincideApellidos;
+
+            contenedor.style.display = visible ? '' : 'none';
         });
+    }
+
+    Object.values(filtros).forEach(input => {
+        input.addEventListener('input', filtrarEmpleados);
     });
 
-    document.getElementById("btnLimpiarFiltros").addEventListener("click", function () {
-        filtro.value = "";
-        tarjetas.forEach(function (tarjeta) {
-            tarjeta.style.display = "block";
-        });
+    btnLimpiar.addEventListener('click', () => {
+        Object.values(filtros).forEach(input => input.value = '');
+        filtrarEmpleados();
     });
+
+    filtrarEmpleados(); // En caso de inputs ya con texto
 });

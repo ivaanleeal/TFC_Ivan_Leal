@@ -31,9 +31,15 @@
     </section>
 
     <section class="botonesOpcciones">
-        <h4>Buscar: </h4><input type="text" id="filtroTexto" class="buscar" placeholder="Buscar por código de equipo..." />
+        <h4>Buscar:</h4>
+        <input type="text" id="filtroCodigo" placeholder="Código de Equipo">
+        <input type="text" id="filtroMarca" placeholder="Marca">
+        <input type="text" id="filtroModelo" placeholder="Modelo">
+        <input type="text" id="filtroSO" placeholder="Sistema Operativo">
+        <input type="text" id="filtroCliente" placeholder="Teléfono o Nombre Cliente">
         <button type="button" id="btnLimpiarFiltros">Limpiar</button>
     </section>
+
 
     <section id="contenedorEquipos">
         <?php

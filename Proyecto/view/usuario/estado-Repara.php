@@ -16,6 +16,7 @@
             <a href="../public/index.php">Inicio</a>
             <a href="../public/index.php?c=usuario&a=usuarioContacto">Contacto</a>
             <a href="../public/index.php?c=usuario&a=usuarioIniciado">Menú Usuario</a>
+            <a href="../public/index.php?c=usuario&a=modificarContra">Configurar Cuenta</a>
             <a href="../public/index.php?c=usuario&a=logout">Cerrar Sesión</a>
         </nav>
     </header>

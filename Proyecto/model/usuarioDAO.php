@@ -86,7 +86,7 @@ class UsuarioDAO
         }
     }
 
-    public function actualizarCurso(Usuario $usuario)
+    public function actualizarUsuario(Usuario $usuario)
     {
         try {
             $sql = "UPDATE `clientes` SET 

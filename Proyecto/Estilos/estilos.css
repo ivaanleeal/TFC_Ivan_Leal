@@ -414,12 +414,12 @@ button:hover {
     background-color: #556080;
 }
 
-.errorcaja {
-    border: red solid 3px;
+input.validocaja {
+    border: 2px solid green !important;
 }
 
-.validocaja {
-    border: 2px solid green;
+input.errorcaja {
+    border: 3px solid red !important;
 }
 
 

@@ -1,26 +1,53 @@
-window.addEventListener("load", function () {
-    const filtro = document.getElementById("filtroTexto");
-    const contenedor = document.getElementById("contenedorEquipos");
-    const tarjetas = contenedor.querySelectorAll(".fromData");
+document.addEventListener('DOMContentLoaded', () => {
+    const filtros = {
+        codigo: document.getElementById('filtroCodigo'),
+        marca: document.getElementById('filtroMarca'),
+        modelo: document.getElementById('filtroModelo'),
+        so: document.getElementById('filtroSO'),
+        cliente: document.getElementById('filtroCliente')
+    };
 
-    filtro.addEventListener("input", function () {
-        const texto = filtro.value.toLowerCase().trim();
+    const btnLimpiar = document.getElementById('btnLimpiarFiltros');
+    const contenedores = document.querySelectorAll('#contenedorEquipos .fromData');
 
-        tarjetas.forEach(function (tarjeta) {
-            const codigo = tarjeta.querySelector("h2").textContent.toLowerCase();
+    function filtrarEquipos() {
+        const filtroValores = {
+            codigo: filtros.codigo.value.trim().toLowerCase(),
+            marca: filtros.marca.value.trim().toLowerCase(),
+            modelo: filtros.modelo.value.trim().toLowerCase(),
+            so: filtros.so.value.trim().toLowerCase(),
+            cliente: filtros.cliente.value.trim().toLowerCase()
+        };
 
-            if (codigo.includes(texto)) {
-                tarjeta.style.display = "block";
-            } else {
-                tarjeta.style.display = "none";
-            }
+        contenedores.forEach(contenedor => {
+            const codigo = contenedor.querySelector('h2')?.textContent.toLowerCase() || '';
+            const celdas = contenedor.querySelectorAll('tbody tr td');
+
+            const marca = celdas[0]?.textContent.toLowerCase() || '';
+            const modelo = celdas[1]?.textContent.toLowerCase() || '';
+            const so = celdas[2]?.textContent.toLowerCase() || '';
+            const cliente = celdas[3]?.textContent.toLowerCase() || '';
+
+            const coincide =
+                codigo.includes(filtroValores.codigo) &&
+                marca.includes(filtroValores.marca) &&
+                modelo.includes(filtroValores.modelo) &&
+                so.includes(filtroValores.so) &&
+                cliente.includes(filtroValores.cliente);
+
+            contenedor.style.display = coincide ? '' : 'none';
         });
+    }
+
+    Object.values(filtros).forEach(input => {
+        input.addEventListener('input', filtrarEquipos);
     });
 
-    document.getElementById("btnLimpiarFiltros").addEventListener("click", function () {
-        filtro.value = "";
-        tarjetas.forEach(function (tarjeta) {
-            tarjeta.style.display = "block";
-        });
+    btnLimpiar.addEventListener('click', () => {
+        Object.values(filtros).forEach(input => input.value = '');
+        filtrarEquipos();
     });
+
+    filtrarEquipos();
 });
+

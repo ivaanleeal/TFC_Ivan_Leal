@@ -5,7 +5,7 @@
     <link rel="icon" href="https://yt3.ggpht.com/ssGR_sKs0gRpkLzFhxUig46rmwq73x6PzDsmaQh_Mu6jYG8SRsfSciptLPqMudHZpYQQRfOR=s108-c-k-c0x00ffffff-no-rj" type="image/x-icon">
     <link rel="stylesheet" href="../Estilos/estilos.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <script src="../JS/ordenarEmpleados.js" defer></script>
+    <script src="../JS/ordenarReparaciones.js" defer></script>
 </head>
 
 <body>
@@ -31,9 +31,13 @@
     </section>
 
     <section class="botonesOpcciones">
-        <h4>Buscar: </h4><input type="text" id="filtroTexto" class="buscar" placeholder="Buscar por DNI">
+        <h4>Buscar:</h4>
+        <input type="text" id="filtroParte" placeholder="Número de Parte">
+        <input type="text" id="filtroTarea" placeholder="Número de Tarea">
+        <input type="text" id="filtroPieza" placeholder="Pieza">
         <button id="btnLimpiarFiltros">Limpiar</button>
     </section>
+
 
     <section id="contenedorReparación">
         <?php

@@ -20,7 +20,7 @@
     </header>
 
     <section class="botonesOpcciones">
-        <h1 class="bienvenida">Configuración de Parte </h1>
+        <h1 class="bienvenida">Configuración de Tareas </h1>
         <button onclick="window.history.back()">⬅ Página Anterior</button>
         <button onclick="location.href='index.php?c=tarea&a=menuTarea'">Volver Listado Tareas</button>
         <button onclick="location.href='index.php?c=usuario&a=logout'">Cerrar sesión</button>

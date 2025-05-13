@@ -21,6 +21,14 @@
             if (!isset($_SESSION['nombreUsu']) || $_SESSION['nombreUsu'] == "") {
         ?>
             <td><a href="../public/index.php?c=usuario&a=login">Iniciar Sesión</a></td>
+
+        <?php
+            }
+
+            if (isset($_SESSION['nombreUsu']) && $_SESSION['nombreUsu'] != ""  && $_SESSION['privilegio'] == 0) {
+        ?>
+            <td><a href="../public/index.php?c=usuario&a=modificarContra">Configurar Cuenta</a></td>
+
         <?php
             }
 

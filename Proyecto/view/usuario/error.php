@@ -21,7 +21,7 @@
 
     <section class="botonesOpcciones">
         <h1 class="bienvenida">Configuración de Clientes </h1>
-        <button onclick="location.href='index.php?c=usuario&a=menuRegistro'">Volver Listado Usuarios</button>
+        <button onclick="location.href='index.php?c=usuario&a=menuRegistro'">Volver Listado Clientes</button>
         <button onclick="location.href='index.php?c=usuario&a=logout'">Cerrar sesión</button>
     </section>
 

@@ -31,13 +31,17 @@
     </section>
 
     <section class="botonesOpcciones">
-        <h4>Buscar: </h4><input type="text" id="filtroTexto" class="buscar" placeholder="Buscar por DNI">
+        <h4>Buscar:</h4>
+        <input type="text" id="filtroDni" placeholder="Buscar por DNI">
+        <input type="text" id="filtroNombre" placeholder="Buscar por Nombre">
+        <input type="text" id="filtroApellidos" placeholder="Buscar por Apellidos">
         <button id="btnLimpiarFiltros">Limpiar</button>
     </section>
 
+
     <section id="contenedorClientes">
         <?php
-       
+
         foreach ($datos as $cliente) {
             echo '<div class="fromData">';
             echo '<h2>DNI: ' . $cliente->getDni() . '</h2>';

@@ -1,11 +1,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Configuración Mensaje - TPCSI</title>
+    <title>Configuración Mensajes - TPCSI</title>
     <link rel="icon" href="https://yt3.ggpht.com/ssGR_sKs0gRpkLzFhxUig46rmwq73x6PzDsmaQh_Mu6jYG8SRsfSciptLPqMudHZpYQQRfOR=s108-c-k-c0x00ffffff-no-rj" type="image/x-icon">
     <link rel="stylesheet" href="../Estilos/estilos.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script src="../JS/vistoMensaje.js" defer></script>
+    <script src="../JS/ordenarMensaje.js" defer></script>
 </head>
 
 <body>
@@ -21,15 +22,21 @@
     </header>
 
     <section class="botonesOpcciones">
-        <h1 class="bienvenida">Configuración de Reparación </h1>
+        <h1 class="bienvenida">Configuración de Mensajes </h1>
         <button onclick="window.history.back()">⬅ Página Anterior</button>
         <button onclick="location.href='index.php?c=usuario&a=logout'">Cerrar sesión</button>
     </section>
 
     <section class="botonesOpcciones">
-        <h4>Buscar: </h4><input type="text" id="filtroTexto" class="buscar" placeholder="Buscar por DNI">
+        <h4>Buscar por:</h4>
+        <input type="text" id="filtroId" placeholder="ID"/>
+        <input type="text" id="filtroNombre" placeholder="Nombre">
+        <input type="text" id="filtroApellidos" placeholder="Apellidos">
+        <input type="text" id="filtroCorreo" placeholder="Correo">
+        <input type="text" id="filtroMensaje" placeholder="Mensaje">
         <button id="btnLimpiarFiltros">Limpiar</button>
     </section>
+
 
 
     <section id="contenedormensajes">
@@ -54,13 +61,13 @@
                             </tr>
                         <?php } ?>
                         <?php foreach ($mensajes as $msg) { ?>
-                           
+
                             <tr>
                                 <td><?= $msg->getId() ?></td>
                                 <td><?= $msg->getNombre() ?></td>
                                 <td><?= $msg->getApellidos() ?></td>
                                 <td><?= $msg->getCorreo() ?></td>
-                                <td><?= $msg->getMensaje()?></td>
+                                <td><?= $msg->getMensaje() ?></td>
                                 <td>
                                     <input type="checkbox" class="checkbox-visto" data-id="<?= $msg->getId() ?>" <?= ($msg->getleido() === 1) ? 'checked' : '' ?>>
                                 </td>

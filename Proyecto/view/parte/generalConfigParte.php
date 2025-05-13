@@ -31,15 +31,23 @@
     </section>
 
     <section class="botonesOpcciones">
-        <h4>Buscar: </h4>
-        <input type="text" id="filtroTexto" class="buscar" placeholder="Buscar por Numero Parte o Fecha">
-        <button id="ordenarParte">Ordenar por Nº Parte</button>
-        <button id="ordenarFecha">Ordenar por Fecha</button>
-        <button id="ordenarCliente">Ordenar por Cliente</button>
-        <button id="ordenarEquipo">Ordenar por Equipo</button>
-        <button id="ordenarEmpleado">Ordenar por Empleado</button>
-        <button id="btnLimpiarFiltros">Limpiar</button>
+        <h4>Buscar Partes:</h4>
+        <table>
+            <tr>
+                <td><input type="text" id="filtroNumeroParte" placeholder="Nº Parte"></td>
+                <td><input type="date" id="filtroFecha" placeholder="Fecha (dd/mm/yyyy)"></td>
+                <td><input type="text" id="filtroNotas" placeholder="Notas"></td>
+                <td><input type="text" id="filtroSeguimiento" placeholder="Seguimiento"></td>
+                <td><input type="text" id="filtroRecogido" placeholder="Recogido (Sí/No)"></td>
+                <td><input type="text" id="filtroCliente" placeholder="Cliente"></td>
+                <td><input type="text" id="filtroEquipo" placeholder="Equipo"></td>
+                <td><input type="text" id="filtroEmpleado" placeholder="Empleado"></td>
+                <td><button id="btnLimpiarFiltrosParte">Limpiar</button></td>
+                <td><button id="btnOrdenarPartes">Ordenar por Nº Parte</button></td>
+            </tr>
+        </table>
     </section>
+
 
     <section id="contenedorpartes">
         <?php
@@ -62,11 +70,11 @@
 
         foreach ($datos as $parte) {
             echo '<div class="fromData">';
-            echo '<h2>Número Parte: ' . $parte->getNumeroParte() . '</h2>';
-            echo '<h2>Fecha: ' .  date("d/m/Y", strtotime($parte->getFecha())) . '</h2>';
             echo '<table>';
             echo '<thead>';
             echo '<tr>';
+            echo '<th>Número Parte</th>';
+            echo '<th>Fecha</th>';
             echo '<th>Notas</th>';
             echo '<th>Seguimiento</th>';
             echo '<th>Recogido</th>';
@@ -79,6 +87,8 @@
             echo '</thead>';
             echo '<tbody>';
             echo '<tr>';
+            echo '<td>' . $parte->getNumeroParte() . '</td>';
+            echo '<td>' . date("d/m/Y", strtotime($parte->getFecha())) . '</td>';
             echo '<td>' . $parte->getNotas() . '</td>';
             echo '<td>' . $parte->getSeguimiento() . '</td>';
             echo '<td>' . ($parte->getRecogido() ? 'Sí' : 'No') . '</td>';

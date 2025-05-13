@@ -15,6 +15,7 @@
             <a href="../public/index.php">Inicio</a>
             <a href="../public/index.php?c=usuario&a=usuarioContacto">Contacto</a>
             <a href="../public/index.php?c=usuario&a=usuarioIniciado">Menú Usuario</a>
+            <a href="../public/index.php?c=usuario&a=modificarContra">Configurar Cuenta</a>
             <a href="../public/index.php?c=usuario&a=logout">Cerrar Sesión</a>
         </nav>
     </header>
@@ -27,18 +28,24 @@
             <button onclick="location.href='index.php?c=usuario&a=logout'">Cerrar sesión</button>
         </section>
 
-        <section class="busqueda">
-            <h4>Buscar Por Equipo: </h4>
-            <input type="text" id="filtroTabla" class="buscar" placeholder="Buscar Por NombreEquipo...">
-
-            <h4>Filtrar por Fecha:</h4>
-            <input type="date" id="filtroFecha" class="buscar">
-
-            <br>
-
-            <button id="btnLimpiarFiltros">Limpiar Filtros</button>
-            <button id="btnOrdenarFechas">Ordenar: Más recientes ↓</button>
+        <section class="botonesOpcciones">
+            <h4>Buscar:</h4>
+            <table>
+                <tr>
+                    <td><input type="text" id="filtroEquipoId" placeholder="Código Equipo"></td>
+                    <td><input type="date" id="filtroFechaParte" placeholder="Fecha Parte"></td>
+                    <td><input type="text" id="filtroNota" placeholder="Nota"></td>
+                    <td><input type="text" id="filtroTarea" placeholder="Tarea"></td>
+                    <td><input type="text" id="filtroDescripcion" placeholder="Descripción"></td>
+                    <td><input type="text" id="filtroPieza" placeholder="Pieza"></td>
+                    <td><input type="text" id="filtroMarcaPieza" placeholder="Marca Pieza"></td>
+                    <td><input type="text" id="filtroModeloPieza" placeholder="Modelo Pieza"></td>
+                    <td><input type="text" id="filtroTiempo" placeholder="Minutos"></td>
+                    <td><button id="btnLimpiarFiltrosTabla">Limpiar</button></td>
+                </tr>
+            </table>
         </section>
+
         <br>
 
         <?php
@@ -74,12 +81,12 @@
         foreach ($datosAgrupadas as $reparacion) {
             echo '<div class="fromData">';
             echo '<h2>Equipo: ' . $reparacion['MarcaEquipo'] . ' ' . $reparacion['ModeloEquipo'] . '</h2>';
-            echo '<h2>Código Equipo: ' . $reparacion['EquipoId'] . '</h2>';
-            echo '<h3>Fecha parte: ' . date("d/m/Y", strtotime($reparacion['FechaParte'])) . '</h3>';
-            echo '<h3>Nota: ' . $reparacion['NotasParte'] . '</h3>';
             echo '<table>';
             echo '<thead>';
             echo '<tr>';
+            echo '<th>Código Equipo</th>';
+            echo '<th>Fecha parte:</th>';
+            echo '<th>Nota</th>';
             echo '<th>Tarea</th>';
             echo '<th>Descripción</th>';
             echo '<th>Pieza Substituida o Arreglada</th>';
@@ -92,6 +99,9 @@
 
             foreach ($reparacion['tareas'] as $tarea) {
                 echo '<tr>';
+                echo '<td>' . $reparacion['EquipoId'] . '</td>';
+                echo '<td>' . date("d/m/Y", strtotime($reparacion['FechaParte'])) . '</td>';
+                echo '<td>' . $reparacion['NotasParte'] . '</td>';
                 echo '<td>' . $tarea['ReparacionTarea'] . '</td>';
                 echo '<td>' . $tarea['descripcion'] . '</td>';
                 echo '<td>' . $tarea['PiezaNombre'] . '</td>';

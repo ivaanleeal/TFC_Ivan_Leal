@@ -1,64 +1,76 @@
-const filtroTexto = document.getElementById('filtroTabla');
-    const filtroFecha = document.getElementById('filtroFecha');
-    const btnLimpiar = document.getElementById('btnLimpiarFiltros');
-    const btnOrdenar = document.getElementById('btnOrdenarFechas');
+document.addEventListener('DOMContentLoaded', () => {
+    const filtros = {
+        equipoId: document.getElementById('filtroEquipoId'),
+        fecha: document.getElementById('filtroFechaParte'),
+        nota: document.getElementById('filtroNota'),
+        tarea: document.getElementById('filtroTarea'),
+        descripcion: document.getElementById('filtroDescripcion'),
+        pieza: document.getElementById('filtroPieza'),
+        marca: document.getElementById('filtroMarcaPieza'),
+        modelo: document.getElementById('filtroModeloPieza'),
+        tiempo: document.getElementById('filtroTiempo')
+    };
 
-    let ordenAscendente = false;
+    const btnLimpiar = document.getElementById('btnLimpiarFiltrosTabla');
 
-    function filtrarDatos() {
-        const texto = filtroTexto.value.toLowerCase();
-        const fecha = filtroFecha.value;
-        const tablas = document.querySelectorAll('.fromData');
+    function formatearFechaInput(inputDateStr) {
+        if (!inputDateStr) return '';
+        const [yyyy, mm, dd] = inputDateStr.split("-");
+        return `${dd}/${mm}/${yyyy}`;
+    }
 
-        tablas.forEach(tabla => {
-            const contenido = tabla.innerText.toLowerCase();
-            const fechaElemento = tabla.querySelector('h3:nth-child(3)');
-            let fechaTexto = '';
+    function filtrarTabla() {
+        const reparaciones = document.querySelectorAll('.fromData');
 
-            if (fechaElemento) {
-                const partes = fechaElemento.textContent.match(/(\d{2})\/(\d{2})\/(\d{4})/);
-                if (partes) {
-                    fechaTexto = `${partes[3]}-${partes[2]}-${partes[1]}`;
+        reparaciones.forEach(reparacion => {
+            const filas = reparacion.querySelectorAll('tbody tr');
+            let mostrarReparacion = false;
+
+            filas.forEach(fila => {
+                const celdas = fila.querySelectorAll('td');
+                const valores = {
+                    equipoId: celdas[0]?.textContent.toLowerCase(),
+                    fecha: celdas[1]?.textContent.toLowerCase(),
+                    nota: celdas[2]?.textContent.toLowerCase(),
+                    tarea: celdas[3]?.textContent.toLowerCase(),
+                    descripcion: celdas[4]?.textContent.toLowerCase(),
+                    pieza: celdas[5]?.textContent.toLowerCase(),
+                    marca: celdas[6]?.textContent.toLowerCase(),
+                    modelo: celdas[7]?.textContent.toLowerCase(),
+                    tiempo: celdas[8]?.textContent.toLowerCase()
+                };
+
+                let visible = true;
+
+                for (let campo in filtros) {
+                    let filtro = filtros[campo].value.trim().toLowerCase();
+
+                    if (campo === 'fecha' && filtro) {
+                        const fechaInputFormateada = formatearFechaInput(filtro).toLowerCase();
+                        if (!valores.fecha.includes(fechaInputFormateada)) {
+                            visible = false;
+                            break;
+                        }
+                    } else if (filtro && !valores[campo].includes(filtro)) {
+                        visible = false;
+                        break;
+                    }
                 }
-            }
 
-            const coincideTexto = contenido.includes(texto);
-            const coincideFecha = fecha === '' || fecha === fechaTexto;
+                fila.style.display = visible ? '' : 'none';
+                if (visible) mostrarReparacion = true;
+            });
 
-            tabla.style.display = coincideTexto && coincideFecha ? '' : 'none';
+            reparacion.style.display = mostrarReparacion ? '' : 'none';
         });
     }
 
-    filtroTexto.addEventListener('keyup', filtrarDatos);
-    filtroFecha.addEventListener('change', filtrarDatos);
-
-    
-    btnLimpiar.addEventListener('click', () => {
-        filtroTexto.value = '';
-        filtroFecha.value = '';
-        filtrarDatos();
+    Object.values(filtros).forEach(input => {
+        input.addEventListener('input', filtrarTabla);
     });
 
-    
-    btnOrdenar.addEventListener('click',ordenar);
-    window.addEventListener('load',ordenar);
-
-    function ordenar(){
-        const contenedor = document.querySelector('section');
-        const tablas = Array.from(document.querySelectorAll('.fromData'));
-
-        tablas.sort((a, b) => {
-            const fechaA = a.querySelector('h3:nth-child(3)').textContent.match(/(\d{2})\/(\d{2})\/(\d{4})/);
-            const fechaB = b.querySelector('h3:nth-child(3)').textContent.match(/(\d{2})\/(\d{2})\/(\d{4})/);
-
-            const dateA = new Date(`${fechaA[3]}-${fechaA[2]}-${fechaA[1]}`);
-            const dateB = new Date(`${fechaB[3]}-${fechaB[2]}-${fechaB[1]}`);
-
-            return ordenAscendente ? dateA - dateB : dateB - dateA;
-        });
-
-        tablas.forEach(tabla => contenedor.appendChild(tabla));
-
-        ordenAscendente = !ordenAscendente;
-        btnOrdenar.textContent = ordenAscendente ? 'Ordenar: Más antiguos ↑' : 'Ordenar: Más recientes ↓';
-    }
+    btnLimpiar.addEventListener('click', () => {
+        Object.values(filtros).forEach(input => input.value = '');
+        filtrarTabla();
+    });
+});

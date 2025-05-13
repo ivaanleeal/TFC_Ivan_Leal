@@ -6,6 +6,7 @@
     <link rel="stylesheet" href="../Estilos/estilos.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script src="../JS/fotosAmpli.js" defer></script>
+    <script src="../JS/ordenarTareas.js" defer></script>
 </head>
 
 <body>
@@ -31,12 +32,22 @@
     </section>
 
     <section class="botonesOpcciones">
-        <h4>Buscar: </h4>
-        <input type="text" id="filtroTexto" class="buscar" placeholder="Buscar por Numero tarea o Fecha">
-        <button id="ordenartarea">Ordenar por Nº tarea</button>
-        <button id="ordenarFecha">Ordenar por Fecha</button>
-        <button id="btnLimpiarFiltros">Limpiar</button>
+        <h4>Buscar Tareas:</h4>
+        <table>
+            <tr>
+                <td><input type="text" id="filtroNumeroParte" placeholder="Nº Parte"></td>
+                <td><input type="text" id="filtroNumeroTarea" placeholder="Nº Tarea"></td>
+                <td><input type="text" id="filtroDescripcion" placeholder="Descripción"></td>
+                <td><input type="text" id="filtroEstado" placeholder="Estado"></td>
+                <td><input type="text" id="filtroTiempo" placeholder="Tiempo (min)"></td>
+                <td><input type="text" id="filtroEmpleado" placeholder="Empleado"></td>
+                <td><input type="text" id="filtroCliente" placeholder="Cliente"></td>
+                <td><button id="btnLimpiarFiltrosTarea">Limpiar</button></td>
+                <td><button id="btnOrdenarTareas">Ordenar por Nº Tarea</button></td>
+            </tr>
+        </table>
     </section>
+
 
     <section id="contenedortareas">
         <?php
@@ -62,11 +73,11 @@
 
         foreach ($datos as $tarea) {
             echo '<div class="fromData">';
-            echo '<h2>Número Parte: ' . $tarea->getNumeroParte() . '</h2>';
-            echo '<h2>Número Tarea: ' . $tarea->getIdTarea() . '</h2>';
             echo '<table>';
             echo '<thead>';
             echo '<tr>';
+            echo '<th>Número Parte</th>';
+            echo '<th>Número Tarea</th>';
             echo '<th>Descripcción</th>';
             echo '<th>Estado</th>';
             echo '<th>Tiempo Minutos</th>';
@@ -79,6 +90,8 @@
             echo '</thead>';
             echo '<tbody>';
             echo '<tr>';
+            echo '<td>' . $tarea->getNumeroParte() . '</td>';
+            echo '<td>' . $tarea->getIdTarea() . '</td>';
             echo '<td>' . $tarea->getDescripcion() . '</td>';
             echo '<td>' . ($tarea->getEstado() ? 'Finalizado' : 'En Proceso') . '</td>';
             echo '<td>' . $tarea->getTiempo() . '</td>';
@@ -96,7 +109,7 @@
 
             echo '<td><a href="index.php?c=usuario&a=menuSoloUnRegistro&telefono=' .
                 $usuario['telefono'] . '">' .
-                $usuario['telefono'] ." ".$usuario['nombre'] . ' ' . $usuario['apellidos'] .
+                $usuario['telefono'] . " " . $usuario['nombre'] . ' ' . $usuario['apellidos'] .
                 '</a></td>';
 
 
@@ -110,7 +123,7 @@
                 window.location.href='index.php?c=tarea&a=eliminar&numero_parte=" . $tarea->getNumeroParte() . "&id_tarea=" . $tarea->getIdTarea() . "';
                 }
                 \">
-                    Eliminar tarea
+                    Eliminar Tarea
                 </button>
             </td>";
 
