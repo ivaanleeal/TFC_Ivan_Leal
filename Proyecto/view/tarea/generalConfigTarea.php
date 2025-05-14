@@ -137,3 +137,9 @@
         }
         ?>
     </section>
+
+
+    <div id="lightbox" onclick="cerrarLightbox()">
+        <span id="cerrar">&times;</span>
+        <img id="lightbox-img">
+    </div>
