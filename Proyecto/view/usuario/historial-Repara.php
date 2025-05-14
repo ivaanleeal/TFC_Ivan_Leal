@@ -29,22 +29,23 @@
         </section>
 
         <section class="botonesOpcciones">
-            <h4>Buscar:</h4>
-            <table>
-                <tr>
-                    <td><input type="text" id="filtroEquipoId" placeholder="Código Equipo"></td>
-                    <td><input type="date" id="filtroFechaParte" placeholder="Fecha Parte"></td>
-                    <td><input type="text" id="filtroNota" placeholder="Nota"></td>
-                    <td><input type="text" id="filtroTarea" placeholder="Tarea"></td>
-                    <td><input type="text" id="filtroDescripcion" placeholder="Descripción"></td>
-                    <td><input type="text" id="filtroPieza" placeholder="Pieza"></td>
-                    <td><input type="text" id="filtroMarcaPieza" placeholder="Marca Pieza"></td>
-                    <td><input type="text" id="filtroModeloPieza" placeholder="Modelo Pieza"></td>
-                    <td><input type="text" id="filtroTiempo" placeholder="Minutos"></td>
-                    <td><button id="btnLimpiarFiltrosTabla">Limpiar</button></td>
-                </tr>
-            </table>
+            <div class="fromData">
+                <h2>Buscar por:</h2>
+                <div id="filtrosContenedor">
+                    <input type="text" id="filtroEquipoId" placeholder="Código Equipo">
+                    <input type="date" id="filtroFechaParte" placeholder="Fecha Parte">
+                    <input type="text" id="filtroNota" placeholder="Nota">
+                    <input type="text" id="filtroTarea" placeholder="Tarea">
+                    <input type="text" id="filtroDescripcion" placeholder="Descripción">
+                    <input type="text" id="filtroPieza" placeholder="Pieza">
+                    <input type="text" id="filtroMarcaPieza" placeholder="Marca Pieza">
+                    <input type="text" id="filtroModeloPieza" placeholder="Modelo Pieza">
+                    <input type="text" id="filtroTiempo" placeholder="Minutos">
+                    <button type="button" id="btnLimpiarFiltrosTabla">Limpiar</button>
+                </div>
+            </div>
         </section>
+
 
         <br>
 

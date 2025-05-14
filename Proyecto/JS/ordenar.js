@@ -20,7 +20,9 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function filtrarTabla() {
-        const reparaciones = document.querySelectorAll('.fromData');
+        const reparaciones = Array.from(document.querySelectorAll('.fromData')).slice(1);
+
+        
 
         reparaciones.forEach(reparacion => {
             const filas = reparacion.querySelectorAll('tbody tr');

@@ -14,7 +14,7 @@ let ordenAscendente = true;
 
 
 function filtrarDatos() {
-    const tarjetas = document.querySelectorAll('.fromData');
+    const tarjetas = Array.from(document.querySelectorAll('#contenedorClientes .fromData'));
 
     tarjetas.forEach(tarjeta => {
         const celdas = tarjeta.querySelectorAll('tbody td');
@@ -43,6 +43,7 @@ function filtrarDatos() {
 }
 
 
+
 for (const campo in filtros) {
     filtros[campo].addEventListener('input', filtrarDatos);
 }
@@ -60,7 +61,7 @@ btnOrdenar.addEventListener('click', ordenarNombres);
 
 function ordenarNombres() {
     const contenedor = document.getElementById('contenedorClientes');
-    const tarjetas = Array.from(document.querySelectorAll('.fromData'));
+    const tarjetas = Array.from(document.querySelectorAll('#contenedorClientes .fromData'));
 
     tarjetas.sort((a, b) => {
         const nombreA = a.querySelector('tbody td:nth-child(2)')?.textContent.toLowerCase() || '';

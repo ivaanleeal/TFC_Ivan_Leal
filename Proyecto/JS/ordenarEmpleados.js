@@ -37,5 +37,5 @@ document.addEventListener('DOMContentLoaded', () => {
         filtrarEmpleados();
     });
 
-    filtrarEmpleados(); // En caso de inputs ya con texto
+    filtrarEmpleados(); 
 });
