@@ -31,13 +31,18 @@
     </section>
 
     <section class="botonesOpcciones">
-        <h4>Buscar:</h4>
-        <input type="text" id="filtroCodigo" placeholder="Código de Pieza">
-        <input type="text" id="filtroNombre" placeholder="Nombre de Pieza">
-        <input type="text" id="filtroMarca" placeholder="Marca">
-        <input type="text" id="filtroModelo" placeholder="Modelo">
-        <button id="btnLimpiarFiltros">Limpiar</button>
+        <div class="fromData">
+            <h2>Buscar:</h2>
+            <div id="filtrosContenedor">
+                <input type="text" id="filtroCodigo" placeholder="Código de Pieza">
+                <input type="text" id="filtroNombre" placeholder="Nombre de Pieza">
+                <input type="text" id="filtroMarca" placeholder="Marca">
+                <input type="text" id="filtroModelo" placeholder="Modelo">
+                <button type="button" id="btnLimpiarFiltros">Limpiar</button>
+            </div>
+        </div>
     </section>
+
 
 
     <section id="contenedorPiezass">
@@ -46,6 +51,7 @@
         foreach ($datos as $piezas) {
             echo '<div class="fromData">';
             echo '<h2>Código Pieza: ' . $piezas->getCodigoPieza() . '</h2>';
+            echo '<div class="tabla-responsive">';
             echo '<table>';
             echo '<thead>';
             echo '<tr>';
@@ -72,6 +78,7 @@
             echo '</tr>';
             echo '</tbody>';
             echo '</table>';
+            echo '</div>';
             echo '</div>';
         }
         ?>

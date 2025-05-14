@@ -9,7 +9,7 @@ require_once '../model/entidades/parte.php';
 class ParteController
 {  
 
-    private $model; //Representa las operaciones de BD para el curso.
+    private $model; 
 
     public function __construct()
     {

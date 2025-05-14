@@ -9,7 +9,7 @@ require_once '../model/entidades/tarea.php';
 class TareaController
 {
 
-    private $model; //Representa las operaciones de BD para el curso.
+    private $model;
 
     public function __construct()
     {
@@ -27,7 +27,7 @@ class TareaController
             if ($_SESSION['privilegio'] == 1) {
                 $datos = $this->model->obtenerTodos();
                 $datosEmple = $this->model->obtenerEmpleados();
-                $datosPartes = $this->model->listarConUsuarios(); 
+                $datosPartes = $this->model->listarConUsuarios();
 
                 require_once '../view/tarea/generalConfigTarea.php';
             } else {
@@ -46,7 +46,7 @@ class TareaController
             if ($_SESSION['privilegio'] == 1) {
                 $datos = [$this->model->obtener($_REQUEST['numero_parte'], $_REQUEST['id_tarea'])];
                 $datosEmple = $this->model->obtenerEmpleados();
-                $datosPartes = $this->model->listarConUsuarios(); 
+                $datosPartes = $this->model->listarConUsuarios();
                 require_once '../view/tarea/generalConfigTarea.php';
             } else {
                 require_once '../view/usuario/inicioUsuario.php';
@@ -176,11 +176,15 @@ class TareaController
                 $tarea = $this->model->obtener($_REQUEST['numero_parte'], $_REQUEST['id_tarea']);
 
                 
-                $imagen = $_FILES['imagen']['name'];
-                $rutaTemp = $_FILES['imagen']['tmp_name'];
-                $rutaDestino = "../imagenesSubidas/" . $imagen;
-                move_uploaded_file($rutaTemp, $rutaDestino);
-                $imagenBien = "..\\imagenesSubidas\\$imagen";
+                if (isset($_FILES['imagen']) && $_FILES['imagen']['error'] === UPLOAD_ERR_OK) {
+                    $imagen = $_FILES['imagen']['name'];
+                    $rutaTemp = $_FILES['imagen']['tmp_name'];
+                    $rutaDestino = "../imagenesSubidas/" . $imagen;
+                    move_uploaded_file($rutaTemp, $rutaDestino);
+                    $imagenBien = "..\\imagenesSubidas\\$imagen"; 
+                } else {
+                    $imagenBien = $_POST['imagen_actual'];
+                }
 
                 $tarea->setNumeroParte($_REQUEST['numero_parte']);
                 $tarea->setIdTarea($_REQUEST['id_tarea']);
@@ -189,7 +193,6 @@ class TareaController
                 $tarea->setTiempo($_REQUEST['tiempo']);
                 $tarea->setImagen($imagenBien);
                 $tarea->setEmpleadoDni($_REQUEST['empleado']);
-
 
                 $this->model->actualizarTarea($tarea);
 
@@ -200,6 +203,7 @@ class TareaController
         }
         require_once '../view/footer.php';
     }
+
 
 
     public function error()

@@ -31,22 +31,23 @@
     </section>
 
     <section class="botonesOpcciones">
-        <h4>Buscar Partes:</h4>
-        <table>
-            <tr>
-                <td><input type="text" id="filtroNumeroParte" placeholder="Nº Parte"></td>
-                <td><input type="date" id="filtroFecha" placeholder="Fecha (dd/mm/yyyy)"></td>
-                <td><input type="text" id="filtroNotas" placeholder="Notas"></td>
-                <td><input type="text" id="filtroSeguimiento" placeholder="Seguimiento"></td>
-                <td><input type="text" id="filtroRecogido" placeholder="Recogido (Sí/No)"></td>
-                <td><input type="text" id="filtroCliente" placeholder="Cliente"></td>
-                <td><input type="text" id="filtroEquipo" placeholder="Equipo"></td>
-                <td><input type="text" id="filtroEmpleado" placeholder="Empleado"></td>
-                <td><button id="btnLimpiarFiltrosParte">Limpiar</button></td>
-                <td><button id="btnOrdenarPartes">Ordenar por Nº Parte</button></td>
-            </tr>
-        </table>
+        <div class="fromData">
+            <h2>Buscar Partes:</h2>
+            <div id="filtrosContenedor">
+                <input type="text" id="filtroNumeroParte" placeholder="Nº Parte">
+                <input type="date" id="filtroFecha" placeholder="Fecha (dd/mm/yyyy)">
+                <input type="text" id="filtroNotas" placeholder="Notas">
+                <input type="text" id="filtroSeguimiento" placeholder="Seguimiento">
+                <input type="text" id="filtroRecogido" placeholder="Recogido (Sí/No)">
+                <input type="text" id="filtroCliente" placeholder="Cliente">
+                <input type="text" id="filtroEquipo" placeholder="Equipo">
+                <input type="text" id="filtroEmpleado" placeholder="Empleado">
+                <button type="button" id="btnLimpiarFiltrosParte">Limpiar</button>
+                <button type="button" id="btnOrdenarPartes">Ordenar por Nº Parte</button>
+            </div>
+        </div>
     </section>
+
 
 
     <section id="contenedorpartes">
@@ -70,6 +71,7 @@
 
         foreach ($datos as $parte) {
             echo '<div class="fromData">';
+            echo '<div class="tabla-responsive">';
             echo '<table>';
             echo '<thead>';
             echo '<tr>';
@@ -106,6 +108,7 @@
             echo '</tr>';
             echo '</tbody>';
             echo '</table>';
+            echo '</div>';
             echo '</div>';
         }
         ?>

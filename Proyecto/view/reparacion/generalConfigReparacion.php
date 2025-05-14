@@ -31,12 +31,17 @@
     </section>
 
     <section class="botonesOpcciones">
-        <h4>Buscar:</h4>
-        <input type="text" id="filtroParte" placeholder="Número de Parte">
-        <input type="text" id="filtroTarea" placeholder="Número de Tarea">
-        <input type="text" id="filtroPieza" placeholder="Pieza">
-        <button id="btnLimpiarFiltros">Limpiar</button>
+        <div class="fromData">
+            <h2>Buscar:</h2>
+            <div id="filtrosContenedor">
+                <input type="text" id="filtroParte" placeholder="Número de Parte">
+                <input type="text" id="filtroTarea" placeholder="Número de Tarea">
+                <input type="text" id="filtroPieza" placeholder="Pieza">
+                <button type="button" id="btnLimpiarFiltros">Limpiar</button>
+            </div>
+        </div>
     </section>
+
 
 
     <section id="contenedorReparación">
@@ -61,6 +66,7 @@
 
         foreach ($datos as $reparacion) {
             echo '<div class="fromData">';
+            echo '<div class="tabla-responsive">';
             echo '<table>';
             echo '<thead>';
             echo '<tr>';
@@ -94,6 +100,7 @@
             echo '</tr>';
             echo '</tbody>';
             echo '</table>';
+            echo '</div>';
             echo '</div>';
         }
         ?>

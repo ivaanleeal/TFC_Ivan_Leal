@@ -7,9 +7,9 @@ require_once '../model/entidades/usuario.php';
 
 
 class UsuarioController
-{  //PENDIENTE DE PONER LAS VISTAS
+{
 
-    private $model; //Representa las operaciones de BD para el curso.
+    private $model;
 
     public function __construct()
     {
@@ -62,7 +62,7 @@ class UsuarioController
                 $empleado = $this->model->obtener($_SESSION['telefono']);
                 require_once '../view/usuario/cambiarContra.php';
             } else {
-                require_once '../view/usuario/inicioUsuario.php';
+                require_once '../view/usuario/inicioAdmin.php';
             }
         }
         require_once '../view/footer.php';
@@ -77,7 +77,7 @@ class UsuarioController
             if ($_SESSION['privilegio'] == 1) {
                 require_once '../view/usuario/registroUsuario.php';
             } else {
-                require_once '../view/usuario/login.php';
+                require_once '../view/usuario/inicioUsuario.php';
             }
         }
         require_once '../view/footer.php';
@@ -194,7 +194,7 @@ class UsuarioController
 
                 header('Location: index.php?c=usuario&a=updateContra');
             } else {
-                require_once '../view/usuario/inicioUsuario.php';
+                require_once '../view/usuario/inicioAdmin.php';
             }
         }
         require_once '../view/footer.php';
@@ -247,51 +247,34 @@ class UsuarioController
 
     public function loginVerificar()
     {
-
         $usuarioNombre = $_REQUEST['usuario'];
         $contrasena = $_REQUEST['password'];
 
         if (isset($_POST['recordar'])) {
-            setcookie('usuario', $_REQUEST['usuario'], time() + (86400 * 30), "/");
+            setcookie('usuario', $usuarioNombre, time() + (86400 * 30), "/");
         } else {
             setcookie('usuario', '', time() - 3600, "/");
         }
 
-        $errores = [];
-
-
         $usuario = $this->model->obtenerPorUsuario($usuarioNombre);
-        if ($usuario != null) {
-            if (password_verify($contrasena, $usuario->getContrasena()) && $usuario != null) {
 
-                $_SESSION['nombreUsu'] = $usuario->getUsuario();
-                $_SESSION['privilegio'] = $usuario->getPrivilegio();
-                $_SESSION['telefono'] = $usuario->getTelefono();
+        if ($usuario && password_verify($contrasena, $usuario->getContrasena())) {
+            $_SESSION['nombreUsu'] = $usuario->getUsuario();
+            $_SESSION['privilegio'] = $usuario->getPrivilegio();
+            $_SESSION['telefono'] = $usuario->getTelefono();
 
-                if ($usuario->getPrivilegio() == 0) {
-                    header('Location: index.php?c=Usuario&a=usuarioIniciado');
-                } else {
-                    header('Location: index.php?c=Usuario&a=usuarioIniciadoAdmin');
-                }
+            if ($usuario->getPrivilegio() == 0) {
+                header('Location: index.php?c=Usuario&a=usuarioIniciado');
             } else {
-
-                $errores[] = "Usuario o Contraseña mal escritos";
-
-                require_once '../view/usuario/login.php';
-                foreach ($errores as $error) {
-                    echo "<p style='color: red;'>" . $error . "</p>";
-                }
-                require_once '../view/footer.php';
+                header('Location: index.php?c=Usuario&a=usuarioIniciadoAdmin');
             }
         } else {
-            require_once '../view/usuario/login.php';
-            $errores[] = "Usuario o Contraseña mal escritos";
-            foreach ($errores as $error) {
-                echo "<p style='color: red;'>" . $error . "</p>";
-            }
-            require_once '../view/footer.php';
+            $error = "Usuario o contraseña no coincide";
+            require '../view/usuario/login.php';
+            require '../view/footer.php';
         }
     }
+
 
     public function usuarioIniciado()
     {
@@ -316,7 +299,7 @@ class UsuarioController
 
     public function error()
     {
-        if (!isset($_SESSION['nombreUsu'])) {
+        if (!isset($_SESSION['nombreUsu']) && $_SESSION['privilegio'] = 0) {
             require_once '../view/usuario/login.php';
         } else {
             require_once '../view/usuario/error.php';
@@ -326,7 +309,7 @@ class UsuarioController
 
     public function errorDuplicado()
     {
-        if (!isset($_SESSION['nombreUsu'])) {
+        if (!isset($_SESSION['nombreUsu']) && $_SESSION['privilegio'] = 0) {
             require_once '../view/usuario/login.php';
         } else {
             require_once '../view/usuario/errorDuplicado.php';
@@ -336,7 +319,7 @@ class UsuarioController
 
     public function bien()
     {
-        if (!isset($_SESSION['nombreUsu'])) {
+        if (!isset($_SESSION['nombreUsu']) && $_SESSION['privilegio'] = 0) {
             require_once '../view/usuario/login.php';
         } else {
             require_once '../view/usuario/check.php';
@@ -347,7 +330,7 @@ class UsuarioController
 
     public function update()
     {
-        if (!isset($_SESSION['nombreUsu'])) {
+        if (!isset($_SESSION['nombreUsu']) && $_SESSION['privilegio'] = 0) {
             require_once '../view/usuario/login.php';
         } else {
             require_once '../view/usuario/update.php';
@@ -357,7 +340,7 @@ class UsuarioController
 
     public function updateContra()
     {
-        if (!isset($_SESSION['nombreUsu'])) {
+        if (!isset($_SESSION['nombreUsu']) && $_SESSION['privilegio'] = 1) {
             require_once '../view/usuario/login.php';
         } else {
             require_once '../view/usuario/updateContra.php';
@@ -366,20 +349,10 @@ class UsuarioController
     }
 
 
-    public function AdminListaClientes()
-    {
-        if (!isset($_SESSION['nombreUsu'])) {
-            require_once '../view/usuario/login.php';
-        } else {
-            require_once '../view/usuario/inicioAdmin.php';
-        }
-        require_once '../view/footer.php';
-    }
-
 
     public function usuarioHistorial()
     {
-        if (!isset($_SESSION['nombreUsu'])) {
+        if (!isset($_SESSION['nombreUsu']) && $_SESSION['privilegio'] = 1) {
             require_once '../view/usuario/login.php';
         } else {
             $datos = $this->model->obtenerReparaciones($_SESSION['telefono']);
@@ -390,7 +363,7 @@ class UsuarioController
 
     public function usuarioEstadoRepara()
     {
-        if (!isset($_SESSION['nombreUsu'])) {
+        if (!isset($_SESSION['nombreUsu']) && $_SESSION['privilegio'] = 1) {
             require_once '../view/usuario/login.php';
         } else {
             $datos = $this->model->obtenerEstado($_SESSION['telefono']);
@@ -401,7 +374,7 @@ class UsuarioController
 
     public function usuarioRepara()
     {
-        if (!isset($_SESSION['nombreUsu'])) {
+        if (!isset($_SESSION['nombreUsu']) && $_SESSION['privilegio'] = 1) {
             require_once '../view/usuario/login.php';
         } else {
             require_once '../view/usuario/estado-Repara.php';

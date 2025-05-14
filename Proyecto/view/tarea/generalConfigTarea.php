@@ -32,21 +32,22 @@
     </section>
 
     <section class="botonesOpcciones">
-        <h4>Buscar Tareas:</h4>
-        <table>
-            <tr>
-                <td><input type="text" id="filtroNumeroParte" placeholder="Nº Parte"></td>
-                <td><input type="text" id="filtroNumeroTarea" placeholder="Nº Tarea"></td>
-                <td><input type="text" id="filtroDescripcion" placeholder="Descripción"></td>
-                <td><input type="text" id="filtroEstado" placeholder="Estado"></td>
-                <td><input type="text" id="filtroTiempo" placeholder="Tiempo (min)"></td>
-                <td><input type="text" id="filtroEmpleado" placeholder="Empleado"></td>
-                <td><input type="text" id="filtroCliente" placeholder="Cliente"></td>
-                <td><button id="btnLimpiarFiltrosTarea">Limpiar</button></td>
-                <td><button id="btnOrdenarTareas">Ordenar por Nº Tarea</button></td>
-            </tr>
-        </table>
+        <div class="fromData">
+            <h2>Buscar Tareas:</h2>
+            <div id="filtrosContenedor">
+                <input type="text" id="filtroNumeroParte" placeholder="Nº Parte">
+                <input type="text" id="filtroNumeroTarea" placeholder="Nº Tarea">
+                <input type="text" id="filtroDescripcion" placeholder="Descripción">
+                <input type="text" id="filtroEstado" placeholder="Estado">
+                <input type="text" id="filtroTiempo" placeholder="Tiempo (min)">
+                <input type="text" id="filtroEmpleado" placeholder="Empleado">
+                <input type="text" id="filtroCliente" placeholder="Cliente">
+                <button type="button" id="btnLimpiarFiltrosTarea">Limpiar</button>
+                <button type="button" id="btnOrdenarTareas">Ordenar por Nº Tarea</button>
+            </div>
+        </div>
     </section>
+
 
 
     <section id="contenedortareas">
@@ -73,6 +74,7 @@
 
         foreach ($datos as $tarea) {
             echo '<div class="fromData">';
+            echo '<div class="tabla-responsive">';
             echo '<table>';
             echo '<thead>';
             echo '<tr>';
@@ -130,6 +132,7 @@
             echo '</tr>';
             echo '</tbody>';
             echo '</table>';
+            echo '</div>';
             echo '</div>';
         }
         ?>

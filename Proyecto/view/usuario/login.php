@@ -21,7 +21,16 @@
     <section class="fromInicioSesion">
         <div>
             <h2 class="clientes">Accede a tu Área</h2>
+
             <form class="contenidoForm" method="post" action="index.php?c=usuario&a=loginVerificar">
+
+
+                <?php if (!empty($error)) { ?>
+                    <p style="color:red;"><?= htmlspecialchars($error) ?></p>
+                <?php } ?>
+
+                <br />
+
                 Nombre Usuario
                 <input type="text" name="usuario" placeholder="Escriba su nombre de Usuario" class="input-estilo"
                     value="<?php echo isset($_COOKIE['usuario']) ? htmlspecialchars($_COOKIE['usuario']) : ''; ?>">

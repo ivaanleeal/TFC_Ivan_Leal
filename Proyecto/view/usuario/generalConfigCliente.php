@@ -30,21 +30,22 @@
         <button onclick="location.href='index.php?c=usuario&a=iniciarRegistro'">Crear Nuevo Cliente</button>
     </section>
 
+
     <section class="botonesOpcciones">
-        <h4>Buscar:</h4>
-        <table>
-            <tr>
-                <td><input type="text" id="filtroTelefono" placeholder="Teléfono"></td>
-                <td><input type="text" id="filtroNombre" placeholder="Nombre"></td>
-                <td><input type="text" id="filtroApellidos" placeholder="Apellidos"></td>                
-                <td><input type="text" id="filtroUsuario" placeholder="Usuario"></td>
-                <td><input type="text" id="filtroPrivilegio" placeholder="Privilegio"></td>
-                <td><input type="text" id="filtroWhatsap" placeholder="WhatsApp"></td>
-                <td><input type="text" id="filtroLlamar" placeholder="Llamar"></td>
-                <td><button id="btnLimpiarFiltros">Limpiar</button></td>
-                <td><button id="btnOrdenarNombres">Ordenar A-Z</button></td>
-            </tr>
-        </table>
+        <div class="fromData">
+            <h2>Buscar:</h2>
+            <div id="filtrosContenedor">
+                <input type="text" id="filtroTelefono" placeholder="Teléfono">
+                <input type="text" id="filtroNombre" placeholder="Nombre">
+                <input type="text" id="filtroApellidos" placeholder="Apellidos">
+                <input type="text" id="filtroUsuario" placeholder="Usuario">
+                <input type="text" id="filtroPrivilegio" placeholder="Privilegio">
+                <input type="text" id="filtroWhatsap" placeholder="WhatsApp">
+                <input type="text" id="filtroLlamar" placeholder="Llamar">
+                <button id="btnLimpiarFiltros">Limpiar</button>
+                <button id="btnOrdenarNombres">Ordenar A-Z</button>
+            </div>
+        </div>
     </section>
 
 
@@ -53,6 +54,7 @@
 
         foreach ($datos as $cliente) {
             echo '<div class="fromData">';
+            echo '<div class="tabla-responsive">';
             echo '<table>';
             echo '<thead>';
             echo '<tr>';
@@ -89,6 +91,7 @@
             echo '</tr>';
             echo '</tbody>';
             echo '</table>';
+            echo '</div>';
             echo '</div>';
         }
         ?>

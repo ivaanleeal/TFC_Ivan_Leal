@@ -5,7 +5,7 @@
     <link rel="icon" href="https://yt3.ggpht.com/ssGR_sKs0gRpkLzFhxUig46rmwq73x6PzDsmaQh_Mu6jYG8SRsfSciptLPqMudHZpYQQRfOR=s108-c-k-c0x00ffffff-no-rj" type="image/x-icon">
     <link rel="stylesheet" href="../Estilos/estilos.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <script src="../JS/filtarPartes.js" defer></script>
+    <script src="../JS/validaParte.js" defer></script>
 </head>
 
 <body>
@@ -101,7 +101,7 @@
                 ?>
             </select>
 
-            <span id="errorcliente" class="errortexto"></span>
+            <span id="errorEquipo" class="errortexto"></span>
             <br><br>
 
             <label for="empleado">Empleado</label>
@@ -118,7 +118,7 @@
                 }
                 ?>
             </select>
-            <span id="errorcliente" class="errortexto"></span>
+            <span id="errorEmpleado" class="errortexto"></span>
             <br><br>
 
             <button id="enviar" class="btn btn-success">Registrar</button>

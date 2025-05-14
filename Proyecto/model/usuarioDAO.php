@@ -32,7 +32,7 @@ class UsuarioDAO
         try {
             $stmt = $this->pdo->prepare("SELECT * FROM clientes WHERE usuario = :usuario");
             $stmt->execute(['usuario' => $usuario]);
-            $data = $stmt->fetchAll(PDO::FETCH_CLASS, 'usuario'); //Devuelve array 
+            $data = $stmt->fetchAll(PDO::FETCH_CLASS, 'usuario'); 
 
             return $data ? $data[0] : null;
         } catch (Exception $e) {

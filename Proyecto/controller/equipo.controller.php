@@ -9,7 +9,7 @@ require_once '../model/entidades/equipo.php';
 class EquipoController
 {  
 
-    private $model; //Representa las operaciones de BD para el curso.
+    private $model; 
 
     public function __construct()
     {

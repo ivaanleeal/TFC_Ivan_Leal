@@ -81,6 +81,7 @@
         foreach ($datosAgrupadas as $reparacion) {
             echo '<div class="fromData">';
             echo '<h2>Equipo: ' . $reparacion['MarcaEquipo'] . ' ' . $reparacion['ModeloEquipo'] . '</h2>';
+            echo '<div class="tabla-responsive">';
             echo '<table>';
             echo '<thead>';
             echo '<tr>';
@@ -113,6 +114,7 @@
 
             echo '</tbody>';
             echo '</table>';
+            echo '</div>';
             echo '</div>';
         }
         ?>

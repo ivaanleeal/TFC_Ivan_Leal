@@ -31,14 +31,19 @@
     </section>
 
     <section class="botonesOpcciones">
-        <h4>Buscar:</h4>
-        <input type="text" id="filtroCodigo" placeholder="Código de Equipo">
-        <input type="text" id="filtroMarca" placeholder="Marca">
-        <input type="text" id="filtroModelo" placeholder="Modelo">
-        <input type="text" id="filtroSO" placeholder="Sistema Operativo">
-        <input type="text" id="filtroCliente" placeholder="Teléfono o Nombre Cliente">
-        <button type="button" id="btnLimpiarFiltros">Limpiar</button>
+        <div class="fromData">
+            <h2>Buscar:</h2>
+            <div id="filtrosContenedor">
+                <input type="text" id="filtroCodigo" placeholder="Código de Equipo">
+                <input type="text" id="filtroMarca" placeholder="Marca">
+                <input type="text" id="filtroModelo" placeholder="Modelo">
+                <input type="text" id="filtroSO" placeholder="Sistema Operativo">
+                <input type="text" id="filtroCliente" placeholder="Teléfono o Nombre Cliente">
+                <button type="button" id="btnLimpiarFiltros">Limpiar</button>
+            </div>
+        </div>
     </section>
+
 
 
     <section id="contenedorEquipos">
@@ -52,6 +57,7 @@
         foreach ($datos as $equipo) {
             echo '<div class="fromData">';
             echo '<h2>Código Equipo: ' . $equipo->getIdEquipo() . '</h2>';
+            echo '<div class="tabla-responsive">';
             echo '<table>';
             echo '<thead>';
             echo '<tr>';
@@ -80,6 +86,7 @@
             echo '</tr>';
             echo '</tbody>';
             echo '</table>';
+            echo '</div>';
             echo '</div>';
         }
         ?>

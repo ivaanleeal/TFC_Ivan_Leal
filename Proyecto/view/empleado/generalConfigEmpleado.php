@@ -31,12 +31,18 @@
     </section>
 
     <section class="botonesOpcciones">
-        <h4>Buscar:</h4>
-        <input type="text" id="filtroDni" placeholder="Buscar por DNI">
-        <input type="text" id="filtroNombre" placeholder="Buscar por Nombre">
-        <input type="text" id="filtroApellidos" placeholder="Buscar por Apellidos">
-        <button id="btnLimpiarFiltros">Limpiar</button>
+        
+        <div class="fromData">
+            <h2>Buscar:</h2>
+            <div id="filtrosContenedor">
+                <input type="text" id="filtroDni" placeholder="Buscar por DNI">
+                <input type="text" id="filtroNombre" placeholder="Buscar por Nombre">
+                <input type="text" id="filtroApellidos" placeholder="Buscar por Apellidos">
+                <button id="btnLimpiarFiltros">Limpiar</button>
+            </div>
+        </div>
     </section>
+
 
 
     <section id="contenedorClientes">
@@ -45,6 +51,7 @@
         foreach ($datos as $cliente) {
             echo '<div class="fromData">';
             echo '<h2>DNI: ' . $cliente->getDni() . '</h2>';
+            echo '<div class="tabla-responsive">';
             echo '<table>';
             echo '<thead>';
             echo '<tr>';
@@ -69,6 +76,7 @@
             echo '</tr>';
             echo '</tbody>';
             echo '</table>';
+            echo '</div>';
             echo '</div>';
         }
         ?>

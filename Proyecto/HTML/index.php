@@ -21,6 +21,7 @@
                 if (isset($_SESSION['nombreUsu']) && $_SESSION['privilegio'] == 0) {
                 ?>
                     <td><a href="../public/index.php?c=usuario&a=usuarioIniciado">Menú Usuario</a></td>
+                    <td><a href="../public/index.php?c=usuario&a=modificarContra">Configurar Cuenta</a></td>
                     </tr>
                     <tr>
                     <?php

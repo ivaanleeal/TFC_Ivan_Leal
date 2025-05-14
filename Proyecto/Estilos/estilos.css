@@ -9,10 +9,12 @@ p {
     text-align: justify;
 }
 
-html,
-body {
-    overflow-x: hidden;
+html {
     font-size: var(--font-size-base);
+}
+
+body {
+    overflow-x: auto; 
 }
 
 body {
@@ -105,9 +107,11 @@ main {
     display: none;
     position: fixed;
     z-index: 999;
-    top: 0; left: 0;
-    width: 100%; height: 100%;
-    background-color: rgba(0,0,0,0.8);
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
     justify-content: center;
     align-items: center;
 }
@@ -281,9 +285,57 @@ textarea {
     border-radius: 12px;
     padding: 20px;
     margin: 20px auto;
-    width: 80%;
+    width: 90%;  
     text-align: center;
 }
+
+
+#filtrosContenedor {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between; 
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+
+#filtrosContenedor input {
+    padding: 0.5rem;
+    margin-bottom: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    width: 100%;  
+    max-width: 200px; 
+}
+
+
+#filtrosContenedor button {
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    background-color: #3a4767;
+    color: white;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.3s;
+}
+
+#filtrosContenedor button:hover {
+    background-color: #556080;
+}
+
+@media (max-width: 768px) {
+    #filtrosContenedor input {
+        max-width: 100%; 
+    }
+
+    
+    #filtrosContenedor button {
+        width: 100%;
+        margin-top: 10px;
+    }
+}
+
 
 .tarjeta {
     background-color: #2d2f36;
@@ -326,6 +378,7 @@ textarea {
         opacity: 0;
         transform: translateY(-10px);
     }
+
     to {
         opacity: 1;
         transform: translateY(0);
@@ -353,6 +406,7 @@ textarea {
         opacity: 0;
         transform: translateY(-10px);
     }
+
     to {
         opacity: 1;
         transform: translateY(0);
@@ -461,7 +515,15 @@ input.errorcaja {
     transform: scale(1.03);
 }
 
+.tabla-responsive {
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+}
 
+.tabla-responsive table {
+    min-width: 800px; /* o más, según tus columnas */
+}
 
 .fromData table {
     width: 95%;
@@ -509,7 +571,7 @@ input.errorcaja {
     color: #3a4767;
 }
 
-@media screen and (max-width: 800px) {
+@media screen and (max-width: 1500px) {
 
     .fromData th,
     .fromData td {
@@ -518,7 +580,9 @@ input.errorcaja {
     }
 
     .tabla-responsive table {
-        min-width: 40%;
+        width: 100%;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
     }
 
     .fromData thead {

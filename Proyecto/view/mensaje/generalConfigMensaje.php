@@ -28,53 +28,61 @@
     </section>
 
     <section class="botonesOpcciones">
-        <h4>Buscar por:</h4>
-        <input type="text" id="filtroId" placeholder="ID"/>
-        <input type="text" id="filtroNombre" placeholder="Nombre">
-        <input type="text" id="filtroApellidos" placeholder="Apellidos">
-        <input type="text" id="filtroCorreo" placeholder="Correo">
-        <input type="text" id="filtroMensaje" placeholder="Mensaje">
-        <button id="btnLimpiarFiltros">Limpiar</button>
+        <div class="fromData">
+            <h2>Buscar por:</h2>
+            <div id="filtrosContenedor">
+                <input type="text" id="filtroId" placeholder="ID" />
+                <input type="text" id="filtroNombre" placeholder="Nombre">
+                <input type="text" id="filtroApellidos" placeholder="Apellidos">
+                <input type="text" id="filtroCorreo" placeholder="Correo">
+                <input type="text" id="filtroMensaje" placeholder="Mensaje">
+                <button type="button" id="btnLimpiarFiltros">Limpiar</button>
+            </div>
+        </div>
     </section>
 
 
 
-    <section id="contenedormensajes">
-        <div class="formDatos">
-            <h1 class="bienvenida">📥 Bandeja de Entrada</h1>
-            <div class="fromData">
-                <table>
-                    <thead>
-                        <tr>
-                            <th>ID</th>
-                            <th>Nombre</th>
-                            <th>Apellidos</th>
-                            <th>Correo</th>
-                            <th>Mensaje</th>
-                            <th>Visto</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <?php if (empty($mensajes)) { ?>
-                            <tr>
-                                <td colspan="5">No hay mensajes en la bandeja de entrada.</td>
-                            </tr>
-                        <?php } ?>
-                        <?php foreach ($mensajes as $msg) { ?>
 
+    <section id="contenedormensajes">
+        <h1 class="bienvenida">Bandeja de Entrada</h1>
+        <div class="formDatos">
+            
+            <div class="fromData">
+                <div class="tabla-responsive">
+                    <table>
+                        <thead>
                             <tr>
-                                <td><?= $msg->getId() ?></td>
-                                <td><?= $msg->getNombre() ?></td>
-                                <td><?= $msg->getApellidos() ?></td>
-                                <td><?= $msg->getCorreo() ?></td>
-                                <td><?= $msg->getMensaje() ?></td>
-                                <td>
-                                    <input type="checkbox" class="checkbox-visto" data-id="<?= $msg->getId() ?>" <?= ($msg->getleido() === 1) ? 'checked' : '' ?>>
-                                </td>
+                                <th>ID</th>
+                                <th>Nombre</th>
+                                <th>Apellidos</th>
+                                <th>Correo</th>
+                                <th>Mensaje</th>
+                                <th>Visto</th>
                             </tr>
-                        <?php } ?>
-                    </tbody>
-                </table>
+                        </thead>
+                        <tbody>
+                            <?php if (empty($mensajes)) { ?>
+                                <tr>
+                                    <td colspan="5">No hay mensajes en la bandeja de entrada.</td>
+                                </tr>
+                            <?php } ?>
+                            <?php foreach ($mensajes as $msg) { ?>
+
+                                <tr>
+                                    <td><?= $msg->getId() ?></td>
+                                    <td><?= $msg->getNombre() ?></td>
+                                    <td><?= $msg->getApellidos() ?></td>
+                                    <td><?= $msg->getCorreo() ?></td>
+                                    <td><?= $msg->getMensaje() ?></td>
+                                    <td>
+                                        <input type="checkbox" class="checkbox-visto" data-id="<?= $msg->getId() ?>" <?= ($msg->getleido() === 1) ? 'checked' : '' ?>>
+                                    </td>
+                                </tr>
+                            <?php } ?>
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
     </section>
