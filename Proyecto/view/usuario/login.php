@@ -22,6 +22,20 @@
         <div>
             <h2 class="clientes">Accede a tu Área</h2>
 
+            <?php
+            $valorUsuario = '';
+
+            
+            if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['usuario'])) {
+                $valorUsuario = $_POST['usuario'];
+            }
+            elseif (isset($_COOKIE['usuario'])) {
+                $valorUsuario = $_COOKIE['usuario'];
+            }
+            ?>
+
+
+
             <form class="contenidoForm" method="post" action="index.php?c=usuario&a=loginVerificar">
 
 
@@ -32,8 +46,9 @@
                 <br />
 
                 Nombre Usuario
-                <input type="text" name="usuario" placeholder="Escriba su nombre de Usuario" class="input-estilo"
-                    value="<?php echo isset($_COOKIE['usuario']) ? htmlspecialchars($_COOKIE['usuario']) : ''; ?>">
+                <input type="text" name="usuario" class="input-estilo"
+                    value="<?= htmlspecialchars($valorUsuario) ?>"
+                    placeholder="Escriba su nombre de Usuario">
                 <br />
                 <p id="errorUsu"></p>
                 <br /><br />

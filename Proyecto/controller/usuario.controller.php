@@ -239,6 +239,7 @@ class UsuarioController
     {
         $_SESSION['nombreUsu'] = "";
         $_SESSION['privilegio'] = "";
+        setcookie('usuario', "");
 
         require_once '../view/usuario/login.php';
         require_once '../view/footer.php';
@@ -247,28 +248,32 @@ class UsuarioController
 
     public function loginVerificar()
     {
-        $usuarioNombre = $_REQUEST['usuario'];
-        $contrasena = $_REQUEST['password'];
-
-        if (isset($_POST['recordar'])) {
-            setcookie('usuario', $usuarioNombre, time() + (86400 * 30), "/");
-        } else {
-            setcookie('usuario', '', time() - 3600, "/");
-        }
+        $usuarioNombre = $_POST['usuario'];
+        $contrasena = $_POST['password'];
 
         $usuario = $this->model->obtenerPorUsuario($usuarioNombre);
-        if ($usuario != null) {
-            if (password_verify($contrasena, $usuario->getContrasena())) {
-                $_SESSION['nombreUsu'] = $usuario->getUsuario();
-                $_SESSION['privilegio'] = $usuario->getPrivilegio();
-                $_SESSION['telefono'] = $usuario->getTelefono();
 
-                if ($usuario->getPrivilegio() == 0) {
-                    header('Location: index.php?c=Usuario&a=usuarioIniciado');
-                } else {
-                    header('Location: index.php?c=Usuario&a=usuarioIniciadoAdmin');
-                }
+        
+        if ($usuario && password_verify($contrasena, $usuario->getContrasena())) {
+            
+            $_SESSION['nombreUsu'] = $usuario->getUsuario();
+            $_SESSION['privilegio'] = $usuario->getPrivilegio();
+            $_SESSION['telefono'] = $usuario->getTelefono();
+
+            
+            if (isset($_POST['recordar'])) {
+                setcookie('usuario', $usuarioNombre, time() + (86400 * 30), "/");
+            } else {
+                setcookie('usuario', '', time() - 3600, "/"); 
             }
+
+            
+            if ($usuario->getPrivilegio() == 0) {
+                header('Location: index.php?c=Usuario&a=usuarioIniciado');
+            } else {
+                header('Location: index.php?c=Usuario&a=usuarioIniciadoAdmin');
+            }
+            exit();
         } else {
             $error = "Usuario o contraseña no coincide";
             require '../view/usuario/login.php';
