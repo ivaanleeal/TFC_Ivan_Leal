@@ -1,0 +1,77 @@
+erDiagram
+    CLIENTES {
+        varchar(9) telefono PK
+        varchar(50) nombre
+        varchar(50) apellido
+        char(50) usuario
+        char(191) contrasena
+        int privilegio
+        tinyint Whatsap
+        tinyint Llamar
+    }
+    
+    EMPLEADOS {
+        varchar(9) DNI PK
+        varchar(50) nombre
+        varchar(50) apellido
+    }
+    
+    EQUIPOS {
+        int id_equipo PK
+        varchar(30) marca
+        varchar(50) modelo
+        varchar(50) SO
+        varchar(9) cliente_telefono FK
+    }
+    
+    MENSAJES {
+        int id PK
+        char(50) Nombre
+        char(100) Apellidos
+        char(100) Correo
+        text Mensaje
+        tinyint Visto
+    }
+    
+    PARTES {
+        int numero_parte PK
+        date fecha
+        text notas
+        varchar(50) Seguimiento
+        tinyint Recogido
+        varchar(9) cliente_telefono FK
+        int id_equipo FK
+        varchar(9) empleado_dni FK
+    }
+    
+    PIEZAS {
+        varchar(100) codigo_pieza PK
+        varchar(50) nombre
+        varchar(50) marca
+        varchar(50) modelo
+    }
+    
+    TAREAS {
+        int numero_parte PK, FK
+        int id_tarea PK
+        text descripcion
+        tinyint estado
+        int tiempo
+        varchar(255) imagen
+        varchar(9) empleado_dni FK
+    }
+    
+    REPARACION_PARTE {
+        int parte PK, FK
+        int tarea PK, FK
+        varchar(100) pieza PK, FK
+    }
+    
+    CLIENTES ||--o{ EQUIPOS : "tiene"
+    CLIENTES ||--o{ PARTES : "solicita"
+    EQUIPOS ||--o{ PARTES : "incluido_en"
+    EMPLEADOS ||--o{ PARTES : "asignado_a"
+    EMPLEADOS ||--o{ TAREAS : "realiza"
+    PARTES ||--o{ TAREAS : "contiene"
+    TAREAS ||--o{ REPARACION_PARTE : "usa"
+    PIEZAS ||--o{ REPARACION_PARTE : "utilizada_en"
