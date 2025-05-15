@@ -25,7 +25,8 @@
 
         <section class="botonesOpcciones">
             <button onclick="window.history.back()">⬅ Página Anterior</button>
-            <button onclick="location.href='index.php?c=usuario&a=logout'">Cerrar sesión</button>
+            <button onclick="location.href='index.php?c=usuario&a=usuarioIniciado'">Menú Usuario</button>
+            <button onclick="location.href='index.php?c=usuario&a=logout'" class="cerrar">Cerrar sesión</button>
         </section>
 
         <section class="botonesOpcciones">

@@ -24,7 +24,7 @@
     <section class="botonesOpcciones">
         <h1 class="bienvenida">Hola <?php echo $_SESSION['nombreUsu']; ?> bienbenido de nuevo</h1>
         <button onclick="window.history.back()">⬅ Página Anterior</button>
-        <button onclick="location.href='index.php?c=usuario&a=logout'">Cerrar sesión</button>
+        <button onclick="location.href='index.php?c=usuario&a=logout'" class="cerrar">Cerrar sesión</button>
     </section>
 
     <section class="tarjeta">

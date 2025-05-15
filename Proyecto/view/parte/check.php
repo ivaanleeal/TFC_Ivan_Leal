@@ -22,8 +22,9 @@
     <section class="botonesOpcciones">
         <h1 class="bienvenida">Configuración de Parte </h1>
         <button onclick="window.history.back()">⬅ Página Anterior</button>
+        <button onclick="location.href='index.php?c=usuario&a=usuarioIniciadoAdmin'">Menú Admin</button>
         <button onclick="location.href='index.php?c=parte&a=menuParte'">Volver Listado Parte</button>
-        <button onclick="location.href='index.php?c=usuario&a=logout'">Cerrar sesión</button>
+        <button onclick="location.href='index.php?c=usuario&a=logout'" class="cerrar">Cerrar sesión</button>
     </section>
 
     <div class="bien">✅ Parte eliminado correctamente.</div>

@@ -337,6 +337,21 @@ textarea {
 }
 
 
+.cerrar {
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    background-color: red;
+    color: white;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.3s;
+}
+
+.cerrar:hover {
+    background-color: rgb(189, 47, 47);
+}
+
 .tarjeta {
     background-color: #2d2f36;
     border-radius: 12px;

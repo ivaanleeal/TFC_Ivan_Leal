@@ -22,8 +22,9 @@
     <section class="botonesOpcciones">
         <h1 class="bienvenida">Configuración de Empleados </h1>
         <button onclick="window.history.back()">⬅ Página Anterior</button>
+        <button onclick="location.href='index.php?c=usuario&a=usuarioIniciadoAdmin'">Menú Admin</button>
         <button onclick="location.href='index.php?c=empleado&a=menuEmpleado'">Volver Listado Empleados</button>
-        <button onclick="location.href='index.php?c=usuario&a=logout'">Cerrar sesión</button>
+        <button onclick="location.href='index.php?c=usuario&a=logout'" class="cerrar">Cerrar sesión</button>
     </section>
 
     <div class="error">❌ No puede haber dos empleados con la misma Clave.</div>

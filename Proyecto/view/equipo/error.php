@@ -20,9 +20,11 @@
     </header>
 
     <section class="botonesOpcciones">
-        <h1 class="bienvenida">Configuración de Equipos </h1>
+        <h1 class="bienvenida">Configuración de Equipos </h1>        
+        <button onclick="window.history.back()">⬅ Página Anterior</button>
+        <button onclick="location.href='index.php?c=usuario&a=usuarioIniciadoAdmin'">Menú Admin</button>
         <button onclick="location.href='index.php?c=equipo&a=menuEquipo'">Volver Listado Equipos</button>
-        <button onclick="location.href='index.php?c=usuario&a=logout'">Cerrar sesión</button>
+        <button onclick="location.href='index.php?c=usuario&a=logout'" class="cerrar">Cerrar sesión</button>
     </section>
 
     <div class="error">❌ No se puede eliminar el Equipo porque tiene datos asociados.</div>
