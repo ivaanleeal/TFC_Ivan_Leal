@@ -2,14 +2,10 @@ window.addEventListener("load", iniForm);
 
 function iniForm() {
     document.getElementById("enviar").addEventListener("click", enviarForm);
-
-    // Validaciones en blur (al salir del campo)
     document.getElementById("nombre").addEventListener("blur", valiNombre);
     document.getElementById("apellido").addEventListener("blur", valiApellido);
     document.getElementById("email").addEventListener("blur", valiEmail);
     document.getElementById("mensaje").addEventListener("blur", valiTexto);
-
-    // Validaciones en tiempo real (mientras escribe)
     document.getElementById("nombre").addEventListener("input", valiNombre);
     document.getElementById("apellido").addEventListener("input", valiApellido);
     document.getElementById("email").addEventListener("input", valiEmail);
