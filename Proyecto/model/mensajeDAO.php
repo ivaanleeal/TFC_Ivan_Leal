@@ -28,4 +28,19 @@ class MensajeDAO
         $stmt = $this->pdo->prepare("UPDATE mensajes SET visto = :visto WHERE id = :id");
         return $stmt->execute(['visto' => $visto, 'id' => $id]);
     }
+
+    public function eliminarMensaje($id)
+    {
+        try {
+            $sql = "DELETE FROM `mensajes` "
+                . " WHERE id=:id";
+            $sentencia = $this->pdo->prepare($sql);
+            $sentencia->bindValue(':id', $id);
+            $sentencia->execute();
+            return true;
+        } catch (Exception $e) {
+            return false;
+        }
+    }
+
 }

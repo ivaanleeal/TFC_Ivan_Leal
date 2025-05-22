@@ -48,7 +48,7 @@
     <section id="contenedormensajes">
         <h1 class="bienvenida">Bandeja de Entrada</h1>
         <div class="formDatos">
-            
+
             <div class="fromData">
                 <div class="tabla-responsive">
                     <table>
@@ -60,6 +60,7 @@
                                 <th>Correo</th>
                                 <th>Mensaje</th>
                                 <th>Visto</th>
+                                <th></th>
                             </tr>
                         </thead>
                         <tbody>
@@ -79,6 +80,13 @@
                                     <td>
                                         <input type="checkbox" class="checkbox-visto" data-id="<?= $msg->getId() ?>" <?= ($msg->getleido() === 1) ? 'checked' : '' ?>>
                                     </td>
+                                    <td>
+                                        <button onclick="if(confirm('¿Estás seguro de que quieres eliminar este mensaje?')) {
+                                            window.location.href='index.php?c=mensaje&a=eliminar&id=<?php echo $msg->getId(); ?>';
+                                            }">Eliminar
+                                        </button>
+                                    </td>
+
                                 </tr>
                             <?php } ?>
                         </tbody>
