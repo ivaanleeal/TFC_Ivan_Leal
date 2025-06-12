@@ -86,7 +86,9 @@
 
                 $porcentaje = $totalTareas > 0 ? ($tareasCompletas / $totalTareas) * 100 : 0;
 
+                
                 echo '<div class="fromData">';
+                echo '<div class="tabla-responsive">';
                 echo '<h2>Equipo: ' . $reparacion['MarcaEquipo'] . ' ' . $reparacion['ModeloEquipo'] . '</h2>';
 
                 $color = ($porcentaje < 33.33) ? '#ff2f2f' : (($porcentaje < 66.66) ? '#fffc2f' : '#4caf50');
@@ -135,6 +137,7 @@
     } else {
         echo '<div class="fromData">';
         echo '<h1>El código de seguimiento no es válido</h1>';
+        echo '</div>';
         echo '</div><br>';
     }
 
