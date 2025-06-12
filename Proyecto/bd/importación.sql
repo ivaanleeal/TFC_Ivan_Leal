@@ -1,13 +1,14 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.1
+-- version 4.9.0.1
 -- https://www.phpmyadmin.net/
 --
--- Servidor: 127.0.0.1
--- Tiempo de generación: 24-04-2025 a las 11:52:40
--- Versión del servidor: 10.4.32-MariaDB
--- Versión de PHP: 8.0.30
+-- Servidor: sql309.infinityfree.com
+-- Tiempo de generación: 12-06-2025 a las 13:44:43
+-- Versión del servidor: 10.6.19-MariaDB
+-- Versión de PHP: 7.2.22
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -18,7 +19,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de datos: `tpcsi`
+-- Base de datos: `if0_38148262_tpcsi`
 --
 
 -- --------------------------------------------------------
@@ -43,10 +44,12 @@ CREATE TABLE `clientes` (
 --
 
 INSERT INTO `clientes` (`telefono`, `nombre`, `apellido`, `usuario`, `contrasena`, `privilegio`, `Whatsap`, `Llamar`) VALUES
-('600123456', 'Juan', 'Pérez', 'juancito', '$2a$12$zhclWgnrq1gK9Jug0kDfQeMC4RsBqvNHgNX/c8LrmSQCN1gA512zy', 0, 1, 0),
-('600555333', 'Luis', 'Martínez', 'luisito', '$2a$12$zhclWgnrq1gK9Jug0kDfQeMC4RsBqvNHgNX/c8LrmSQCN1gA512zy', 0, 1, 1),
-('600987654', 'Ana', 'García', 'anita', '$2a$12$zhclWgnrq1gK9Jug0kDfQeMC4RsBqvNHgNX/c8LrmSQCN1gA512zy', 0, 0, 1),
-('666666666', 'Pelao', 'Loco', 'pelao', '$2y$10$OnIM3a2Uo3XfWbHVIid9h.HawKAc5Xyxbden91i/lrFyZwrf.XzXC', 0, 1, 1);
+('604006063', 'Iván', 'Leal López', 'ivaanleeal', '$2a$12$zhclWgnrq1gK9Jug0kDfQeMC4RsBqvNHgNX/c8LrmSQCN1gA512zy', 1, 0, 0),
+('630032877', 'Tino', 'García Ulla', 'tino', '$2y$10$Q5H5v7I.UaXsBIUex32zDea4bEgVJxzFTDwtVnA4nW73O33jdsODi', 0, 0, 0),
+('639328417', 'Marta', 'Iglesias Gómez', 'marta', '$2y$10$Ut8QhvkIL/AHO/E0XsoXVe6I01OY0HwJqw1jNGaaVHgXaAsbaq/rC', 0, 0, 0),
+('652102871', 'Eva', 'Naveira Domínguez', 'evan', '$2y$12$dK8IeobzfhroiQfru7i3w.5PgZI/DXqpaAWwJwg2UYQdvnMuEW6qm', 0, 0, 0),
+('658915214', 'Víctor Alfredo', 'Pascual Vázquez', 'victor', '$2y$10$JL9UaP3mnDNQ9NPslt9Ug.jpVG2Sa.QMOmNDOIXxtNqIWlQL7fdji', 0, 0, 0),
+('665235562', 'Fernando', 'Prado Espiñeira', 'fernando', '$2a$12$zhclWgnrq1gK9Jug0kDfQeMC4RsBqvNHgNX/c8LrmSQCN1gA512zy', 0, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -65,9 +68,9 @@ CREATE TABLE `empleados` (
 --
 
 INSERT INTO `empleados` (`DNI`, `nombre`, `apellido`) VALUES
-('12345678A', 'Carlos', 'Sánchez'),
-('56789012C', 'Elena', 'González'),
-('87654321B', 'María', 'López');
+('52014755L', 'Enrique', 'Giménez Martínez '),
+('54156987F', 'Mario', 'García Carro'),
+('58741369N', 'Fiz', 'Sar López');
 
 -- --------------------------------------------------------
 
@@ -88,10 +91,11 @@ CREATE TABLE `equipos` (
 --
 
 INSERT INTO `equipos` (`id_equipo`, `marca`, `modelo`, `SO`, `cliente_telefono`) VALUES
-(1, 'Apple', 'iPhone 13', 'iOS', '600123456'),
-(2, 'Samsung', 'Galaxy S22', 'Android', '600987654'),
-(3, 'Xiaomi', 'Mi 11', 'Android', '600555333'),
-(4, 'nnnbnb', 'nbnbnb', 'nbnbnb', '666666666');
+(5, 'DELL', 'OPTIPLEX', 'WindowsXP', '665235562'),
+(6, 'ASSUS', 'NITRA', 'Windows11', '652102871'),
+(7, 'SAMSUNG', 'IMPREZA', 'Windows10', '658915214'),
+(8, 'IBM', 'PEGAUS', 'Windows98', '630032877'),
+(9, 'HP', 'LANCER EVO', 'Windows95', '639328417');
 
 -- --------------------------------------------------------
 
@@ -104,7 +108,8 @@ CREATE TABLE `mensajes` (
   `Nombre` char(50) NOT NULL DEFAULT '0',
   `Apellidos` char(100) NOT NULL DEFAULT '0',
   `Correo` char(100) NOT NULL DEFAULT '0',
-  `Mensaje` text NOT NULL
+  `Mensaje` text NOT NULL,
+  `Visto` tinyint(1) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -129,9 +134,11 @@ CREATE TABLE `partes` (
 --
 
 INSERT INTO `partes` (`numero_parte`, `fecha`, `notas`, `Seguimiento`, `Recogido`, `cliente_telefono`, `id_equipo`, `empleado_dni`) VALUES
-(1, '2025-02-21', 'El cliente reportó un problema de batería.', '120252021JLP', 0, '600123456', 1, '12345678A'),
-(2, '2025-01-21', 'El dispositivo no enciende.', '123456LP', 1, '600123456', 2, '87654321B'),
-(3, '2025-03-22', 'Problemas con la cámara trasera.', NULL, 1, '600123456', 3, '56789012C');
+(7, '2025-06-12', 'El cliente reporta ruidos extraños', '123456FPE', 0, '665235562', 5, '58741369N'),
+(9, '2025-06-12', 'Se apaga derrepente', '123456END', 0, '652102871', 6, '54156987F'),
+(10, '2025-06-12', 'Ordenador funciona muy lento', '123456VPV', 0, '658915214', 7, '52014755L'),
+(11, '2025-06-12', 'No le abre steam', '123456TGU', 0, '630032877', 8, '58741369N'),
+(12, '2025-06-12', 'Virus detectado', '123456MIG', 0, '639328417', 9, '52014755L');
 
 -- --------------------------------------------------------
 
@@ -151,12 +158,11 @@ CREATE TABLE `piezas` (
 --
 
 INSERT INTO `piezas` (`codigo_pieza`, `nombre`, `marca`, `modelo`) VALUES
-('BAT001', 'Batería', 'Apple', 'iPhone 13'),
-('CAM002', 'Cámara', 'Xiaomi', 'Mi 11'),
-('CAR001', 'Cargador', 'Asus', 'Loco'),
-('PCB003', 'Placa madre', 'Samsung', 'Galaxy S22'),
-('RAM001', 'Ram', 'Kimston', '1587'),
-('WIN10', 'Windows 10', 'Microsoft', '24H2');
+('ACS111', 'Actualización', 'Aplicación', 'Steam'),
+('DDS111', 'Disco Duro SSD', 'Kimstong', 'Full 500 GB'),
+('EVP111', 'Eliminado', 'Virus', 'PC'),
+('LDV111', 'Limpieza', 'Ventilador / Disipador', 'Manual'),
+('VCG111', 'Ventilador', 'ASSUS', 'Let200');
 
 -- --------------------------------------------------------
 
@@ -175,12 +181,11 @@ CREATE TABLE `reparacion_parte` (
 --
 
 INSERT INTO `reparacion_parte` (`parte`, `tarea`, `pieza`) VALUES
-(1, 1, 'BAT001'),
-(1, 2, 'CAR001'),
-(1, 3, 'RAM001'),
-(2, 1, 'PCB003'),
-(2, 2, 'WIN10'),
-(3, 1, 'CAM002');
+(7, 1, 'VCG111'),
+(9, 1, 'LDV111'),
+(10, 1, 'DDS111'),
+(11, 1, 'ACS111'),
+(12, 1, 'EVP111');
 
 -- --------------------------------------------------------
 
@@ -203,12 +208,11 @@ CREATE TABLE `tareas` (
 --
 
 INSERT INTO `tareas` (`numero_parte`, `id_tarea`, `descripcion`, `estado`, `tiempo`, `imagen`, `empleado_dni`) VALUES
-(1, 1, 'Reemplazar batería', 1, 120, '/imagenes/bateria.png', '12345678A'),
-(1, 2, 'Nuevo Cargador', 1, 0, NULL, '12345678A'),
-(1, 3, 'Aumentada Memoria Ram', 0, 50, NULL, '12345678A'),
-(2, 1, 'Diagnóstico de placa Base', 0, 240, '/imagenes/placa.png', '87654321B'),
-(2, 2, 'Intalado Windows 10', 0, 400, NULL, '56789012C'),
-(3, 1, 'Reparar cámara trasera', 0, 20, '/imagenes/camara.png', '56789012C');
+(7, 1, 'Quitado Ventilador estropeado', 0, 5, '..\\imagenesSubidas\\Ventilador-roto.jpg', '58741369N'),
+(9, 1, 'Se limpio ventilador del disipador ', 1, 20, '..\\imagenesSubidas\\Ventilador-sucio.jpg', '52014755L'),
+(10, 1, 'Se cambió de un disco HDD a uno SSD', 1, 100, '..\\imagenesSubidas\\cambiar-duro.jpg', '54156987F'),
+(11, 1, 'Desinstalado e instalado versión actualizada', 1, 120, '..\\imagenesSubidas\\actualizar-steam.jpg', '58741369N'),
+(12, 1, 'Eliminado virus y actualizadas defensas', 0, 500, '..\\imagenesSubidas\\virus.jpg', '52014755L');
 
 --
 -- Índices para tablas volcadas
@@ -277,19 +281,19 @@ ALTER TABLE `tareas`
 -- AUTO_INCREMENT de la tabla `equipos`
 --
 ALTER TABLE `equipos`
-  MODIFY `id_equipo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id_equipo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT de la tabla `mensajes`
 --
 ALTER TABLE `mensajes`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT de la tabla `partes`
 --
 ALTER TABLE `partes`
-  MODIFY `numero_parte` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `numero_parte` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT de la tabla `tareas`
