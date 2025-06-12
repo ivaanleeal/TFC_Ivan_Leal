@@ -30,7 +30,6 @@
     </section>
 
     <?php
-
     if (isset($_POST['codigo'])) {
         $_SESSION['codigoSegui'] = $_POST['codigo'];
     }
@@ -86,7 +85,6 @@
 
                 $porcentaje = $totalTareas > 0 ? ($tareasCompletas / $totalTareas) * 100 : 0;
 
-                
                 echo '<div class="fromData">';
                 echo '<div class="tabla-responsive">';
                 echo '<h2>Equipo: ' . $reparacion['MarcaEquipo'] . ' ' . $reparacion['ModeloEquipo'] . '</h2>';
@@ -127,7 +125,8 @@
 
                 echo '</tbody>';
                 echo '</table>';
-                echo '</div><br>';
+                echo '</div>';
+                echo '</div><br>'; 
             }
         } else {
             echo '<div class="fromData">';
@@ -137,10 +136,8 @@
     } else {
         echo '<div class="fromData">';
         echo '<h1>El código de seguimiento no es válido</h1>';
-        echo '</div>';
         echo '</div><br>';
     }
-
     ?>
 
 </body>
