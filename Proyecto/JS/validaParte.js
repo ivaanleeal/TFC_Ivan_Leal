@@ -166,3 +166,29 @@ function error(elemento) {
 function validarOK(elemento) {
     elemento.classList.add("validocaja");
 }
+
+
+document.addEventListener("DOMContentLoaded", function () {
+    const clienteSelect = document.getElementById("cliente_telefono");
+    const equipoSelect = document.getElementById("equipo");
+
+    const allEquipos = Array.from(equipoSelect.options);
+
+    clienteSelect.addEventListener("change", function () {
+        const clienteSeleccionado = this.value;
+
+        equipoSelect.innerHTML = '';
+
+        const defaultOption = document.createElement('option');
+        defaultOption.value = '';
+        defaultOption.textContent = 'Seleccione Uno ...';
+        equipoSelect.appendChild(defaultOption);
+
+       allEquipos.forEach(option => {
+            if (option.dataset.cliente === clienteSeleccionado) {
+                equipoSelect.appendChild(option);
+            }
+        });
+    });
+});
+

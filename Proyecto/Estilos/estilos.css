@@ -537,7 +537,7 @@ input.errorcaja {
 }
 
 .tabla-responsive table {
-    min-width: 800px; 
+    min-width: 800px; /* o más, según tus columnas */
 }
 
 .fromData table {

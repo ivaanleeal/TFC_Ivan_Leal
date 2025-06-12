@@ -93,3 +93,29 @@ function error(elemento) {
 function validarOK(elemento) {
     elemento.classList.add("validocaja");
 }
+
+
+
+document.addEventListener("DOMContentLoaded", function () {
+    const parteSelect = document.getElementById("parte");
+    const tareaSelect = document.getElementById("tarea");
+
+    const allTareas = Array.from(tareaSelect.options);
+
+    parteSelect.addEventListener("change", function () {
+        const parteSeleccionado = this.value;
+
+        tareaSelect.innerHTML = '';
+
+        const defaultOption = document.createElement('option');
+        defaultOption.value = '';
+        defaultOption.textContent = 'Seleccione Uno ...';
+        tareaSelect.appendChild(defaultOption);
+
+        allTareas.forEach(option => {
+            if (option.dataset.parte === parteSeleccionado) {
+                tareaSelect.appendChild(option);
+            }
+        });
+    });
+});

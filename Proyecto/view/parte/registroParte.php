@@ -45,7 +45,7 @@
 
             <label for="notas">Notas</label>
             <br>
-            <textarea name="notas" id="notas" class="form-control" required maxlength="9" placeholder="¿Qué le pasa al equipo?"></textarea>
+            <textarea name="notas" id="notas" class="form-control"  placeholder="¿Qué le pasa al equipo?"></textarea>
             <span id="errornotas" class="errortexto"></span>
             <br><br>
 

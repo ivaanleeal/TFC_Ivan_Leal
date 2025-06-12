@@ -53,12 +53,12 @@
             <br><br>
 
             <label for="usuario">Usuario</label>
-            <input type="text" name="usuario" id="usuario" class="form-control" required placeholder="Nombre de usuario" value="<?php echo $usuario->getUsuario(); ?>" />
+            <input type="text" name="usuarioNombre" id="usuario" class="form-control" required placeholder="Nombre de usuario" value="<?php echo $usuario->getUsuario(); ?>" />
             <span id="errorusuario" class="errortexto"></span>
             <br><br>
 
             <label for="password">Contraseña</label>
-            <input type="password" name="contrasena" id="password" class="form-control" required placeholder="Contraseña segura" value="<?php echo $usuario->getContrasena(); ?>" />
+            <input type="password" name="contrasena" id="password" class="form-control" placeholder="Nueva contraseña (déjelo vacío para no cambiarla)" />
             <span id="errorpassword" class="errortexto"></span>
             <br><br>
 

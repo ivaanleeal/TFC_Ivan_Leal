@@ -71,13 +71,13 @@ function valiModelo() {
 
 function valiSO() {
     let so = document.getElementById("so");
-    let patron = /^[A-Za-z0-9\s\.]+$/;
+    let patron = /^[A-Za-z0-9\s\.]{1,20}$/;
     let resultado = so.value.trim().match(patron);
 
     eliminError(so);
 
-    if (resultado == null || so.value.trim().length === 0 || so.value.trim().length > 9) {
-        document.getElementById("errorso").innerHTML = "Sistema Operativo inválido (máx. 9 caracteres)";
+    if (resultado == null || so.value.trim().length === 0 || so.value.trim().length > 20) {
+        document.getElementById("errorso").innerHTML = "Sistema Operativo inválido (máx. 20 caracteres)";
         error(document.getElementById("errorso"));
         error(so);
         return false;

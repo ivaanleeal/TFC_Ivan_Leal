@@ -53,7 +53,7 @@
 
             <label for="descripccion">Descripccion</label>
             <br>
-            <textarea name="descripccion" id="descripccion" class="form-control" required maxlength="9" placeholder="¿Qué tarea se realizó?"></textarea>
+            <textarea name="descripccion" id="descripccion" class="form-control" required  placeholder="¿Qué tarea se realizó?"></textarea>
             <span id="errordescripccion" class="errortexto"></span>
             <br><br>
 

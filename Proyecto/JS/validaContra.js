@@ -1,11 +1,15 @@
 window.addEventListener("load", function () {
+    // Validación al enviar el formulario
     document.querySelector("form").addEventListener("submit", validarLogin);
+
+    // Validación en tiempo real al escribir la contraseña
     document.getElementsByName("contrasena")[0].addEventListener("input", validarContrasena);
 });
 
 function validarLogin(e) {
+    // Validar contraseña antes de enviar el formulario
     if (!validarContrasena()) {
-        e.preventDefault(); 
+        e.preventDefault(); // Detener el envío si hay error
     }
 }
 
@@ -14,6 +18,8 @@ function validarContrasena() {
     const error = document.getElementById("errorpassword");
 
     eliminarErrores(contrasena, error);
+
+    // Validación: mínimo 6 caracteres
     if (contrasena.value.length < 6) {
         error.textContent = "Contraseña muy corta (mínimo 6 caracteres)";
         marcarError(contrasena, error);

@@ -8,14 +8,12 @@ function iniForm() {
     document.getElementById("nombre").addEventListener("blur", valiNombre);
     document.getElementById("apellidos").addEventListener("blur", valiApellido);
     document.getElementById("usuario").addEventListener("blur", valiUsuario);
-    document.getElementById("password").addEventListener("blur", valiPassword);
 
     
     document.getElementById("telefono").addEventListener("input", valiTelefono);
     document.getElementById("nombre").addEventListener("input", valiNombre);
     document.getElementById("apellidos").addEventListener("input", valiApellido);
     document.getElementById("usuario").addEventListener("input", valiUsuario);
-    document.getElementById("password").addEventListener("input", valiPassword);
 }
 
 function enviarForm(e) {
@@ -23,8 +21,7 @@ function enviarForm(e) {
         valiTelefono() &
         valiNombre() &
         valiApellido() &
-        valiUsuario() &
-        valiPassword();
+        valiUsuario();
 
     if (!valid) {
         e.preventDefault();
@@ -106,23 +103,6 @@ function valiUsuario() {
     } else {
         document.getElementById("errorusuario").innerHTML = "";
         validarOK(usuario);
-        return true;
-    }
-}
-
-function valiPassword() {
-    let password = document.getElementById("password");
-
-    eliminError(password);
-
-    if (password.value.trim().length < 6) {
-        document.getElementById("errorpassword").innerHTML = "Contraseña muy débil (mínimo 6 caracteres)";
-        error(document.getElementById("errorpassword"));
-        error(password);
-        return false;
-    } else {
-        document.getElementById("errorpassword").innerHTML = "";
-        validarOK(password);
         return true;
     }
 }

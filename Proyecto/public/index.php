@@ -4,7 +4,7 @@ require_once '../bd/database.php';
 session_name("Sesión1");
 session_start();
 
-
+// FrontController
 if(!isset($_REQUEST['c']))
 {    
     require_once '../HTML/index.php';

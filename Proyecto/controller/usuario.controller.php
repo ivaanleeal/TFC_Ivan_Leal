@@ -91,7 +91,7 @@ class UsuarioController
             $telefono = $_REQUEST['telefono'];
             $nombre = $_REQUEST['nombre'];
             $apellidos = $_REQUEST['apellidos'];
-            $usuarioNombre = $_REQUEST['usuario'];
+            $usuarioNombre = $_REQUEST['usuarioNombre'];
             $password = $_REQUEST['password'];
             $privilegio = $_REQUEST['privilegio'];
 
@@ -218,8 +218,10 @@ class UsuarioController
                 $usuario->setTelefono($_REQUEST['telefono']);
                 $usuario->setNombre($_REQUEST['nombre']);
                 $usuario->setApellidos($_REQUEST['apellidos']);
-                $usuario->setUsuario($_REQUEST['usuario']);
+                $usuario->setUsuario($_REQUEST['usuarioNombre']);
+                if (!empty($_POST['contrasena'])) {
                 $usuario->setContrasena(password_hash($_REQUEST['contrasena'], PASSWORD_BCRYPT, $opciones));
+                }
                 $usuario->setPrivilegio($_REQUEST['privilegio']);
                 $usuario->setWhatsap(isset($_REQUEST['whatsap']) ? 1 : 0);
                 $usuario->setLlamar(isset($_REQUEST['llamada']) ? 1 : 0);
@@ -239,7 +241,6 @@ class UsuarioController
     {
         $_SESSION['nombreUsu'] = "";
         $_SESSION['privilegio'] = "";
-        setcookie('usuario', "");
 
         require_once '../view/usuario/login.php';
         require_once '../view/footer.php';
@@ -280,6 +281,7 @@ class UsuarioController
             require '../view/footer.php';
         }
     }
+
 
 
     public function usuarioIniciado()

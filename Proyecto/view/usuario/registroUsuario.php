@@ -51,7 +51,7 @@
             <br><br>
 
             <label for="usuario">Usuario</label>
-            <input type="text" name="usuario" id="usuario" class="form-control" required placeholder="Nombre de usuario" />
+            <input type="text" name="usuarioNombre" id="usuario" class="form-control" required placeholder="Nombre de usuario" />
             <span id="errorusuario" class="errortexto"></span>
             <br><br>
 

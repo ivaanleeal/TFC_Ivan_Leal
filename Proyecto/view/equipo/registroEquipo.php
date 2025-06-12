@@ -46,7 +46,7 @@
             <br><br>
 
             <label for="so">Sistema Operativo</label>
-            <input type="text" name="so" id="so" class="form-control" required maxlength="9" placeholder="Sistema Operativo" />
+            <input type="text" name="so" id="so" class="form-control" required  placeholder="Sistema Operativo" />
             <span id="errorso" class="errortexto"></span>
             <br><br>
 

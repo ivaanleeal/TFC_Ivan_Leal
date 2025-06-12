@@ -1,3 +1,4 @@
+// Filtros para partes
 const filtrosParte = {
     numeroParte: document.getElementById('filtroNumeroParte'),
     fecha: document.getElementById('filtroFecha'),
@@ -14,6 +15,7 @@ const btnOrdenarParte = document.getElementById('btnOrdenarPartes');
 let ordenAscendenteParte = true;
 
 function formatearFechaInput(inputDateStr) {
+    // Convierte yyyy-mm-dd a dd/mm/yyyy
     if (!inputDateStr) return '';
     const [yyyy, mm, dd] = inputDateStr.split("-");
     return `${dd}/${mm}/${yyyy}`;
@@ -41,6 +43,7 @@ function filtrarPartes() {
             let textoFiltro = filtrosParte[campo].value.trim().toLowerCase();
 
             if (campo === "fecha" && textoFiltro) {
+                // Compara fechas convertidas
                 const fechaInput = formatearFechaInput(filtrosParte.fecha.value).toLowerCase();
                 if (!valores.fecha.includes(fechaInput)) {
                     visible = false;
@@ -56,12 +59,12 @@ function filtrarPartes() {
     });
 }
 
-
+// Eventos de input
 for (const campo in filtrosParte) {
     filtrosParte[campo].addEventListener('input', filtrarPartes);
 }
 
-
+// Limpiar filtros
 btnLimpiarParte.addEventListener('click', () => {
     for (const campo in filtrosParte) {
         filtrosParte[campo].value = '';
@@ -69,7 +72,7 @@ btnLimpiarParte.addEventListener('click', () => {
     filtrarPartes();
 });
 
-
+// Ordenar por número de parte (numérico o alfabético según cómo se use)
 btnOrdenarParte.addEventListener('click', ordenarPartes);
 
 function ordenarPartes() {
@@ -80,6 +83,7 @@ function ordenarPartes() {
         const valA = a.querySelector('tbody td')?.textContent.trim().toLowerCase() || '';
         const valB = b.querySelector('tbody td')?.textContent.trim().toLowerCase() || '';
 
+        // Ordenar como números si son enteros
         const numA = parseInt(valA);
         const numB = parseInt(valB);
         const isNumeric = !isNaN(numA) && !isNaN(numB);
@@ -96,7 +100,7 @@ function ordenarPartes() {
     btnOrdenarParte.textContent = ordenAscendenteParte ? 'Ordenar por Nº Parte ↑' : 'Ordenar por Nº Parte ↓';
 }
 
-
+// Inicial
 window.addEventListener('load', () => {
     filtrarPartes();
     ordenarPartes();
